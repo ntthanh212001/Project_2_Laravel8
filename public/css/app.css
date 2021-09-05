@@ -14,9 +14,15 @@ body{
 }
 .content{
     height: 85vh;
-    background-color: #F7F5F9;
+    background-color: #FFFFFF;
 }
 .navbar navbar-expand-lg navbar-dark bg-dark{
     background-color: hotpink;
 }
+.nav-link{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
 

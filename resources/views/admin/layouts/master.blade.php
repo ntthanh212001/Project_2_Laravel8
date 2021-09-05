@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,15 +9,20 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{{url('css/app.css')}}">
     <title>@yield('title','không có tiêu đề')</title>
+    @section('css')
+        
+    @show
 </head>
 
 <body>
     <div class="wrap">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 89px; background-color: white">
             <div class="container-fluid" >
-                <a class="navbar-brand" href="#">ADMIN</a>
+                <a class="navbar-brand" href="{{url('admin/')}}">
+                    <img style="margin-left: -10px" src="{{asset('image/logo.png')}}" alt="">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -27,48 +32,42 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Thống kê</a>
+                            <a class="nav-link" href="#">Ngành</a>
                         </li>
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Sinh Viên
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Tất cả sinh viên</a></li>
-
-                            </ul>
+                            <a class="nav-link" href="#">Lớp</a>
                         </li>
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Giảng Viên
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <a class="nav-link" href="{{url('admin/teacher/')}}">Giảng viên</a>
                         </li>
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <a class="nav-link" href="">Sinh viên</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="">Điểm</a>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="">Môn học</a>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="">Phân công</a>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="">Thông báo</a>
                         </li>
                     </ul>
 
@@ -78,7 +77,7 @@
         <div class="content">
             @section('content')
 
-            @endsection
+            @show
 
         </div>
         <footer class="text-center text-white" style="background-color: #86807F;">
@@ -86,10 +85,10 @@
 
 
             <!-- Copyright -->
-            <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            {{-- <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2020 Copyright:
                 <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-            </div>
+            </div> --}}
             <!-- Copyright -->
         </footer>
     </div>

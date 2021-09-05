@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use App\Models\Giangvien;
 use App\Models\Lop;
 use App\Models\Nganh;
 use App\Models\Sinhvien;
@@ -35,7 +36,7 @@ class AdminController extends Controller
         $data = Lop::all();
         return view('admin.menu.class.all-class', ['lop' => $data]);
     }
-    function FormInsertBranch()
+    /* function FormInsertBranch()
     {
         return view('admin.menu.branch.insert-branch');
     }
@@ -80,6 +81,26 @@ class AdminController extends Controller
         } else {
             return back()->with('error', 'Lỗi không thể xoá! hãy thử lại');
         }
+    } */
+
+    public function allTeacher(){
+        $data = Giangvien::all();
+        return view('admin.teacher.index', ['data'=>$data]);
+    }
+
+    public function addTeacher(Request $request){
+        $data = new Giangvien();
+
+        $data->hoten = $request->hoten;
+        $data->email = $request->email;
+        $data->password = $request->password;
+        $data->ngaysinh = $request->ngaysinh;
+        $data->gioitinh = $request->gioitinh;
+        $data->phone = $request->phone;
+        $data->status = $request->status;
+
+        $data->save();
+        return response()->json($data);
     }
     
 }
