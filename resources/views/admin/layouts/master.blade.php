@@ -32,12 +32,12 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ngành</a>
+                            <a class="nav-link" href="{{url('admin/branch/')}}">Ngành</a>
                         </li>
                         &nbsp;&nbsp;&nbsp;
                         &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#">Lớp</a>
+                            <a class="nav-link" href="{{url('admin/class/')}}">Lớp</a>
                         </li>
                         &nbsp;&nbsp;&nbsp;
                         &nbsp;
@@ -47,27 +47,27 @@
                         &nbsp;&nbsp;&nbsp;
                         &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="">Sinh viên</a>
+                            <a class="nav-link" href="{{url('admin/student/')}}">Sinh viên</a>
                         </li>
                         &nbsp;&nbsp;&nbsp;
                         &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="">Điểm</a>
+                            <a class="nav-link" href="{{url('admin/mark/')}}">Điểm</a>
                         </li>
                         &nbsp;&nbsp;&nbsp;
                         &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="">Môn học</a>
+                            <a class="nav-link" href="{{url('admin/object/')}}">Môn học</a>
                         </li>
                         &nbsp;&nbsp;&nbsp;
                         &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="">Phân công</a>
+                            <a class="nav-link" href="{{url('admin/assignment/')}}">Phân công</a>
                         </li>
                         &nbsp;&nbsp;&nbsp;
                         &nbsp;
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="">Thông báo</a>
+                            <a class="nav-link" href="{{url('admin/post/')}}">Thông báo</a>
                         </li>
                     </ul>
 
