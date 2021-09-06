@@ -100,7 +100,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
 
 
 <script>
-/* 
+/*
 $(document).ready( function () {
     $('#nganhTable').DataTable();
 } ); */

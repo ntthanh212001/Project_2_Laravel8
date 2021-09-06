@@ -56,8 +56,9 @@ Route::get('/all-class', [AdminController::class, 'AllClass'])->name('admin.clas
 //class */
 
 /* Admin-Teacher */
-Route::get('admin/teacher/', [AdminController::class, 'allTeacher']);
-Route::post('admin/teacher/add-teacher', [AdminController::class, 'addTeacher'])->name('teacher.add');
-Route::get('admin/teacher//{id}', [AdminController::class, 'getTeacherById']);
+Route::get('/admin/teacher/', [AdminController::class, 'allTeacher']);
+Route::post('/admin/teacher/add-teacher', [AdminController::class, 'addTeacher'])->name('teacher.add');
+Route::get('/admin/teacher/{id}', [AdminController::class, 'getTeacherById']);
 
-Route::put('/admin/teacher/update-teacher', [AdminController::class, 'updateTeacher'])->name('giangvien.update');
+
+Route::put('/admin/teacher', [AdminController::class, 'updateTeacher'])->name('teacher.update');

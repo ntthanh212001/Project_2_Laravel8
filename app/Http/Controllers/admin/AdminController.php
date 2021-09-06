@@ -116,7 +116,7 @@ class AdminController extends Controller
         $data->save();
         return response()->json($data);
     }
-   
+
     public function getTeacherById($id){
         $data = Giangvien::find($id);
         return response()->json($data);

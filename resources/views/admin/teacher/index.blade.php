@@ -29,11 +29,12 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             <th>Giới tính</th>
             <th>Số điện thoại</th>
             <th>Trạng thái</th>
+            <th>action</th>
         </tr>
     </thead>
     <tbody>
-        @forelse ($data as $item)
-        <tr>
+        @foreach ($data as $item)
+        <tr id="tid{{$item->id}}">
             <td>{{ $item->id }}</td>
             <td>{{ $item->hoten }}</td>
             <td>{{ $item->email }}</td>
@@ -41,14 +42,15 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             <td>{{ $item->gioitinh==1? 'Nam':'Nữ' }}</td>
             <td>{{ $item->phone }}</td>
             <td>{{ $item->status==1? 'On':'Off' }}</td>
+            <td>
+                <a href="javascript:void(0)" onclick="editTeacher({{$item->id}})" class="btn btn-info">Edit</a>
+            </td>
             {{-- <td>
         <a href="javascript:void(0)" onclick="editGiangvien({{$item->id}})" class="btn btn-info">Edit</a>
             <a href="javascript:void(0)" onclick="deleteGiangvien({{$item->id}})" class="btn btn-danger">Del</a>
             </td> --}}
         </tr>
-        @empty
-        <th colspan="7">Danh sách trống</th>
-        @endforelse
+        @endforeach
     </tbody>
 </table>
 <!-- Add GV Modal -->
@@ -117,7 +119,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                 </button>
             </div>
             <div class="modal-body">
-                <form id="giangvienEditForm" action="">
+                <form id="teacherEditForm">
                     @csrf
                     <input type="hidden" id="id" name="id" />
                     <div class="form-group">
@@ -130,7 +132,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password2" readonly
+                        <input type="password" class="form-control" id="password2"
                             value="$2a$12$00S/d806OemZuOuYkbuiz.hMz9aSrzK/9oyQI76jC4tL.EhfZ0zAi" />
                     </div>
                     <div class="form-group">
@@ -207,11 +209,11 @@ $(document).ready( function () {
 
 </script>
 <script>
-    /* Edit GV */ 
+    /* Edit GV */
 
-       function editGiangvien(id)
+       function editTeacher(id)
        {
-           $.get('/index/'+id, function(giangvien){
+           $.get('/admin/teacher/'+id, function(giangvien){
                $("#id").val(giangvien.id);
                $("#hoten2").val(giangvien.hoten);
                $("#email2").val(giangvien.email);
@@ -224,7 +226,7 @@ $(document).ready( function () {
            });
        }
 
-       $("#giangvienEditForm").submit(function(e){
+       $("#teacherEditForm").submit(function(e){
            e.preventDefault();
            let id = $("#id").val();
            let hoten = $("#hoten2").val();
@@ -236,8 +238,9 @@ $(document).ready( function () {
            let status = $("#status2").val();
            let _token = $("input[name=_token]").val();
 
+
            $.ajax({
-               url:"{{route('giangvien.update')}}",
+               url:"{{route('teacher.update')}}",
                type:"PUT",
                data:{
                    id:id,
@@ -252,18 +255,18 @@ $(document).ready( function () {
                },
                success:function(response)
                {
-                   $('#sid'+response.id +' td:nth-child(1)').text(response.hoten);
-                   $('#sid'+response.id +' td:nth-child(2)').text(response.email);
-                   $('#sid'+response.id +' td:nth-child(3)').text(response.password);
-                   $('#sid'+response.id +' td:nth-child(4)').text(response.ngaysinh);
-                   $('#sid'+response.id +' td:nth-child(5)').text(response.gioitinh);
-                   $('#sid'+response.id +' td:nth-child(6)').text(response.phone);
-                   $('#sid'+response.id +' td:nth-child(7)').text(response.status);
+                $('#tid' +response.id +' td:nth-child(1)').text(response.id);
+                   $('#tid' +response.id +' td:nth-child(2)').text(response.hoten);
+                   $('#tid' +response.id +' td:nth-child(3)').text(response.email);
+                   $('#tid' +response.id +' td:nth-child(5)').text(response.ngaysinh);
+                   $('#tid' +response.id +' td:nth-child(6)').text(response.gioitinh);
+                   $('#tid' +response.id +' td:nth-child(7)').text(response.phone);
+                   $('#tid' +response.id +' td:nth-child(8)').text(response.status);
                    $("#teacherEditModal").modal('toggle');
-                   $("#giangvienEditForm")[0].reset();
+                   $("#teacherEditForm")[0].reset();
                }
            });
        });
-
 </script>
+
 @endsection
