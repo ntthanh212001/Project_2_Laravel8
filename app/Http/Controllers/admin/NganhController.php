@@ -26,10 +26,10 @@ class AdminController extends Controller
         $data = Sinhvien::all();
         return view('admin.menu.student.allstudent', ['sinhvien' => $data]);
     }
-    function AllBranch()
+    public function allBranch()
     {
         $data = Nganh::all();
-        return view('admin.menu.branch.all-branch', ['nganh' => $data]);
+        return view('admin.branch.index', ['data' => $data]);
     }
     function AllClass()
     {

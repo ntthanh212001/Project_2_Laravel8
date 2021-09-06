@@ -45,15 +45,8 @@ Route::get('giangvien/logout', [GiangVienLoginController::class, 'logout'])->nam
 // Route::get('/all-branch', function () {
 //     return view('admin.branch.index', ['posts' => Nganh::all()])->name('branch');
 // });
-Route::get('admin/all-branch', [AdminController::class, 'allBranch'])->name('allBranch');
-Route::post('admin/teacher/add-branch', [AdminController::class, 'addBranch'])->name('branch.add');
-Route::post('admin/teacher/edit-branch/{id}', [AdminController::class, 'editBranch'])->name('branch.edit');
-// Route::get('/insert-branch', [AdminController::class, 'FormInsertBranch'])->name('form-insert-branch');
-// Route::post('/insert-branch', [AdminController::class, 'insertbranch'])->name('insert.branch');
-
-// Route::get('/delete-branch/{id}', [AdminController::class, 'deletebranch'])->name('delete-branch');
-// Route::get('/edit-branch/{id}', [AdminController::class, 'FormEditBranch'])->name('edit-branch');
-// Route::post('/edit-branch/{id}', [AdminController::class, 'EditBranchtbranch']);
+Route::get('admin/branch/', [AdminController::class, 'allBranch']);
+Route::post('admin/branch/add-branch', [AdminController::class, 'addBranch'])->name('branch.add');
 //
 /* //admin - student
 Route::get('/allstudent', [AdminController::class, 'AllStudent'])->name('student');
@@ -65,4 +58,6 @@ Route::get('/all-class', [AdminController::class, 'AllClass'])->name('admin.clas
 /* Admin-Teacher */
 Route::get('admin/teacher/', [AdminController::class, 'allTeacher']);
 Route::post('admin/teacher/add-teacher', [AdminController::class, 'addTeacher'])->name('teacher.add');
-Route::post('admin/teacher/edit-teacher', [AdminController::class, 'editTeacher'])->name('teacher.edit');
+Route::get('admin/teacher//{id}', [AdminController::class, 'getTeacherById']);
+
+Route::put('/admin/teacher/update-teacher', [AdminController::class, 'updateTeacher'])->name('giangvien.update');

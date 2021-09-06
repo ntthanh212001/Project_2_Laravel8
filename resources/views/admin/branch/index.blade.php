@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Teacher')
+@section('title','Branch')
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -87,11 +87,11 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                 <form id="editNganhForm">
                     @csrf
                     <div class="form-group">
-                        <label for="tennganh">Tiêu đề</label>
                         <input type="hidden" name="id" id="id" class="form-control">
+                        <label for="tennganh">Tên ngành</label>
                         <input type="text" name="e_tennganh" id="e_tennganh" class="form-control">
                     </div>
-                    <a href="#" id="updateNganh" class="btn btn-primary">Sửa bài viết</a>
+                    <button type="submit" class="btn btn-primary">Sửa</button>
                 </form>
             </div>
         </div>
@@ -100,10 +100,10 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
 
 
 <script>
-
+/* 
 $(document).ready( function () {
     $('#nganhTable').DataTable();
-} );
+} ); */
 
     $("#nganhForm").submit(function(e){
         e.preventDefault();
@@ -129,6 +129,8 @@ $(document).ready( function () {
             }
         });
     });
+
+
 
 </script>
 @endsection

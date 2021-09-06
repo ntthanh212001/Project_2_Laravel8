@@ -106,6 +106,61 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
     </div>
 </div>
 
+<!-- Edit GV Modal -->
+<div class="modal fade" id="teacherEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sửa giảng viên</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="giangvienEditForm" action="">
+                    @csrf
+                    <input type="hidden" id="id" name="id" />
+                    <div class="form-group">
+                        <label for="hoten">Họ tên</label>
+                        <input type="text" class="form-control" id="hoten2" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email2" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password2" readonly
+                            value="$2a$12$00S/d806OemZuOuYkbuiz.hMz9aSrzK/9oyQI76jC4tL.EhfZ0zAi" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ngaysinh">Ngày sinh</label>
+                        <input type="date" class="form-control" id="ngaysinh2" />
+                    </div>
+                    <div class="form-group">
+                        <label for="gioitinh">Giới tính</label>
+                        <br><br>
+                        <input type="radio" name="gioitinh" id="gioitinh2" value="1" checked> Nam
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="gioitinh" id="gioitinh2" value="0"> Nữ
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="text" class="form-control" id="phone2" />
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Trạng thái</label>
+                        <br><br>
+                        <input type="radio" name="status" id="status2" value="1" checked> On
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="status" id="status2" value="0"> Off
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sửa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 
@@ -149,6 +204,66 @@ $(document).ready( function () {
             }
         });
     });
+
+</script>
+<script>
+    /* Edit GV */ 
+
+       function editGiangvien(id)
+       {
+           $.get('/index/'+id, function(giangvien){
+               $("#id").val(giangvien.id);
+               $("#hoten2").val(giangvien.hoten);
+               $("#email2").val(giangvien.email);
+               $("#password2").val(giangvien.password);
+               $("#ngaysinh2").val(giangvien.ngaysinh);
+               $("#gioitinh2").val(giangvien.gioitinh);
+               $("#phone2").val(giangvien.phone);
+               $("#status2").val(giangvien.status);
+               $("#teacherEditModal").modal('toggle');
+           });
+       }
+
+       $("#giangvienEditForm").submit(function(e){
+           e.preventDefault();
+           let id = $("#id").val();
+           let hoten = $("#hoten2").val();
+           let email = $("#email2").val();
+           let password = $("#password2").val();
+           let ngaysinh = $("#ngaysinh2").val();
+           let gioitinh = $("#gioitinh2").val();
+           let phone = $("#phone2").val();
+           let status = $("#status2").val();
+           let _token = $("input[name=_token]").val();
+
+           $.ajax({
+               url:"{{route('giangvien.update')}}",
+               type:"PUT",
+               data:{
+                   id:id,
+                   hoten:hoten,
+                   email:email,
+                   password:password,
+                   ngaysinh:ngaysinh,
+                   gioitinh:gioitinh,
+                   phone:phone,
+                   status:status,
+                   _token:_token
+               },
+               success:function(response)
+               {
+                   $('#sid'+response.id +' td:nth-child(1)').text(response.hoten);
+                   $('#sid'+response.id +' td:nth-child(2)').text(response.email);
+                   $('#sid'+response.id +' td:nth-child(3)').text(response.password);
+                   $('#sid'+response.id +' td:nth-child(4)').text(response.ngaysinh);
+                   $('#sid'+response.id +' td:nth-child(5)').text(response.gioitinh);
+                   $('#sid'+response.id +' td:nth-child(6)').text(response.phone);
+                   $('#sid'+response.id +' td:nth-child(7)').text(response.status);
+                   $("#teacherEditModal").modal('toggle');
+                   $("#giangvienEditForm")[0].reset();
+               }
+           });
+       });
 
 </script>
 @endsection

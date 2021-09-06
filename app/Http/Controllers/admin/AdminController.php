@@ -26,16 +26,30 @@ class AdminController extends Controller
         $data = Sinhvien::all();
         return view('admin.menu.student.allstudent', ['sinhvien' => $data]);
     }
-    function AllBranch()
+    public function allBranch()
     {
         $data = Nganh::all();
         return view('admin.branch.index', ['data' => $data]);
     }
-    function AllClass()
+
+    public function addBranch(Request $request){
+        $data = new Nganh();
+
+        $data->tennganh = $request->tennganh;
+
+        $data->save();
+        return response()->json($data);
+
+    }
+
+    public function getBranch(){
+
+    }
+    /* function AllClass()
     {
         $data = Lop::all();
         return view('admin.menu.class.all-class', ['lop' => $data]);
-    }
+    } */
     /* function FormInsertBranch()
     {
         return view('admin.menu.branch.insert-branch');
@@ -102,8 +116,26 @@ class AdminController extends Controller
         $data->save();
         return response()->json($data);
     }
-   public function getBranch(){
+   
+    public function getTeacherById($id){
+        $data = Giangvien::find($id);
+        return response()->json($data);
+    }
 
-   }
+    public function updateTeacher(Request $request){
+        $data = Giangvien::find($request->id);
+
+        $data->hoten = $request->hoten;
+        $data->email = $request->email;
+        $data->password = $request->password;
+        $data->ngaysinh = $request->ngaysinh;
+        $data->gioitinh = $request->gioitinh;
+        $data->phone = $request->phone;
+        $data->status = $request->status;
+
+        $data->save();
+        return response()->json($data);
+
+    }
 
 }
