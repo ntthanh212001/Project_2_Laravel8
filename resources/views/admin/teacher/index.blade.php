@@ -115,7 +115,7 @@ $(document).ready( function () {
 
     $("#giangvienForm").submit(function(e){
         e.preventDefault();
-  
+
         let hoten = $("#hoten").val();
         let email = $("#email").val();
         let password = $("#password").val();
@@ -124,7 +124,7 @@ $(document).ready( function () {
         let phone = $("#phone").val();
         let status = $("#status").val();
         let _token = $("input[name=_token]").val();
-  
+
         $.ajax({
             url: "{{route('teacher.add')}}",
             type: "POST",
@@ -140,7 +140,7 @@ $(document).ready( function () {
             },
             success:function(response)
             {
-                if (response) 
+                if (response)
                 {
                     $("#giangvienTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.hoten +'</td><td>'+ response.email +'</td><td>'+ response.ngaysinh +'</td><td>'+ response.gioitinh +'</td><td>'+ response.phone +'</td><td>'+ response.status +'</td></tr>');
                     $("#giangvienForm")[0].reset();
@@ -149,6 +149,6 @@ $(document).ready( function () {
             }
         });
     });
-  
+
 </script>
 @endsection

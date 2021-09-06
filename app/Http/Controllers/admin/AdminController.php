@@ -29,7 +29,7 @@ class AdminController extends Controller
     function AllBranch()
     {
         $data = Nganh::all();
-        return view('admin.menu.branch.all-branch', ['nganh' => $data]);
+        return view('admin.branch.index', ['data' => $data]);
     }
     function AllClass()
     {
@@ -60,7 +60,7 @@ class AdminController extends Controller
             return back()->with('error', 'Lỗi ! hãy thử lại');
         }
     }
-    
+
     function EditBranchtbranch($id,Request $request){
         $now = now();
        $sql =  DB::table('nganhs')->where('id', $id)->update([
@@ -102,5 +102,8 @@ class AdminController extends Controller
         $data->save();
         return response()->json($data);
     }
-    
+   public function getBranch(){
+
+   }
+
 }

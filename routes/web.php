@@ -8,7 +8,9 @@ use App\Http\Controllers\admin\GiangvienController;
 use App\Http\Controllers\admin\GiangVienLoginController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\Logincontroller;
+use App\Http\Controllers\admin\NganhController;
 use App\Models\Admin;
+use App\Models\Nganh;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,13 +42,18 @@ Route::post('giangvien/login', [GiangVienLoginController::class, 'login']);
 Route::get('giangvien/logout', [GiangVienLoginController::class, 'logout'])->name('giangvien.logout');
 //
 //admin - branch
-/* Route::get('/all-branch', [AdminController::class, 'AllBranch'])->name('branch');
-Route::get('/insert-branch', [AdminController::class, 'FormInsertBranch'])->name('form-insert-branch');
-Route::post('/insert-branch', [AdminController::class, 'insertbranch'])->name('insert.branch');
+// Route::get('/all-branch', function () {
+//     return view('admin.branch.index', ['posts' => Nganh::all()])->name('branch');
+// });
+Route::get('admin/all-branch', [AdminController::class, 'allBranch'])->name('allBranch');
+Route::post('admin/teacher/add-branch', [AdminController::class, 'addBranch'])->name('branch.add');
+Route::post('admin/teacher/edit-branch/{id}', [AdminController::class, 'editBranch'])->name('branch.edit');
+// Route::get('/insert-branch', [AdminController::class, 'FormInsertBranch'])->name('form-insert-branch');
+// Route::post('/insert-branch', [AdminController::class, 'insertbranch'])->name('insert.branch');
 
-Route::get('/delete-branch/{id}', [AdminController::class, 'deletebranch'])->name('delete-branch');
-Route::get('/edit-branch/{id}', [AdminController::class, 'FormEditBranch'])->name('edit-branch');
-Route::post('/edit-branch/{id}', [AdminController::class, 'EditBranchtbranch']); */
+// Route::get('/delete-branch/{id}', [AdminController::class, 'deletebranch'])->name('delete-branch');
+// Route::get('/edit-branch/{id}', [AdminController::class, 'FormEditBranch'])->name('edit-branch');
+// Route::post('/edit-branch/{id}', [AdminController::class, 'EditBranchtbranch']);
 //
 /* //admin - student
 Route::get('/allstudent', [AdminController::class, 'AllStudent'])->name('student');
@@ -58,4 +65,4 @@ Route::get('/all-class', [AdminController::class, 'AllClass'])->name('admin.clas
 /* Admin-Teacher */
 Route::get('admin/teacher/', [AdminController::class, 'allTeacher']);
 Route::post('admin/teacher/add-teacher', [AdminController::class, 'addTeacher'])->name('teacher.add');
-
+Route::post('admin/teacher/edit-teacher', [AdminController::class, 'editTeacher'])->name('teacher.edit');

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{url('css/app.css')}}">
     <title>@yield('title','không có tiêu đề')</title>
     @section('css')
-        
+
     @show
 </head>
 
@@ -32,7 +32,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('admin/branch/')}}">Ngành</a>
+                            <a class="nav-link" href="{{ route('allBranch') }}">Ngành</a>
                         </li>
                         &nbsp;&nbsp;&nbsp;
                         &nbsp;
@@ -78,20 +78,20 @@
             @section('content')
 
             @show
+            <footer class="text-center text-white" style="background-color: #86807F;">
+                <!-- Grid container -->
 
+
+                <!-- Copyright -->
+                <div class="text-center text-dark p-3" style="background-color: #99e6ff;">
+                    © 2021 Copyright:
+                    <a class="text-dark" href="https://mdbootstrap.com/"></a>
+                </div>
+                <!-- Copyright -->
+            </footer>
         </div>
-        <footer class="text-center text-white" style="background-color: #86807F;">
-            <!-- Grid container -->
+        </div>
 
-
-            <!-- Copyright -->
-            {{-- <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2020 Copyright:
-                <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-            </div> --}}
-            <!-- Copyright -->
-        </footer>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
