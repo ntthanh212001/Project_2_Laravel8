@@ -255,15 +255,18 @@ $(document).ready( function () {
                },
                success:function(response)
                {
-                $('#tid' +response.id +' td:nth-child(1)').text(response.id);
+                    $('#tid' +response.id +' td:nth-child(1)').text(response.id);
                    $('#tid' +response.id +' td:nth-child(2)').text(response.hoten);
                    $('#tid' +response.id +' td:nth-child(3)').text(response.email);
-                   $('#tid' +response.id +' td:nth-child(5)').text(response.ngaysinh);
-                   $('#tid' +response.id +' td:nth-child(6)').text(response.gioitinh);
-                   $('#tid' +response.id +' td:nth-child(7)').text(response.phone);
-                   $('#tid' +response.id +' td:nth-child(8)').text(response.status);
+                   $('#tid' +response.id +' td:nth-child(4)').text(response.ngaysinh);
+                   $('#tid' +response.id +' td:nth-child(5)').text(response.gioitinh);
+                   $('#tid' +response.id +' td:nth-child(6)').text(response.phone);
+                   $('#tid' +response.id +' td:nth-child(7)').text(response.status);
                    $("#teacherEditModal").modal('toggle');
                    $("#teacherEditForm")[0].reset();
+                //    $("#teacherEditModal").modal('hide');
+
+
                }
            });
        });

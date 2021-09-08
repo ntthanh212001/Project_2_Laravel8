@@ -10,6 +10,6 @@ class Giangvien extends Authenticatable
 {
     use HasFactory;
     protected $table = "giangviens";
-    protected $fillable = ["hoten", "email", "ngaysinh", "gioitinh", "phone", "status"];
-    protected $hidden = ["password"];
+    protected $fillable = ["hoten", "email", "ngaysinh", "gioitinh", "phone", "status","password"];
+    protected $hidden = [];
 }

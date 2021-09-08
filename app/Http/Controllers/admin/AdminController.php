@@ -21,11 +21,6 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
-    function AllStudent()
-    {
-        $data = Sinhvien::all();
-        return view('admin.menu.student.allstudent', ['sinhvien' => $data]);
-    }
     public function allBranch()
     {
         $data = Nganh::all();
@@ -39,10 +34,6 @@ class AdminController extends Controller
 
         $data->save();
         return response()->json($data);
-
-    }
-
-    public function getBranch(){
 
     }
     /* function AllClass()
@@ -101,7 +92,26 @@ class AdminController extends Controller
         $data = Giangvien::all();
         return view('admin.teacher.index', ['data'=>$data]);
     }
+    public function allStudent(){
+        $data = Sinhvien::all();
+        return view('admin.student.index', ['data'=>$data]);
+    }
+    public function AllClass(){
+        $data2 = Nganh::all();
+        $data = DB::table('lops')
+        ->join('nganhs','lops.nganh_id','=','nganhs.id')
+        ->select('*')
+        ->get();
 
+        return view('admin.class.index', ['data'=>$data],['data2'=>$data2]);
+    }
+    public function addClass(Request $request){
+        $data = new Lop();
+        $data->tenlop = $request->tenlop;
+        $data->tennganh = $request->tennganh;
+        $data->save();
+        return response()->json($data);
+    }
     public function addTeacher(Request $request){
         $data = new Giangvien();
 
