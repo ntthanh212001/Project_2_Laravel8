@@ -41,9 +41,16 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             <td>{{ $item->ngaysinh }}</td>
             <td>{{ $item->gioitinh==1? 'Nam':'Nữ' }}</td>
             <td>{{ $item->phone }}</td>
-            <td>{{ $item->status==1? 'On':'Off' }}</td>
+            <td>
+                @if ($item->status == 1)
+                    <a href="{{url('status/update',$item->id)}}" class="btn btn-success">Hoạt động</a>
+                @else
+                <a href="{{url('status/update',$item->id)}}" class="btn btn-danger">Không hoạt động</a>
+                @endif
+            </td>
             <td>
                 <a href="javascript:void(0)" onclick="editTeacher({{$item->id}})" class="btn btn-info">Edit</a>
+                <a href="javascript:void(0)" onclick="editTeacher({{$item->id}})" class="btn btn-secondary">View</a>
             </td>
             {{-- <td>
         <a href="javascript:void(0)" onclick="editGiangvien({{$item->id}})" class="btn btn-info">Edit</a>
@@ -97,9 +104,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                     <div class="form-group">
                         <label for="status">Trạng thái</label>
                         <br><br>
-                        <input type="radio" name="status" id="status" value="1" checked> On
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" name="status" id="status" value="0"> Off
+                        <input type="hidden" name="status" id="status" value="1">
                     </div>
                     <button type="submit" class="btn btn-primary">Thêm</button>
                 </form>
@@ -150,13 +155,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                         <label for="phone">Số điện thoại</label>
                         <input type="text" class="form-control" id="phone2" />
                     </div>
-                    <div class="form-group">
-                        <label for="status">Trạng thái</label>
-                        <br><br>
-                        <input type="radio" name="status" id="status2" value="1" checked> On
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" name="status" id="status2" value="0"> Off
-                    </div>
+
                     <button type="submit" class="btn btn-primary">Sửa</button>
                 </form>
             </div>
@@ -235,7 +234,7 @@ $(document).ready( function () {
            let ngaysinh = $("#ngaysinh2").val();
            let gioitinh = $("#gioitinh2").val();
            let phone = $("#phone2").val();
-           let status = $("#status2").val();
+
            let _token = $("input[name=_token]").val();
 
 
@@ -250,7 +249,7 @@ $(document).ready( function () {
                    ngaysinh:ngaysinh,
                    gioitinh:gioitinh,
                    phone:phone,
-                   status:status,
+
                    _token:_token
                },
                success:function(response)

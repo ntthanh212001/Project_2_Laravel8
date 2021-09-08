@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 89px; background-color: white">
             <div class="container-fluid" >
                 <a class="navbar-brand" href="{{url('admin/')}}">
-                    <img style="margin-left: -10px" src="{{asset('image/logo.png')}}" alt="">
+                    <img style="margin-left: -10px;width: 50px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRadBc0dmRX19K4-btcMhEf6nTNsupPjF65mKgew5hOzf7PrRi64ExAklmy8zewqxtS8ZE&usqp=CAU" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

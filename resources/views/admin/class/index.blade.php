@@ -41,6 +41,7 @@
                     <td>
                         <a href="javascript:void(0)" onclick="editTeacher({{ $item->id }})"
                             class="btn btn-info">Edit</a>
+
                     </td>
                     {{-- <td>
         <a href="javascript:void(0)" onclick="editGiangvien({{$item->id}})" class="btn btn-info">Edit</a>

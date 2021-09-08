@@ -56,7 +56,7 @@ Route::get('/all-class', [AdminController::class, 'AllClass'])->name('admin.clas
 //class */
 
 /* Admin-Teacher */
-Route::get('/admin/teacher/', [AdminController::class, 'allTeacher']);
+Route::get('/admin/teacher/', [AdminController::class, 'allTeacher'])->name('teacher');
 Route::post('/admin/teacher/add-teacher', [AdminController::class, 'addTeacher'])->name('teacher.add');
 Route::get('/admin/teacher/{id}', [AdminController::class, 'getTeacherById']);
 
@@ -67,6 +67,8 @@ Route::get('/admin/teacher/view/{id}', [AdminController::class, 'viewTeacherById
 Route::get('/admin/student/', [AdminController::class, 'allStudent']);
 
 // end student
+//UPDATE STATUS
+Route::get('/status/update/{id}', [AdminController::class, 'statusUpdate']);
 //Admin-Class
 Route::get('/admin/class/', [AdminController::class, 'AllClass']);
 Route::post('/admin/class/add-class', [AdminController::class, 'addClass'])->name('class.add');

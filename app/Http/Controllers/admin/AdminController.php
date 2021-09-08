@@ -105,6 +105,20 @@ class AdminController extends Controller
 
         return view('admin.class.index', ['data'=>$data],['data2'=>$data2]);
     }
+    public function statusUpdate($id){
+        $data = DB::table('giangviens')
+        ->select('status')
+        ->where('id','=',$id)
+        ->first();
+        if($data->status == '1'){
+            $status = '0';
+        }else{
+            $status = '1';
+        }
+        $value = array('status' => $status);
+        DB::table('giangviens')->where('id',$id)->update($value);
+        return redirect()->route('teacher');
+    }
     public function addClass(Request $request){
         $data = new Lop();
         $data->tenlop = $request->tenlop;
@@ -141,7 +155,7 @@ class AdminController extends Controller
         $data->ngaysinh = $request->ngaysinh;
         $data->gioitinh = $request->gioitinh;
         $data->phone = $request->phone;
-        $data->status = $request->status;
+
 
         $data->save();
         return response()->json($data);
