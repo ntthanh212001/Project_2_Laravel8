@@ -93,14 +93,21 @@ class AdminController extends Controller
         return view('admin.teacher.index', ['data'=>$data]);
     }
     public function allStudent(){
-        $data = Sinhvien::all();
-        return view('admin.student.index', ['data'=>$data]);
+        $data3 = Lop::all();
+        $data2 = Nganh::all();
+        $data = DB::table('sinhviens')
+        ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
+        ->join('lops','sinhviens.lop_id','=','lops.id')
+        ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
+        ->get();
+        return view('admin.student.index', ['data'=>$data],['data2'=>$data2],['data3'=>$data3]);
     }
     public function AllClass(){
         $data2 = Nganh::all();
         $data = DB::table('lops')
         ->join('nganhs','lops.nganh_id','=','nganhs.id')
-        ->select('*')
+        ->select('lops.*','nganhs.tennganh')
+        ->orderBy('id','DESC')
         ->get();
 
         return view('admin.class.index', ['data'=>$data],['data2'=>$data2]);
@@ -122,9 +129,15 @@ class AdminController extends Controller
     public function addClass(Request $request){
         $data = new Lop();
         $data->tenlop = $request->tenlop;
-        $data->tennganh = $request->tennganh;
+        $data->nganh_id = $request->tennganh;
         $data->save();
-        return response()->json($data);
+        return response()->json([
+            'success' => 'Thêm lớp thành công !',
+            'id' => $data->id,
+            'tenlop' => $data->tenlop,
+            'nganh_id' => $data->tennganh,
+
+        ]);
     }
     public function addTeacher(Request $request){
         $data = new Giangvien();

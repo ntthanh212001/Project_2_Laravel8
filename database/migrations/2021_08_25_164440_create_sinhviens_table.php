@@ -18,6 +18,7 @@ class CreateSinhviensTable extends Migration
             $table->string('masv')->unique();
             $table->string('hoten');
             $table->boolean('gioitinh');
+            $table->date('ngaysinh');
             $table->string('phone',20)->unique();
             $table->string('address',200);
             $table->string('email')->unique();

@@ -20,9 +20,9 @@
     </script>
 @endsection
 @section('content')
-    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#giangvienModal">Thêm Lớp</a>
+    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#lopModal">Thêm Lớp</a>
     <br><br>
-    <table id="giangvienTable" class="table table-bordered">
+    <table id="lopTable" class="table table-bordered">
         <thead>
             <tr class="text center-container">
                 <th>ID</th>
@@ -52,7 +52,7 @@
         </tbody>
     </table>
     <!-- Add GV Modal -->
-    <div class="modal fade" id="giangvienModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="lopModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -77,7 +77,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Thêm</button>
+                        <button id="btn" type="submit" class="btn btn-primary">Thêm</button>
                     </form>
                 </div>
             </div>
@@ -108,10 +108,11 @@
             </div>
         </div>
     </div>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#giangvienTable').DataTable();
+            $('#lopTable').DataTable();
+
         });
 
         $("#giangvienForm").submit(function(e) {
@@ -130,10 +131,18 @@
                 },
                 success: function(response) {
                     if (response) {
-                        $("#giangvienTable tbody").prepend('<tr><td>' + response.id + '</td><td>' +
+                        $("#lopTable tbody").prepend('<tr><td>' + response.id + '</td><td>' +
                             response.tenlop + '</td><td>' + response.tennganh + '</td></tr>');
                         $("#giangvienForm")[0].reset();
-                        $("#giangvienModal").modal('hide');
+
+                        $("#lopModal").modal('hide');
+                        location.reload();
+
+                        swal({
+                            title: 'Thông báo',
+                            text: response.success,
+                            icon: 'success'
+                        })
                     }
                 }
             });
@@ -193,7 +202,7 @@
                     $('#tid' + response.id + ' td:nth-child(7)').text(response.status);
                     $("#teacherEditModal").modal('toggle');
                     $("#teacherEditForm")[0].reset();
-                    //    $("#teacherEditModal").modal('hide');
+                       $("#teacherEditModal").modal('hide');
 
 
                 }

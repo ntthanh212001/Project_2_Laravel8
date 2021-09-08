@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Teacher')
+@section('title','Sinh viên')
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -17,31 +17,38 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.js"></script>
 @endsection
 @section('content')
-<a href="#" class="btn btn-success" data-toggle="modal" data-target="#giangvienModal">Thêm Giảng Viên</a>
+<a href="#" class="btn btn-success" data-toggle="modal" data-target="#sinhvienModal">Thêm Sinh Viên</a>
 <br><br>
 <table id="giangvienTable" class="table table-bordered">
     <thead>
         <tr class="text center-container">
             <th>ID</th>
+            <th>Mã Sinh Viên</th>
             <th>Họ tên</th>
+            <th>Ngành học</th>
+            <th>Lớp</th>
+            <th>Địa chỉ</th>
             <th>Email</th>
             <th>Ngày sinh</th>
             <th>Giới tính</th>
             <th>Số điện thoại</th>
-            <th>Trạng thái</th>
-            <th>action</th>
+            <th>Hành Động</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($data as $item)
         <tr id="tid{{$item->id}}">
             <td>{{ $item->id }}</td>
+            <td>{{$item->masv}}</td>
             <td>{{ $item->hoten }}</td>
+            <td>{{ $item->tennganh }}</td>
+            <td>{{ $item->tenlop }}</td>
+            <td>{{ $item->address }}</td>
             <td>{{ $item->email }}</td>
             <td>{{ $item->ngaysinh }}</td>
             <td>{{ $item->gioitinh==1? 'Nam':'Nữ' }}</td>
             <td>{{ $item->phone }}</td>
-            <td>{{ $item->status==1? 'On':'Off' }}</td>
+
             <td>
                 <a href="javascript:void(0)" onclick="editTeacher({{$item->id}})" class="btn btn-info">Edit</a>
             </td>
@@ -54,11 +61,11 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
     </tbody>
 </table>
 <!-- Add GV Modal -->
-<div class="modal fade" id="giangvienModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="sinhvienModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm giảng viên</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Thêm sinh viên</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -67,7 +74,31 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                 <form id="giangvienForm" action="">
                     @csrf
                     <div class="form-group">
+                        <label for="masv">Mã sinh viên</label>
+                        <input type="text" class="form-control" id="masv" />
+                    </div>
+                    <div class="form-group">
                         <label for="hoten">Họ tên</label>
+                        <input type="text" class="form-control" id="hoten" />
+                    </div>
+                    <div>
+                        <label for="tennganh">Ngành</label><br>
+                        <select name="tennganh" id="tennganh" class="form-select">
+                            @foreach ($data2 as $item)
+                                <option id="tennganh" value="{{ $item->id }}">{{ $item->tennganh }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <label for="tennganh">Lớp</label><br>
+                        <select name="tennganh" id="tennganh" class="form-select">
+                            @foreach ($data as $item)
+                                <option id="tennganh" value="{{ $item->id }}">{{ $item->tenlop }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="hoten">Địa chỉ</label>
                         <input type="text" class="form-control" id="hoten" />
                     </div>
                     <div class="form-group">
@@ -201,7 +232,7 @@ $(document).ready( function () {
                 {
                     $("#giangvienTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.hoten +'</td><td>'+ response.email +'</td><td>'+ response.ngaysinh +'</td><td>'+ response.gioitinh +'</td><td>'+ response.phone +'</td><td>'+ response.status +'</td></tr>');
                     $("#giangvienForm")[0].reset();
-                    $("#giangvienModal").modal('hide');
+                    $("#sinhvienModal").modal('hide');
                 }
             }
         });

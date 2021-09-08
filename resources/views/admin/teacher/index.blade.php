@@ -23,13 +23,13 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
     <thead>
         <tr class="text center-container">
             <th>ID</th>
-            <th>Họ tên</th>
-            <th>Email</th>
-            <th>Ngày sinh</th>
+            <th>Họ Tên</th>
             <th>Giới tính</th>
             <th>Số điện thoại</th>
-            <th>Trạng thái</th>
-            <th>action</th>
+            <th>Địa chỉ</th>
+            <th>Email</th>
+            <th>Trạng Thái</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
@@ -201,6 +201,7 @@ $(document).ready( function () {
                     $("#giangvienTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.hoten +'</td><td>'+ response.email +'</td><td>'+ response.ngaysinh +'</td><td>'+ response.gioitinh +'</td><td>'+ response.phone +'</td><td>'+ response.status +'</td></tr>');
                     $("#giangvienForm")[0].reset();
                     $("#giangvienModal").modal('hide');
+                    location.reload();
                 }
             }
         });
