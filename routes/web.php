@@ -65,7 +65,12 @@ Route::put('/admin/teacher', [AdminController::class, 'updateTeacher'])->name('t
 Route::get('/admin/teacher/view/{id}', [AdminController::class, 'viewTeacherById'])->name('teacher.view');
 // admin-Student
 Route::get('/admin/student/', [AdminController::class, 'allStudent']);
+Route::get('/admin/student/add-student', [AdminController::class, 'addStudent'])->name('student.add');
+Route::get('/admin/student/{id}', [AdminController::class, 'getStudentById']);
 
+
+Route::put('/admin/student', [AdminController::class, 'updateStudent'])->name('student.update');
+Route::get('/admin/student/view/{id}', [AdminController::class, 'viewTeacherById'])->name('student.view');
 // end student
 //UPDATE STATUS
 Route::get('/status/update/{id}', [AdminController::class, 'statusUpdate']);
@@ -73,3 +78,17 @@ Route::get('/status/update/{id}', [AdminController::class, 'statusUpdate']);
 Route::get('/admin/class/', [AdminController::class, 'AllClass']);
 Route::post('/admin/class/add-class', [AdminController::class, 'addClass'])->name('class.add');
 //end-Class
+//Admin-Class
+Route::get('/admin/object/', [AdminController::class, 'allObject']);
+Route::get('/admin/object/add-object', [AdminController::class, 'addObject'])->name('object.add');
+//end-Class
+//Admin-Mark
+Route::get('/admin/mark/', [AdminController::class, 'allMark'])->name('mark');
+Route::post('/admin/mark/add-mark', [AdminController::class, 'addMark'])->name('mark.add');
+Route::get('/admin/mark/{id}', [AdminController::class, 'getMarkById']);
+
+
+Route::put('/admin/mark', [AdminController::class, 'updateMark'])->name('mark.update');
+Route::get('/admin/mark/view/{id}', [AdminController::class, 'viewMarkById'])->name('mark.view');
+//end-point
+

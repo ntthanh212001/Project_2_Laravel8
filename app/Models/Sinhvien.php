@@ -9,5 +9,5 @@ class Sinhvien extends Model
 {
     use HasFactory;
     protected $fillable = ['masv','hoten','gioitinh','phone','address','email','nganh_id','lop_id'];
-    protected $hidden =['password'];
+    protected $hidden =[];
 }

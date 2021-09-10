@@ -24,10 +24,10 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
         <tr class="text center-container">
             <th>ID</th>
             <th>Họ Tên</th>
-            <th>Giới tính</th>
+
             <th>Số điện thoại</th>
-            <th>Địa chỉ</th>
             <th>Email</th>
+            <th>Giới tính</th>
             <th>Trạng Thái</th>
             <th>Hành động</th>
         </tr>
@@ -36,16 +36,17 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
         @foreach ($data as $item)
         <tr id="tid{{$item->id}}">
             <td>{{ $item->id }}</td>
-            <td>{{ $item->hoten }}</td>
-            <td>{{ $item->email }}</td>
-            <td>{{ $item->ngaysinh }}</td>
-            <td>{{ $item->gioitinh==1? 'Nam':'Nữ' }}</td>
+            <td>{{ $item->hotengv }}</td>
+
             <td>{{ $item->phone }}</td>
+
+            <td>{{ $item->email }}</td>
+            <td>{{ $item->gioitinh==1? 'Nam':'Nữ' }}</td>
             <td>
                 @if ($item->status == 1)
                     <a href="{{url('status/update',$item->id)}}" class="btn btn-success">Hoạt động</a>
                 @else
-                <a href="{{url('status/update',$item->id)}}" class="btn btn-danger">Không hoạt động</a>
+                <a href="{{url('status/update',$item->id)}}" class="btn btn-danger">Kích hoạt</a>
                 @endif
             </td>
             <td>
@@ -74,8 +75,8 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                 <form id="giangvienForm" action="">
                     @csrf
                     <div class="form-group">
-                        <label for="hoten">Họ tên</label>
-                        <input type="text" class="form-control" id="hoten" />
+                        <label for="hotengv">Họ tên</label>
+                        <input type="text" class="form-control" id="hotengv" />
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -128,8 +129,8 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                     @csrf
                     <input type="hidden" id="id" name="id" />
                     <div class="form-group">
-                        <label for="hoten">Họ tên</label>
-                        <input type="text" class="form-control" id="hoten2" />
+                        <label for="hotengv">Họ tên</label>
+                        <input type="text" class="form-control" id="hotengv2" />
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -172,7 +173,7 @@ $(document).ready( function () {
     $("#giangvienForm").submit(function(e){
         e.preventDefault();
 
-        let hoten = $("#hoten").val();
+        let hotengv = $("#hotengv").val();
         let email = $("#email").val();
         let password = $("#password").val();
         let ngaysinh = $("#ngaysinh").val();
@@ -185,7 +186,7 @@ $(document).ready( function () {
             url: "{{route('teacher.add')}}",
             type: "POST",
             data: {
-                hoten:hoten,
+                hotengv:hotengv,
                 email:email,
                 password:password,
                 ngaysinh:ngaysinh,
@@ -198,7 +199,7 @@ $(document).ready( function () {
             {
                 if (response)
                 {
-                    $("#giangvienTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.hoten +'</td><td>'+ response.email +'</td><td>'+ response.ngaysinh +'</td><td>'+ response.gioitinh +'</td><td>'+ response.phone +'</td><td>'+ response.status +'</td></tr>');
+                    $("#giangvienTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.hotengv +'</td><td>'+ response.email +'</td><td>'+ response.ngaysinh +'</td><td>'+ response.gioitinh +'</td><td>'+ response.phone +'</td><td>'+ response.status +'</td></tr>');
                     $("#giangvienForm")[0].reset();
                     $("#giangvienModal").modal('hide');
                     location.reload();
@@ -215,7 +216,7 @@ $(document).ready( function () {
        {
            $.get('/admin/teacher/'+id, function(giangvien){
                $("#id").val(giangvien.id);
-               $("#hoten2").val(giangvien.hoten);
+               $("#hotengv2").val(giangvien.hotengv);
                $("#email2").val(giangvien.email);
                $("#password2").val(giangvien.password);
                $("#ngaysinh2").val(giangvien.ngaysinh);
@@ -229,7 +230,7 @@ $(document).ready( function () {
        $("#teacherEditForm").submit(function(e){
            e.preventDefault();
            let id = $("#id").val();
-           let hoten = $("#hoten2").val();
+           let hotengv = $("#hotengv2").val();
            let email = $("#email2").val();
            let password = $("#password2").val();
            let ngaysinh = $("#ngaysinh2").val();
@@ -244,7 +245,7 @@ $(document).ready( function () {
                type:"PUT",
                data:{
                    id:id,
-                   hoten:hoten,
+                   hotengv:hotengv,
                    email:email,
                    password:password,
                    ngaysinh:ngaysinh,
@@ -256,7 +257,7 @@ $(document).ready( function () {
                success:function(response)
                {
                     $('#tid' +response.id +' td:nth-child(1)').text(response.id);
-                   $('#tid' +response.id +' td:nth-child(2)').text(response.hoten);
+                   $('#tid' +response.id +' td:nth-child(2)').text(response.hotengv);
                    $('#tid' +response.id +' td:nth-child(3)').text(response.email);
                    $('#tid' +response.id +' td:nth-child(4)').text(response.ngaysinh);
                    $('#tid' +response.id +' td:nth-child(5)').text(response.gioitinh);
@@ -264,6 +265,7 @@ $(document).ready( function () {
                    $('#tid' +response.id +' td:nth-child(7)').text(response.status);
                    $("#teacherEditModal").modal('toggle');
                    $("#teacherEditForm")[0].reset();
+                   location.reload();
                 //    $("#teacherEditModal").modal('hide');
 
 

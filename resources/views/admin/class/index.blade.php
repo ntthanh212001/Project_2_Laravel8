@@ -70,11 +70,12 @@
                         </div>
                         <div>
                             <label for="tennganh">Ngành</label><br>
-                            <select name="tennganh" id="tennganh">
+                            <select name="tennganh" id="tennganh" class="form-select">
                                 @foreach ($data2 as $item)
                                     <option id="tennganh" value="{{ $item->id }}">{{ $item->tennganh }}</option>
                                 @endforeach
                             </select>
+                            <br>
                         </div>
 
                         <button id="btn" type="submit" class="btn btn-primary">Thêm</button>
@@ -136,13 +137,14 @@
                         $("#giangvienForm")[0].reset();
 
                         $("#lopModal").modal('hide');
-                        location.reload();
+
 
                         swal({
                             title: 'Thông báo',
                             text: response.success,
                             icon: 'success'
                         })
+                        location.reload();
                     }
                 }
             });
