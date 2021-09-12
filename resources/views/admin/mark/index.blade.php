@@ -20,19 +20,20 @@
     </script>
 @endsection
 @section('content')
-    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#sinhvienModal">Thêm Môn học</a>
+    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#sinhvienModal">Nhập Điểm</a>
     <br><br>
 
     <table id="monhocTable" class="table table-bordered">
         <thead>
             <tr class="text center-container">
                 <th>ID</th>
+                <th>Sinh viên</th>
+                <th>Giảng viên</th>
                 <th>Điểm lý thuyết</th>
                 <th>Điểm thực hành</th>
                 <th>Điểm tổng</th>
                 <th>Môn học</th>
-                <th>Sinh viên</th>
-                <th>Giảng viên</th>
+
                 <th>Thời gian tạo</th>
                 <th>Lần chỉnh sửa gần nhất</th>
                 <th>Hành Động</th>
@@ -42,12 +43,13 @@
             @foreach ($data as $item)
                 <tr id="tid{{ $item->id }}">
                     <td>{{ $item->id }}</td>
+                    <td>{{ $item->hoten }}</td>
+                    <td>{{ $item->hotengv }}</td>
                     <td>{{ $item->diemlt }}</td>
                     <td>{{ $item->diemtt }}</td>
                     <td>{{ $item->diemtong }}</td>
                     <td>{{ $item->tenmon }}</td>
-                    <td>{{ $item->hoten }}</td>
-                    <td>{{ $item->hotengv }}</td>
+
                     <td>{{ $item->created_at }}</td>
                     <td>{{ $item->updated_at }}</td>
                     <td>
@@ -67,7 +69,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm môn học</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nhập Điểm</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -77,25 +79,21 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="tenmon">Tên Môn học</label>
-                            <input type="text" class="form-control" id="tenmon" />
+                            <label for="diemlt">Điểm lý thuyết</label>
+                            <input type="text" class="form-control" id="diemlt" />
                         </div>
                         <div class="form-group">
-                            <label for="sogio">Số giờ</label>
-                            <input type="number" class="form-control" id="sogio" />
+                            <label for="diemtt">Điểm thực hành</label>
+                            <input type="number" class="form-control" id="diemtt" />
                         </div>
                         <div>
-                            <label for="hocki_id">Học kì</label><br>
-                            <select name="hocki_id" id="hocki_id" class="form-select">
+                            <label for="diemtong">Điểm tổng</label><br>
+                            <input type="number" class="form-control" value="10" id="diemtong"  readonly/>
+                        </div>
+                        <div>
+                            <label for="monhoc_id">Môn học</label><br>
+                            <select name="monhoc_id" id="monhoc_id" class="form-select">
                                 @foreach ($data2 as $item)
-                                    <option id="lop_id" value="{{ $item->id }}">{{ $item->tenhocki }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div>
-                            <label for="nganh_id">Ngành</label><br>
-                            <select name="nganh_id" id="nganh_id" class="form-select">
-                                @foreach ($data3 as $item)
                                     <option id="nganh_id" value="{{ $item->id }}">{{ $item->tennganh }}</option>
                                 @endforeach
                             </select>

@@ -1,8 +1,8 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Support\Carbon;
+
 use App\Http\Controllers\Controller;
 use App\Models\Giangvien;
 use App\Models\Hocki;
@@ -10,8 +10,10 @@ use App\Models\Lop;
 use App\Models\Monhoc;
 use App\Models\Nganh;
 use App\Models\Sinhvien;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\False_;
 
 class AdminController extends Controller
 {
@@ -29,7 +31,8 @@ class AdminController extends Controller
         return view('admin.branch.index', ['data' => $data]);
     }
 
-    public function addBranch(Request $request){
+    public function addBranch(Request $request): JsonResponse
+    {
         $data = new Nganh();
 
         $data->tennganh = $request->tennganh;
@@ -37,6 +40,15 @@ class AdminController extends Controller
         $data->save();
         return response()->json($data);
 
+    }
+
+    public function showFormStudent(){
+        $data = Lop::all();
+        $data2 = Nganh::all();
+        return view('admin.student.addstudent',[
+            'data'=>$data,
+            'data2'=>$data2
+        ]);
     }
     /* function AllClass()
     {
@@ -100,7 +112,7 @@ class AdminController extends Controller
         $data = DB::table('sinhviens')
         ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
         ->join('lops','sinhviens.lop_id','=','lops.id')
-        ->select('sinhviens.*','nganhs.*','lops.*')
+        ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
         ->get();
         return view('admin.student.index',
         ['data'=>$data,
@@ -147,7 +159,8 @@ class AdminController extends Controller
         'data2'=>$data2,
         'data3'=>$data3]);
     }
-    public function statusUpdate($id){
+    public function statusUpdate($id): \Illuminate\Http\RedirectResponse
+    {
         $data = DB::table('giangviens')
         ->select('status')
         ->where('id','=',$id)
@@ -188,34 +201,34 @@ class AdminController extends Controller
         $data->save();
         return response()->json($data);
     }
-    public function addStudent(Request $request){
-        $data = new Sinhvien();
-        $data->masv = $request->masv;
-        $data->hoten = $request->hoten;
-        $data->gioitinh = $request->gioitinh;
-        $data->ngaysinh = $request->ngaysinh;
-        $data->phone = $request->phone;
-        $data->address = $request->address;
-        $data->email = $request->email;
-        $data->password = $request->password;
-        $data->nganh_id = $request->nganh_id;
-        $data->lop_id = $request->lop_id;
 
-        $data->save();
-        return response()->json([
-            'success' => 'Thêm sinh vien thành công !',
-            'id' => $data->id,
-            'masv' => $data->masv,
-            'hoten' => $data->hoten,
-            'gioitinh' => $data->gioitinh,
-            'ngaysinh' => $data->ngaysinh,
-            'phone' => $data->phone,
-            'address' => $data->address,
-            'email' => $data->email,
-            'password' => $data->password,
-            'nganh_id' => $data->nganh_id,
-            'lop_id' => $data->lop_id,
-        ]);
+    public function addStudent(Request $request){
+      $request->validate([
+          'masv' => 'required|unique:sinhviens',
+          'hoten' => 'required',
+          'gioitinh' => 'required',
+          'ngaysinh' => 'required',
+          'phone' => 'required|unique:sinhviens',
+          'address' => 'required',
+          'email' => 'required|unique:sinhviens',
+          'password' => 'required',
+          'nganh_id' => 'required',
+          'lop_id' => 'required',
+      ]);
+      $data = Sinhvien::create([
+          'masv' => $request->input('masv'),
+          'hoten' => $request->input('hoten'),
+          'gioitinh' => $request->input('gioitinh'),
+          'ngaysinh' => $request->input('ngaysinh'),
+          'phone' => $request->input('phone'),
+          'address' => $request->input('address'),
+          'email' => $request->input('email'),
+          'password' => $request->input('password'),
+          'nganh_id' => $request->input('nganh_id'),
+          'lop_id' => $request->input('lop_id'),
+
+      ]);
+      return redirect()->route('student')->with('success','Thêm sinh viên thành công');
     }
     public function addObject(Request $request){
         $data = new Monhoc();
@@ -240,9 +253,17 @@ class AdminController extends Controller
         $data = Giangvien::find($id);
         return response()->json($data);
     }
-    public function getStudentById($id){
+    public function ShowDataStudent($id){
+        $data2 = Nganh::all();
+        $data3 = Lop::all();
         $data = Sinhvien::find($id);
-        return response()->json($data);
+        return view('admin.student.editstudent',[
+            'data2' => $data2,
+            'data3' => $data3,
+            'data'=>$data]
+
+        );
+
     }
 
     public function updateTeacher(Request $request){

@@ -12,5 +12,9 @@ class Nganh extends Model
     public $timestamps = true;
     // const updated_at =null;
     protected $hidden =[''];
-    
+    /**
+     * @var mixed
+     */
+    private $tennganh;
+
 }

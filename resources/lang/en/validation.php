@@ -136,8 +136,31 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+//        'attribute-name' => [
+//            'rule-name' => 'custom-message',
+//        ],
+        'masv' => [
+            'required' => 'Mã sinh viên không được để trống',
+            'unique' =>'Mã sinh viên đã được sử dụng',
+        ],
+        'hoten' => [
+            'required' => 'Họ tên không được để trống',
+
+        ],
+        'gioitinh' => [
+            'required' => 'Giới không được để trống',
+
+        ],
+        'phone' => [
+            'required' => 'Số điện thoại không được để trống',
+            'unique' =>'Số điện thoại đã được sử dụng',
+        ],
+        'address' => [
+            'required' => 'Địa chỉ không được để trống',
+        ],
+        'email' => [
+            'required' => 'Email không được để trống',
+            'unique' =>'Email đã được sử dụng',
         ],
     ],
 

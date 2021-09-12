@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class AdminLoginController extends Controller
     {
         return view('admin.auth.login');
     }
-    function login(Request $request)
+    function login(Request $request): RedirectResponse
     {
         if (Auth::guard('admin')->attempt([
             'email' => $request->input('user'),
@@ -24,7 +25,7 @@ class AdminLoginController extends Controller
             return redirect()->back()->with('error', 'Bạn không có quyền');
         }
     }
-    function logout()
+    function logout(): RedirectResponse
     {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');

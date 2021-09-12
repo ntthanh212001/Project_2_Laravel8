@@ -1,16 +1,15 @@
-<?php
+<?php /** @noinspection ALL */
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\{AdminController};
 use App\Http\Controllers\admin\AdminLoginController;
-use App\Http\Controllers\admin\AdminMenuController;
+
 use App\Http\Controllers\admin\GiangvienController;
 use App\Http\Controllers\admin\GiangVienLoginController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\Logincontroller;
-use App\Http\Controllers\admin\NganhController;
-use App\Models\Admin;
-use App\Models\Nganh;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +44,7 @@ Route::get('giangvien/logout', [GiangVienLoginController::class, 'logout'])->nam
 // Route::get('/all-branch', function () {
 //     return view('admin.branch.index', ['posts' => Nganh::all()])->name('branch');
 // });
-Route::get('admin/branch/', [AdminController::class, 'allBranch']);
+Route::get('admin/branch/', [AdminController::class, 'allBranch'])->name('branch');
 Route::post('admin/branch/add-branch', [AdminController::class, 'addBranch'])->name('branch.add');
 //
 /* //admin - student
@@ -64,18 +63,18 @@ Route::get('/admin/teacher/{id}', [AdminController::class, 'getTeacherById']);
 Route::put('/admin/teacher', [AdminController::class, 'updateTeacher'])->name('teacher.update');
 Route::get('/admin/teacher/view/{id}', [AdminController::class, 'viewTeacherById'])->name('teacher.view');
 // admin-Student
-Route::get('/admin/student/', [AdminController::class, 'allStudent']);
-Route::get('/admin/student/add-student', [AdminController::class, 'addStudent'])->name('student.add');
-Route::get('/admin/student/{id}', [AdminController::class, 'getStudentById']);
+Route::get('/admin/student/', [AdminController::class, 'allStudent'])->name('student');
+Route::get('/admin/student/add-student-Form', [AdminController::class, 'showFormStudent'])->name('student.showForm');
+Route::post('/admin/student/add-student', [AdminController::class, 'addStudent'])->name('student.add');
+Route::get('/admin/student/edit/{id}', [AdminController::class, 'ShowDataStudent'])->name('student.showFormUpdate');
 
-
-Route::put('/admin/student', [AdminController::class, 'updateStudent'])->name('student.update');
+Route::put('/admin/student/update/{id}', [AdminController::class, 'updateStudent'])->name('student.update');
 Route::get('/admin/student/view/{id}', [AdminController::class, 'viewTeacherById'])->name('student.view');
 // end student
 //UPDATE STATUS
 Route::get('/status/update/{id}', [AdminController::class, 'statusUpdate']);
 //Admin-Class
-Route::get('/admin/class/', [AdminController::class, 'AllClass']);
+Route::get('/admin/class/', [AdminController::class, 'AllClass'])->name('class');
 Route::post('/admin/class/add-class', [AdminController::class, 'addClass'])->name('class.add');
 //end-Class
 //Admin-Class
