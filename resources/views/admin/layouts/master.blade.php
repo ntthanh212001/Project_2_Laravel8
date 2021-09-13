@@ -32,7 +32,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" >
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -71,12 +72,42 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('student') }}">Tất cả sinh viên</a>
-                        <a class="collapse-item" href="{{ route('class') }}">Tất cả Lớp</a>
+                        <a class="collapse-item" href="{{ route('student') }}">Tất cả sinh viên
+
+                        </a>
+                        <a class="collapse-item" href="{{ route('class') }}">Tất cả Lớp
+
+                        </a>
                         <a class="collapse-item" href="{{ route('branch') }}">Tất cả Ngành</a>
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoe"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-users"></i>
+                    <span>Điểm</span>
+                </a>
+                <div id="collapseTwoe" class="collapse" aria-labelledby="headingTwo"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Tuỳ chọn</h6>
+                        <a class="collapse-item" href="a.html">
+                            <span style="font-size: .80rem;">Tất cả điểm</span>
+                        </a>
+                        <a class="collapse-item" href="a.html">
+                            <span style="font-size: .77rem;">Điểm sinh viên ngành lập trình</span>
+                        </a>
+                        <a class="collapse-item" href="b.html">
+                            <span style="font-size: .80rem;">Điểm sinh viên ngành QTM</span>
+                        </a>
+                        <a class="collapse-item" href="c.html">
+                            <span style="font-size: .80rem;">Điểm sinh viên ngành TKDH</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">

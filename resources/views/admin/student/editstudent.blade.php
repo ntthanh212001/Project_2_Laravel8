@@ -2,14 +2,15 @@
 @section('title', 'Sửa Sinh viên')
 @section('content')
     <div>
-        <form action="{{'/admin/student/update/'}}" method="put" id="myForm" name="myForm" >
+        <form action="{{'/admin/student/update/'}}" method="post" id="myForm" name="myForm" >
             @csrf
+            <input type="hidden" name="id" value="{{$data['id']}}">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                         <label class="form-label">Mã Sinh viên <span
                                 style="color: red;font-size: 10px;font-style: italic;" id="error_masv"></span> </label>
-                        <input type="text" name="masv" class="form-control" value="{{$data['masv']}}" readonly>
+                        <input type="text" name="masv" class="form-control" value="{{$data['masv']}}" >
                         <span style="color: red;">
                             @error('masv')
                             {{$message}}
@@ -47,7 +48,7 @@
                     <div class="form-group">
                         <label class="form-label">Số điện thoại <span
                                 style="color: red;font-size: 10px;font-style: italic;" id="error_phone"></span> </label>
-                        <input type="tel" name="phone" class="form-control" value="{{$data['ngaysinh']}}">
+                        <input type="tel" name="phone" class="form-control" value="{{$data['phone']}}">
                         <span style="color: red;">
                             @error('phone')
                             {{$message}}

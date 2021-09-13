@@ -68,7 +68,7 @@ Route::get('/admin/student/add-student-Form', [AdminController::class, 'showForm
 Route::post('/admin/student/add-student', [AdminController::class, 'addStudent'])->name('student.add');
 Route::get('/admin/student/edit/{id}', [AdminController::class, 'ShowDataStudent'])->name('student.showFormUpdate');
 
-Route::put('/admin/student/update/{id}', [AdminController::class, 'updateStudent'])->name('student.update');
+Route::post('/admin/student/update/', [AdminController::class, 'updateStudent'])->name('student.update');
 Route::get('/admin/student/view/{id}', [AdminController::class, 'viewTeacherById'])->name('student.view');
 // end student
 //UPDATE STATUS

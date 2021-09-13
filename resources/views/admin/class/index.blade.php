@@ -3,7 +3,7 @@
 @section('content')
     <a href="#" class="btn btn-success" data-toggle="modal" data-target="#lopModal">Thêm Lớp</a>
     <br><br>
-    <table id="dataTable" >
+    <table id="dataTable" @class('table')>
         <thead>
             <tr class="text center-container">
                 <th>ID</th>

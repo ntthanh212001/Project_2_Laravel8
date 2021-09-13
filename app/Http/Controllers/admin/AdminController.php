@@ -260,8 +260,8 @@ class AdminController extends Controller
         return view('admin.student.editstudent',[
             'data2' => $data2,
             'data3' => $data3,
-            'data'=>$data]
-
+            'data'=>$data,
+            ]
         );
 
     }
@@ -282,21 +282,34 @@ class AdminController extends Controller
 
     }
     public function updateStudent(Request $request){
-        $data = Sinhvien::find($request->id);
-        $data->masv = $request->masv;
-        $data->hoten = $request->hoten;
-        $data->gioitinh = $request->gioitinh;
-        $data->ngaysinh = $request->ngaysinh;
-        $data->phone = $request->phone;
-        $data->address = $request->address;
-        $data->email = $request->email;
-        $data->password = $request->password;
-        $data->nganh_id = $request->nganh_id;
-        $data->lop_id = $request->lop_id;
-
-
+        $request->validate([
+            'masv' => 'required',
+            'hoten' => 'required',
+            'gioitinh' => 'required',
+            'ngaysinh' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'nganh_id' => 'required',
+            'lop_id' => 'required',
+        ]);
+        $id = $request->input('id');
+        $data = Sinhvien::find($id);
+        $data->masv=$request->input('masv');
+        $data->hoten=$request->input('hoten');
+        $data->gioitinh=$request->input('gioitinh');
+        $data->ngaysinh=$request->input('ngaysinh');
+        $data->phone=$request->input('phone');
+        $data->address=$request->input('address');
+        $data->email=$request->input('email');
+        $data->password=$request->input('password');
+        $data->nganh_id=$request->input('nganh_id');
+        $data->lop_id=$request->input('lop_id');
         $data->save();
-        return response()->json($data);
+        return redirect()->route('student')->with('success','Sua sinh viên thành công');
+
+
 
     }
 
