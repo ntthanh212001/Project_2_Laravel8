@@ -75,10 +75,10 @@
                         <a class="collapse-item" href="{{ route('student') }}">Tất cả sinh viên
 
                         </a>
-                        <a class="collapse-item" href="{{ route('class') }}">Tất cả Lớp
+
 
                         </a>
-                        <a class="collapse-item" href="{{ route('branch') }}">Tất cả Ngành</a>
+
                     </div>
                 </div>
             </li>
@@ -121,6 +121,27 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
                         <a class="collapse-item" href="utilities-color.html">Tất cả giảng viên</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwor"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-users"></i>
+                    <span>Ngành & lớp</span>
+                </a>
+                <div id="collapseTwor" class="collapse" aria-labelledby="headingTwo"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Tuỳ chọn</h6>
+                        <a class="collapse-item" href="{{ route('branch') }}">Ngành</a>
+
+                        </a>
+                        <a class="collapse-item" href="{{ route('class') }}">Lớp
+
+                        </a>
+
+
                     </div>
                 </div>
             </li>
