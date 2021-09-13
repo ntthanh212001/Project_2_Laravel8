@@ -49,7 +49,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-coins"></i>
                     <span>Thống kê</span></a>
             </li>
 
@@ -85,15 +85,16 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoe"
                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-users"></i>
+                    <i class="fab fa-hive"></i>
                     <span>Điểm</span>
                 </a>
                 <div id="collapseTwoe" class="collapse" aria-labelledby="headingTwo"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
+
                         <a class="collapse-item" href="a.html">
-                            <span style="font-size: .80rem;">Tất cả điểm</span>
+                            <span style="font-size: .80rem;"> <i class="fas fa-border-all"></i>Tất cả điểm</span>
                         </a>
                         <a class="collapse-item" href="a.html">
                             <span style="font-size: .77rem;">Điểm sinh viên ngành lập trình</span>
@@ -113,7 +114,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fab fa-buromobelexperte"></i>
+                    <i class="fas fa-chalkboard-teacher"></i>
                     <span>Giảng viên</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
@@ -127,7 +128,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwor"
                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-code-branch"></i>
                     <span>Ngành & lớp</span>
                 </a>
                 <div id="collapseTwor" class="collapse" aria-labelledby="headingTwo"
