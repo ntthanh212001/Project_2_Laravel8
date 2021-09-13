@@ -72,7 +72,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('student') }}">Tất cả sinh viên
+                        <a class="collapse-item" href="{{ route('student') }}"><i class="fas fa-exchange-alt"></i>&nbsp;Tất cả sinh viên
 
                         </a>
 
@@ -94,16 +94,16 @@
                         <h6 class="collapse-header">Tuỳ chọn</h6>
 
                         <a class="collapse-item" href="a.html">
-                            <span style="font-size: .80rem;"> <i class="fas fa-border-all"></i>Tất cả điểm</span>
+                            <span style="font-size: .80rem;"> <i class="fas fa-exchange-alt"></i>&nbsp;Tất cả điểm</span>
                         </a>
                         <a class="collapse-item" href="a.html">
-                            <span style="font-size: .77rem;">Điểm sinh viên ngành lập trình</span>
+                            <span style="font-size: .77rem;"><i class="fas fa-exchange-alt"></i>&nbsp;Điểm sinh viên ngành lập trình</span>
                         </a>
                         <a class="collapse-item" href="b.html">
-                            <span style="font-size: .80rem;">Điểm sinh viên ngành QTM</span>
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp;Điểm sinh viên ngành QTM</span>
                         </a>
                         <a class="collapse-item" href="c.html">
-                            <span style="font-size: .80rem;">Điểm sinh viên ngành TKDH</span>
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp;Điểm sinh viên ngành TKDH</span>
                         </a>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="utilities-color.html">Tất cả giảng viên</a>
+                        <a class="collapse-item" href="utilities-color.html"><i class="fas fa-exchange-alt"></i>&nbsp;Tất cả giảng viên</a>
                     </div>
                 </div>
             </li>
