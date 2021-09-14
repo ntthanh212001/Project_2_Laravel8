@@ -2,74 +2,83 @@
 @section('title', 'Trang Chủ')
 @section('content')
 <br>
-<div class="row" style="width: 80%; margin-left: 123px">
-    <div class="col-xl-3 col-xxl-3 col-sm-6">
-        <div class="widget-stat card bg-secondary">
+<div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
-                <div class="media">
-                    <span class="mr-3">
-                        <i class="la la-graduation-cap"></i>
-                    </span>
-                    <div class="media-body text-white">
-                        <p class="mb-1">Khóa</p>
-                        <h3 class="text-white">28</h3>
-                        <div class="progress mb-2 bg-white">
-                            <div class="progress-bar progress-animated bg-light" style="width: 100%"></div>
-                        </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <h4>Ngành</h4></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-xxl-3 col-sm-6">
-        <div class="widget-stat card bg-warning">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
-                <div class="media">
-                    <span class="mr-3">
-                        <i class="la la-user"></i>
-                    </span>
-                    <div class="media-body text-white">
-                        <p class="mb-1">Ngành</p>
-                        <h3 class="text-white">245</h3>
-                        <div class="progress mb-2 bg-white">
-                            <div class="progress-bar progress-animated bg-light" style="width: 100%"></div>
-                        </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            <h4>Lớp</h4></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-xxl-3 col-sm-6">
-        <div class="widget-stat card bg-danger">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
             <div class="card-body">
-                <div class="media">
-                    <span class="mr-3">
-                        <i class="la la-dollar"></i>
-                    </span>
-                    <div class="media-body text-white">
-                        <p class="mb-1">Sinh viên</p>
-                        <h3 class="text-white">25160$</h3>
-                        <div class="progress mb-2 bg-white">
-                            <div class="progress-bar progress-animated bg-light" style="width: 90%"></div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><h4>Giảng viên</h4>
                         </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                            </div>
+                            {{-- <div class="col">
+                                <div class="progress progress-sm mr-2">
+                                    <div class="progress-bar bg-info" role="progressbar"
+                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-xxl-3 col-sm-6">
-        <div class="widget-stat card bg-primary">
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
-                <div class="media">
-                    <span class="mr-3">
-                        <i class="la la-users"></i>
-                    </span>
-                    <div class="media-body text-white">
-                        <p class="mb-1">Sinh viên</p>
-                        <h3 class="text-white">3280</h3>
-                        <div class="progress mb-2 bg-white">
-                            <div class="progress-bar progress-animated bg-light" style="width: 100%"></div>
-                        </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <h4>Sinh viên</h4></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-comments fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>

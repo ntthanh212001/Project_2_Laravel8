@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Giangvien;
 use App\Models\Hocki;
 use App\Models\Lop;
@@ -23,7 +24,8 @@ class AdminController extends Controller
     }
     function index()
     {
-        return view('admin.index');
+        $data = Admin::all();
+        return view('admin.index',['data' => $data]);
     }
     public function allBranch()
     {
