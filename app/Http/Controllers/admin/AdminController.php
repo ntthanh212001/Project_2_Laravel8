@@ -106,7 +106,7 @@ class AdminController extends Controller
 
     public function allTeacher(){
         $data = Giangvien::all();
-        return view('admin.teacher.index', ['data'=>$data]);
+        return view('admin.teacher.gvLT', ['data'=>$data]);
     }
     public function allStudent(){
         $data3 = Lop::all();
@@ -123,28 +123,31 @@ class AdminController extends Controller
     ]);
     }
     public function AllClass(){
+        $data = Admin::all();
         $data2 = Nganh::all();
-        $data = DB::table('lops')
+        $data1 = DB::table('lops')
         ->join('nganhs','lops.nganh_id','=','nganhs.id')
         ->select('lops.*','nganhs.tennganh')
         ->orderBy('id','DESC')
         ->get();
 
-        return view('admin.class.index', ['data'=>$data],['data2'=>$data2]);
+        return view('admin.class.index', ['data1'=>$data1],['data2'=>$data2, 'data'=>$data]);
     }
     public function allObject(){
+        $data = Admin::all();
         $data2 = Hocki::all();
         $data3 = Nganh::all();
-        $data = DB::table('monhocs')
+        $data1 = DB::table('monhocs')
         ->join('hockis','monhocs.hocki_id','=','hockis.id')
         ->join('nganhs','monhocs.nganh_id','=','nganhs.id')
         ->select('monhocs.*','nganhs.tennganh','hockis.tenhocki')
         ->orderBy('id','DESC')
         ->get();
 
-        return view('admin.object.index', ['data'=>$data,
+        return view('admin.object.index', ['data1'=>$data1,
         'data2'=>$data2,
-        'data3'=>$data3]);
+        'data3'=>$data3,
+        'data' =>$data ]);
     }
     public function allMark(){
         $data2 = Monhoc::all();

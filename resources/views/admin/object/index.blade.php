@@ -35,7 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $item)
+            @foreach ($data1 as $item)
                 <tr id="tid{{ $item->id }}">
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->tenmon }}</td>
@@ -171,11 +171,9 @@
             </div>
         </div>
     </div>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#monhocTable').DataTable();
-        });
+        
 
         $("#monhocForm").submit(function(e) {
             e.preventDefault();
@@ -213,11 +211,14 @@
                 }
             });
         });
-    </script>
+    </script> --}}
     <script>
+        /* $(document).ready(function() {
+            $('#monhocTable').DataTable();
+        }); 
         /* Edit GV */
 
-        function editStudent(id) {
+        /* function editStudent(id) {
             $.get('/admin/student/' + id, function(sinhvien) {
                 $("#id").val(sinhvien.id);
                 $("#masv2").val(sinhvien.masv);
@@ -233,8 +234,8 @@
                 $("#sinhvienEditModal").modal('toggle');
             });
         }
-
-        $("#sinhvienEditForm").submit(function(e) {
+ */
+        /* $("#sinhvienEditForm").submit(function(e) {
             e.preventDefault();
             let masv = $("#masv2").val();
             let hoten = $("#hoten2").val();
@@ -284,7 +285,7 @@
 
                 }
             });
-        });
+        }); */
     </script>
 
 @endsection
