@@ -89,7 +89,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
 
-                        <a class="collapse-item" href="{{route('object.dev')}}">
+                        <a class="collapse-item" href="">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
                         </a>
                         <a class="collapse-item" href="b.html">
