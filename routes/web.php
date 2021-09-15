@@ -84,6 +84,7 @@ Route::post('/admin/class/add-class', [AdminController::class, 'addClass'])->nam
 //end-Class
 //Admin-Class
 Route::get('/admin/object/', [AdminController::class, 'allObject'])->name('object');
+
 Route::get('/admin/object/', [AdminController::class, 'objectDev'])->name('object.dev');
 Route::get('/admin/object/add-object', [AdminController::class, 'addObject'])->name('object.add');
 //end-Class

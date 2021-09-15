@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $item)
+            @foreach ($data1 as $item)
                 <tr id="tid{{ $item->id }}">
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->tenlop }}</td>
