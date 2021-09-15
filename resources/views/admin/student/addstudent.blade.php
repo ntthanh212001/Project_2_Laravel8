@@ -77,7 +77,7 @@
                 </div>
             </div> --}}
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group">
+                    <div class="forlag quam-group">
                         <label class="form-label">Email<span style="color: red;font-size: 10px;font-style: italic;"
                                 id="error_email"></span> </label>
                         <input type="email" name="email" class="form-control">

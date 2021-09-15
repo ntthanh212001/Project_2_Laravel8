@@ -62,13 +62,13 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('student') }}">
+                        <a class="collapse-item" href="{{ route('student.qtht') }}">
                             <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
                         </a>
-                        <a class="collapse-item" href="{{ route('student') }}">
+                        <a class="collapse-item" href="{{ route('student.dev') }}">
                             <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình
                         </a>
-                        <a class="collapse-item" href="{{ route('student') }}">
+                        <a class="collapse-item" href="{{ route('student.tkdh') }}">
                             <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa
                         </a>
 
@@ -89,7 +89,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
 
-                        <a class="collapse-item" href="a.html">
+                        <a class="collapse-item" href="{{route('object.dev')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
                         </a>
                         <a class="collapse-item" href="b.html">
@@ -115,7 +115,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
 
-                        <a class="collapse-item" href="a.html">
+                        <a class="collapse-item" href="{{route('teacher')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
                         </a>
                         <a class="collapse-item" href="b.html">
@@ -127,14 +127,14 @@
                     </div>
                 </div>
             </li>
-            
+
             <!-- Nav Item - Utilities Collapse Menu -->
 
             <!-- Divider -->
             {{-- <hr class="sidebar-divider"> --}}
 
 
-            
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoee"
@@ -159,7 +159,7 @@
                     </div>
                 </div>
             </li>
-{{-- 
+{{--
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
@@ -264,7 +264,7 @@
                         </li> --}}
 
                         <!-- Nav Item - Alerts -->
-                        
+
 
                         {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
 
@@ -272,9 +272,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><h4 style="color: skyblue">@foreach ($data as $item)
-                                    {{$item->name}}
-                                @endforeach</h4></span>
+{{--                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><h4 style="color: skyblue">@foreach ($data as $item)--}}
+{{--                                    {{$item->name}}--}}
+{{--                                @endforeach</h4></span>--}}
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

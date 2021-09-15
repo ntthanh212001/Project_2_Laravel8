@@ -64,6 +64,11 @@ Route::put('/admin/teacher', [AdminController::class, 'updateTeacher'])->name('t
 Route::get('/admin/teacher/view/{id}', [AdminController::class, 'viewTeacherById'])->name('teacher.view');
 // admin-Student
 Route::get('/admin/student/', [AdminController::class, 'allStudent'])->name('student');
+
+Route::get('/admin/student/dev', [AdminController::class, 'studenDev'])->name('student.dev');
+Route::get('/admin/student/qtht', [AdminController::class, 'studenQtht'])->name('student.qtht');
+Route::get('/admin/student/tkdh', [AdminController::class, 'studenTkdh'])->name('student.tkdh');
+
 Route::get('/admin/student/add-student-Form', [AdminController::class, 'showFormStudent'])->name('student.showForm');
 Route::post('/admin/student/add-student', [AdminController::class, 'addStudent'])->name('student.add');
 Route::get('/admin/student/edit/{id}', [AdminController::class, 'ShowDataStudent'])->name('student.showFormUpdate');
@@ -78,7 +83,8 @@ Route::get('/admin/class/', [AdminController::class, 'AllClass'])->name('class')
 Route::post('/admin/class/add-class', [AdminController::class, 'addClass'])->name('class.add');
 //end-Class
 //Admin-Class
-Route::get('/admin/object/', [AdminController::class, 'allObject']);
+Route::get('/admin/object/', [AdminController::class, 'allObject'])->name('object');
+Route::get('/admin/object/', [AdminController::class, 'objectDev'])->name('object.dev');
 Route::get('/admin/object/add-object', [AdminController::class, 'addObject'])->name('object.add');
 //end-Class
 //Admin-Mark

@@ -106,7 +106,7 @@ class AdminController extends Controller
 
     public function allTeacher(){
         $data = Giangvien::all();
-        return view('admin.teacher.index', ['data'=>$data]);
+        return view('admin.teacher.gvLT', ['data'=>$data]);
     }
     public function allStudent(){
         $data3 = Lop::all();
@@ -116,11 +116,56 @@ class AdminController extends Controller
         ->join('lops','sinhviens.lop_id','=','lops.id')
         ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
         ->get();
-        return view('admin.student.index',
+        return view('admin.student.ListLT',
         ['data'=>$data,
         'data2'=>$data2,
         'data3'=>$data3
     ]);
+    }
+    public function studenDev(){
+        $data3 = Lop::all();
+        $data2 = Nganh::all();
+        $data = DB::table('sinhviens')
+            ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
+            ->join('lops','sinhviens.lop_id','=','lops.id')
+            ->where('sinhviens.nganh_id',1)
+            ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
+            ->get();
+        return view('admin.student.ListLT',
+            ['data'=>$data,
+                'data2'=>$data2,
+                'data3'=>$data3
+            ]);
+    }
+    public function studenQtht(){
+        $data3 = Lop::all();
+        $data2 = Nganh::all();
+        $data = DB::table('sinhviens')
+            ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
+            ->join('lops','sinhviens.lop_id','=','lops.id')
+            ->where('sinhviens.nganh_id',2)
+            ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
+            ->get();
+        return view('admin.student.ListQTHT',
+            ['data'=>$data,
+                'data2'=>$data2,
+                'data3'=>$data3
+            ]);
+    }
+    public function studenTkdh(){
+        $data3 = Lop::all();
+        $data2 = Nganh::all();
+        $data = DB::table('sinhviens')
+            ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
+            ->join('lops','sinhviens.lop_id','=','lops.id')
+            ->where('sinhviens.nganh_id',3)
+            ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
+            ->get();
+        return view('admin.student.ListQTHT',
+            ['data'=>$data,
+                'data2'=>$data2,
+                'data3'=>$data3
+            ]);
     }
     public function AllClass(){
         $data2 = Nganh::all();
@@ -145,6 +190,21 @@ class AdminController extends Controller
         return view('admin.object.index', ['data'=>$data,
         'data2'=>$data2,
         'data3'=>$data3]);
+    }
+    public function objectDev(){
+        $data2 = Hocki::all();
+        $data3 = Nganh::all();
+        $data = DB::table('monhocs')
+            ->join('hockis','monhocs.hocki_id','=','hockis.id')
+            ->join('nganhs','monhocs.nganh_id','=','nganhs.id')
+            ->select('monhocs.*','nganhs.tennganh','hockis.tenhocki')
+            ->where('monhocs.nganh_id',1)
+            ->orderBy('id','DESC')
+            ->get();
+
+        return view('admin.object.index', ['data'=>$data,
+            'data2'=>$data2,
+            'data3'=>$data3]);
     }
     public function allMark(){
         $data2 = Monhoc::all();
