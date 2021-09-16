@@ -14,6 +14,10 @@ use App\Models\Sinhvien;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SinhvienExport;
+use http\Exception;
 use phpDocumentor\Reflection\Types\False_;
 
 class AdminController extends Controller
@@ -26,6 +30,11 @@ class AdminController extends Controller
     {
         $data = Admin::all();
         return view('admin.index',['data' => $data]);
+    }
+    function showFormExcelStudent()
+    {
+
+        return view('admin.student.FormExcelStudent');
     }
     public function allBranch()
     {
@@ -376,6 +385,13 @@ class AdminController extends Controller
 
 
 
+    }
+
+    public function exportSinhvien(){
+        return Excel::download(new SinhvienExport,'sinhvien.xlsx');
+    }
+    public function sampleSinhvien(){
+        return Excel::download(new SinhvienExport(true),'sinhviensample.xlsx');
     }
 
 }

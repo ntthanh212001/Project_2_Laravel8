@@ -5,6 +5,7 @@
         <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
 <a href="{{ route('student.showForm') }}">Thêm Sinh Viên</a>
+    <a href="{{route('student.showFormExcel')}}">Thêm bằng Excel</a>
 
 <table id="dataTable" class="table table-bordered" >
         <thead>
