@@ -23,7 +23,9 @@
     <link href="{{ asset('admin_tpl/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.2/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css"/>
 
-
+@section('css')
+    
+@show
 </head>
 
 <body id="page-top">
@@ -89,7 +91,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
 
-                        <a class="collapse-item" href="">
+                        <a class="collapse-item" href="{{route('mark.dev')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
                         </a>
                         <a class="collapse-item" href="b.html">
@@ -115,7 +117,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
 
-                        <a class="collapse-item" href="{{route('teacher')}}">
+                        <a class="collapse-item" href="{{route('teacher.dev')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
                         </a>
                         <a class="collapse-item" href="b.html">
@@ -372,6 +374,9 @@
         });
 
     </script>
+    @section('js')
+        
+    @show
     <!-- Core plugin JavaScript-->
 
     <!-- Custom scripts for all pages-->

@@ -14,9 +14,11 @@ use App\Models\Sinhvien;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SinhvienExport;
+use App\Models\Diem;
 use http\Exception;
 use phpDocumentor\Reflection\Types\False_;
 
@@ -25,6 +27,14 @@ class AdminController extends Controller
     function __construct()
     {
         $this->middleware('auth.admin');
+        $nganhs=Nganh::count();
+        $lops=Lop::count();
+        $giangviens=Giangvien::count();
+        $sinhviens=Sinhvien::count();
+        view()->share('nganhs', $nganhs);
+        view()->share('lops', $lops);
+        view()->share('giangviens', $giangviens);
+        view()->share('sinhviens', $sinhviens);
     }
     function index()
     {
@@ -218,20 +228,73 @@ class AdminController extends Controller
             'data2'=>$data2,
             'data3'=>$data3]);
     }
-    public function allMark(){
-        $data2 = Monhoc::all();
+    public function markDev(){
+        /* $data2 = Monhoc::all();
         $data3 = Sinhvien::all();
         $data = DB::table('diems')
         ->join('monhocs','diems.monhoc_id','=','monhocs.id')
         ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
         ->join('giangviens','diems.giangvien_id','=','giangviens.id')
         ->select('diems.*','monhocs.tenmon','sinhviens.hoten','giangviens.hotengv')
+        ->where('')
         ->orderBy('id','DESC')
         ->get();
 
         return view('admin.mark.index', ['data'=>$data,
         'data2'=>$data2,
-        'data3'=>$data3]);
+        'data3'=>$data3]); */
+
+        /* DB::statement(DB::raw('set @rownum=0')); */
+        $student = DB::table('sinhviens')
+        ->join('diems','sinhviens.id','=','diems.sinhvien_id')
+        ->join('monhocs','diems.monhoc_id','=','monhocs.id')
+        ->join('lops','sinhviens.lop_id','=','lops.id')
+        ->select([
+            /* DB:raw('@rownum := @rownum + 1 AS rownum'), */
+            'masv',
+            'hoten',
+            'tenlop',
+            'diemlt',
+            'diemtt',
+            'tenmon',
+            'sinhviens.id AS sv_id',
+            'diems.id AS diem_id',
+            'monhocs.id AS monhoc_id'
+        ])->get();
+        return view('admin.mark.markLT',['student'=>$student]);
+    }
+
+    public function savediem(Request $request){
+        $diemso = $_POST['diem'];
+        $sv_id = $_POST['sv_id'];
+        $monhoc_id = $_POST['monhoc_id'];
+        $diem_id = $_POST['diem_id'];
+        $column = $_POST['column'];
+        if ($diemso == ""){
+            $diemso = null;
+        }
+        if ($column == 'diemlt') {
+            $diem = Diem::find($diem_id);
+            $diem->diemlt=$diemso;
+            $diem->sinhvien_id=$sv_id;
+            $diem->monhoc_id=$monhoc_id;
+            $diem->save();
+            return Response::json([
+                'error' => 1,
+                'message' => 'Lưu thành công'
+            ]);
+        }
+        if ($column == 'diemtt') {
+            $diem = Diem::find($diem_id);
+            $diem->diemtt=$diemso;
+            $diem->sinhvien_id=$sv_id;
+            $diem->monhoc_id=$monhoc_id;
+            $diem->save();
+            return Response::json([
+                'error' => 1,
+                'message' => 'Lưu thành công'
+            ]);
+        }
     }
     public function statusUpdate($id): \Illuminate\Http\RedirectResponse
     {

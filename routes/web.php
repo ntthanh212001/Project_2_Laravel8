@@ -40,22 +40,13 @@ Route::get('giangvien/login', [GiangVienLoginController::class, 'GiangvienFormLo
 Route::post('giangvien/login', [GiangVienLoginController::class, 'login']);
 Route::get('giangvien/logout', [GiangVienLoginController::class, 'logout'])->name('giangvien.logout');
 //
-//admin - branch
-// Route::get('/all-branch', function () {
-//     return view('admin.branch.index', ['posts' => Nganh::all()])->name('branch');
 // });
 Route::get('admin/branch/', [AdminController::class, 'allBranch'])->name('branch');
 Route::post('admin/branch/add-branch', [AdminController::class, 'addBranch'])->name('branch.add');
 //
-/* //admin - student
-Route::get('/allstudent', [AdminController::class, 'AllStudent'])->name('student');
-//student
-//admin - class
-Route::get('/all-class', [AdminController::class, 'AllClass'])->name('admin.class');
-//class */
 
 /* Admin-Teacher */
-Route::get('/admin/teacher/', [AdminController::class, 'allTeacher'])->name('teacher');
+Route::get('/admin/teacher/dev', [AdminController::class, 'allTeacher'])->name('teacher.dev');
 Route::post('/admin/teacher/add-teacher', [AdminController::class, 'addTeacher'])->name('teacher.add');
 Route::get('/admin/teacher/{id}', [AdminController::class, 'getTeacherById']);
 
@@ -93,10 +84,13 @@ Route::get('/admin/object/add-object', [AdminController::class, 'addObject'])->n
 //Admin-Mark
 Route::get('/admin/mark/', [AdminController::class, 'allMark'])->name('mark');
 Route::post('/admin/mark/add-mark', [AdminController::class, 'addMark'])->name('mark.add');
-Route::get('/admin/mark/{id}', [AdminController::class, 'getMarkById']);
+/* Route::get('/admin/mark/{id}', [AdminController::class, 'getMarkById']); */
 
 
-Route::put('/admin/mark', [AdminController::class, 'updateMark'])->name('mark.update');
-Route::get('/admin/mark/view/{id}', [AdminController::class, 'viewMarkById'])->name('mark.view');
+Route::get('/admin/mark/dev', [AdminController::class, 'markDev'])->name('mark.dev');
+Route::get('/admin/mark/qtht', [AdminController::class, 'markQtht'])->name('mark.qtht');
+Route::get('/admin/mark/tkdh', [AdminController::class, 'markTkdh'])->name('mark.tkdh');
+Route::post('/admin/mark/save',[AdminController::class, 'savediem'])->name('mark.savediem');
+/* Route::get('/admin/mark/view/{id}', [AdminController::class, 'viewMarkById'])->name('mark.view'); */
 //end-point
 
