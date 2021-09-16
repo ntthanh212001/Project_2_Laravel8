@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    
 
     <title>@yield('title')</title>
 
@@ -161,15 +162,7 @@
                     </div>
                 </div>
             </li>
-{{--
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li> --}}
 
-            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
@@ -186,11 +179,11 @@
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('branch') }}">Ngành</a>
-
+                        <a class="collapse-item" href="{{ route('branch') }}">
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành </span>
                         </a>
-                        <a class="collapse-item" href="{{ route('class') }}">Lớp
-
+                        <a class="collapse-item" href="{{ route('class') }}">
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Lớp </span>
                         </a>
 
 
@@ -274,9 +267,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-{{--                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><h4 style="color: skyblue">@foreach ($data as $item)--}}
-{{--                                    {{$item->name}}--}}
-{{--                                @endforeach</h4></span>--}}
+                               <span class="mr-2 d-none d-lg-inline text-gray-600 small"><h4 style="color: skyblue">@foreach ($name as $item)
+                                   {{$item->name}}
+                               @endforeach</h4></span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -315,7 +308,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span class="display-6">ADMIN</span>
                     </div>
                 </div>
             </footer>
@@ -346,7 +339,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{route('admin.login')}}">Logout</a>
                 </div>
             </div>
         </div>

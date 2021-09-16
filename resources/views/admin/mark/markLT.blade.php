@@ -1,8 +1,9 @@
 @extends('admin.layouts.master')
-@section('title', 'Điểm')
+@section('title', 'Điểm lập trình')
 @section('css')
-<link rel="stylesheet" type="text/css"
-    href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css" />
+
+{{-- <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css" /> --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -13,11 +14,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
     integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript"
+{{--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> --}}
+{{-- <script type="text/javascript"
     src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.js">
-</script>
+</script> --}}
 @endsection
 @section('content')
 <div class="row">
@@ -44,7 +45,6 @@
     </form>
 </div>
 <br><br>
-
 <table class="table table-bordered">
     <thead>
         <tr class="text center-container">
@@ -65,8 +65,8 @@
         @foreach ($student as $item)
         <tr {{-- id="tid{{ $item->id }}" --}}>
             {{-- <td>{{ $item->id }}</td> --}}
-            <td></td>
-            <td>{{ $item->masv}}</td>
+            <td>{{ $item->rownum }}</td>
+            <td>{{ $item->masv }}</td>
             <td>{{ $item->hoten }}</td>
             <td>{{ $item->tenmon }}</td>
             {{-- <td>{{ $item->hotengv }}</td> --}}
@@ -80,52 +80,55 @@
 
             {{-- <td>{{ $item->created_at }}</td>
             <td>{{ $item->updated_at }}</td> --}}
-            {{-- <td>
-                        <a href="javascript:void(0)" onclick="editStudent({{ $item->id }})"
-            class="btn btn-info">Edit</a>
-            </td> --}}
-            {{-- <td>
-        <a href="javascript:void(0)" onclick="editGiangvien({{$item->id}})" class="btn btn-info">Edit</a>
-            <a href="javascript:void(0)" onclick="deleteGiangvien({{$item->id}})" class="btn btn-danger">Del</a>
-            </td> --}}
         </tr>
         @endforeach
     </tbody>
 </table>
-@section('css')
+
+@stop
+{{-- @section('css')
 <link rel="stylesheet" href="{{asset('css/point.css')}} ">
-@endsection
+@stop --}}
+@section('js')
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-<script src="//cdn.datatables.net/buttons/1.5.0/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+{{-- <script src="https://cdn.datatables.net/buttons/1.5.0/js/buttons.html5.min.js"></script> --}}
 <script>
     $.ajaxSetup({
-        headers:{
+        headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
     /* var url = "{{route('mark.savediem')}}"; */
     function saveToDatabase(diem, column, diem_id, sv_id, monhoc_id){
-        $(diem).css("background","#FFF url({{asset('image/preloader.gif')}}) no-repeat left center");
+        $(diem).css("background","#FFF url({{asset('image/preloader.gif')}}) no-repeat right center");
         $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             url: "{{route('mark.savediem')}}",
             type: "POST",
             data: {
-                diem: diem.innerHTML, column: column, diem_id: diem_id, sv_id: sv_id, monhoc_id: monhoc_id
+                diem: diem.innerHTML, 
+                column: column, 
+                diem_id: diem_id, 
+                sv_id: sv_id, 
+                monhoc_id: monhoc_id,
+                _token: '{{csrf_token()}}'
             },
-            success: function (data){
-                $(diem).css("background","green");
-                    // toastr.success(data.message, 'Thông Báo!', {closeButton: true});
-            },
-            error: function (data) {
-                $(diem).css("background","skyblue");
-                /* alert("Thất bại"); */
-            }
+            
+            success: function(data){
+                    $(diem).css("background","#FDFDFD");
+                },
+                error: function (data) {
+                    $(diem).css("background","red");
+                }
 
         });
     }
 </script>
 
-@endsection
+@stop

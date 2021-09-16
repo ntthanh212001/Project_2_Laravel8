@@ -1,4 +1,6 @@
-<?php /** @noinspection ALL */
+<?php
+
+/** @noinspection ALL */
 
 namespace App\Http\Controllers\admin;
 
@@ -28,10 +30,10 @@ class AdminController extends Controller
     function __construct()
     {
         $this->middleware('auth.admin');
-        $nganhs=Nganh::count();
-        $lops=Lop::count();
-        $giangviens=Giangvien::count();
-        $sinhviens=Sinhvien::count();
+        $nganhs = Nganh::count();
+        $lops = Lop::count();
+        $giangviens = Giangvien::count();
+        $sinhviens = Sinhvien::count();
         view()->share('nganhs', $nganhs);
         view()->share('lops', $lops);
         view()->share('giangviens', $giangviens);
@@ -40,7 +42,7 @@ class AdminController extends Controller
     function index()
     {
         $data = Admin::all();
-        return view('admin.index',['data' => $data]);
+        return view('admin.index', ['data' => $data]);
     }
     function showFormExcelStudent()
     {
@@ -61,15 +63,15 @@ class AdminController extends Controller
 
         $data->save();
         return response()->json($data);
-
     }
 
-    public function showFormStudent(){
+    public function showFormStudent()
+    {
         $data = Lop::all();
         $data2 = Nganh::all();
-        return view('admin.student.addstudent',[
-            'data'=>$data,
-            'data2'=>$data2
+        return view('admin.student.addstudent', [
+            'data' => $data,
+            'data2' => $data2
         ]);
     }
     /* function AllClass()
@@ -124,112 +126,137 @@ class AdminController extends Controller
         }
     } */
 
-    public function allTeacher(){
+    public function allTeacher()
+    {
         $data = Giangvien::all();
-        return view('admin.teacher.gvLT', ['data'=>$data]);
+        return view('admin.teacher.gvLT', ['data' => $data]);
     }
-    public function allStudent(){
+    public function allStudent()
+    {
         $data3 = Lop::all();
         $data2 = Nganh::all();
         $data = DB::table('sinhviens')
-        ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
-        ->join('lops','sinhviens.lop_id','=','lops.id')
-        ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
-        ->get();
-        return view('admin.student.ListLT',
-        ['data'=>$data,
-        'data2'=>$data2,
-        'data3'=>$data3
-    ]);
-    }
-    public function studenDev(){
-        $data3 = Lop::all();
-        $data2 = Nganh::all();
-        $data = DB::table('sinhviens')
-            ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
-            ->join('lops','sinhviens.lop_id','=','lops.id')
-            ->where('sinhviens.nganh_id',1)
-            ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
+            ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+            ->select('sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
             ->get();
-        return view('admin.student.ListLT',
-            ['data'=>$data,
-                'data2'=>$data2,
-                'data3'=>$data3
-            ]);
+        return view(
+            'admin.student.ListLT',
+            [
+                'data' => $data,
+                'data2' => $data2,
+                'data3' => $data3
+            ]
+        );
     }
-    public function studenQtht(){
+    public function studenDev()
+    {
         $data3 = Lop::all();
         $data2 = Nganh::all();
         $data = DB::table('sinhviens')
-            ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
-            ->join('lops','sinhviens.lop_id','=','lops.id')
-            ->where('sinhviens.nganh_id',2)
-            ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
+            ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+            ->where('sinhviens.nganh_id', 1)
+            ->select('sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
             ->get();
-        return view('admin.student.ListQTHT',
-            ['data'=>$data,
-                'data2'=>$data2,
-                'data3'=>$data3
-            ]);
+        return view(
+            'admin.student.ListLT',
+            [
+                'data' => $data,
+                'data2' => $data2,
+                'data3' => $data3
+            ]
+        );
     }
-    public function studenTkdh(){
+    public function studenQtht()
+    {
         $data3 = Lop::all();
         $data2 = Nganh::all();
         $data = DB::table('sinhviens')
-            ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
-            ->join('lops','sinhviens.lop_id','=','lops.id')
-            ->where('sinhviens.nganh_id',3)
-            ->select('sinhviens.*','nganhs.tennganh','lops.tenlop')
+            ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+            ->where('sinhviens.nganh_id', 2)
+            ->select('sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
             ->get();
-        return view('admin.student.ListQTHT',
-            ['data'=>$data,
-                'data2'=>$data2,
-                'data3'=>$data3
-            ]);
+        return view(
+            'admin.student.ListQTHT',
+            [
+                'data' => $data,
+                'data2' => $data2,
+                'data3' => $data3
+            ]
+        );
     }
-    public function AllClass(){
-        $data = Admin::all();
+    public function studenTkdh()
+    {
+        $data3 = Lop::all();
+        $data2 = Nganh::all();
+        $data = DB::table('sinhviens')
+            ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+            ->where('sinhviens.nganh_id', 3)
+            ->select('sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+            ->get();
+        return view(
+            'admin.student.ListQTHT',
+            [
+                'data' => $data,
+                'data2' => $data2,
+                'data3' => $data3
+            ]
+        );
+    }
+    public function AllClass()
+    {
+        $name = Admin::all();
         $data2 = Nganh::all();
         $data1 = DB::table('lops')
-        ->join('nganhs','lops.nganh_id','=','nganhs.id')
-        ->select('lops.*','nganhs.tennganh')
-        ->orderBy('id','DESC')
-        ->get();
+            ->join('nganhs', 'lops.nganh_id', '=', 'nganhs.id')
+            ->select('lops.*', 'nganhs.tennganh')
+            ->orderBy('id', 'DESC')
+            ->get();
 
-        return view('admin.class.index', ['data1'=>$data1],['data2'=>$data2, 'data'=>$data]);
+        return view('admin.class.index', ['data1' => $data1], ['data2' => $data2, 'data' => $name]);
     }
-    public function allObject(){
-        $data = Admin::all();
+    public function allObject()
+    {
+        $name = Admin::all();
         $data2 = Hocki::all();
         $data3 = Nganh::all();
         $data1 = DB::table('monhocs')
-        ->join('hockis','monhocs.hocki_id','=','hockis.id')
-        ->join('nganhs','monhocs.nganh_id','=','nganhs.id')
-        ->select('monhocs.*','nganhs.tennganh','hockis.tenhocki')
-        ->orderBy('id','DESC')
-        ->get();
+            ->join('hockis', 'monhocs.hocki_id', '=', 'hockis.id')
+            ->join('nganhs', 'monhocs.nganh_id', '=', 'nganhs.id')
+            ->select('monhocs.*', 'nganhs.tennganh', 'hockis.tenhocki')
+            ->orderBy('id', 'DESC')
+            ->get();
 
-        return view('admin.object.index', ['data1'=>$data1,
-        'data2'=>$data2,
-        'data3'=>$data3,
-        'data' =>$data ]);
+        return view('admin.object.index', [
+            'data1' => $data1,
+            'data2' => $data2,
+            'data3' => $data3,
+            'data' => $name
+        ]);
     }
-    public function objectDev(){
+    public function objectDev()
+    {
         $data2 = Hocki::all();
         $data3 = Nganh::all();
         $data = DB::table('monhocs')
-            ->join('hockis','monhocs.hocki_id','=','hockis.id')
-            ->join('nganhs','monhocs.nganh_id','=','nganhs.id')
-            ->select('monhocs.*','nganhs.tennganh','hockis.tenhocki')
-            ->where('monhocs.nganh_id',1)
-            ->orderBy('id','DESC')
+            ->join('hockis', 'monhocs.hocki_id', '=', 'hockis.id')
+            ->join('nganhs', 'monhocs.nganh_id', '=', 'nganhs.id')
+            ->select('monhocs.*', 'nganhs.tennganh', 'hockis.tenhocki')
+            ->where('monhocs.nganh_id', 1)
+            ->orderBy('id', 'DESC')
             ->get();
 
-        return view('admin.object.index', ['data'=>$data,
-            'data2'=>$data2,
-            'data3'=>$data3]);
+        return view('admin.object.index', [
+            'data' => $data,
+            'data2' => $data2,
+            'data3' => $data3
+        ]);
     }
-    public function markDev(){
+    public function markDev()
+    {
         /* $data2 = Monhoc::all();
         $data3 = Sinhvien::all();
         $data = DB::table('diems')
@@ -245,74 +272,82 @@ class AdminController extends Controller
         'data2'=>$data2,
         'data3'=>$data3]); */
 
-        /* DB::statement(DB::raw('set @rownum=0')); */
+        DB::statement(DB::raw('set @rownum = 0'));
+        $name = Admin::all();
         $student = DB::table('sinhviens')
-        ->join('diems','sinhviens.id','=','diems.sinhvien_id')
-        ->join('monhocs','diems.monhoc_id','=','monhocs.id')
-        ->join('lops','sinhviens.lop_id','=','lops.id')
-        ->select([
-            /* DB:raw('@rownum := @rownum + 1 AS rownum'), */
-            'masv',
-            'hoten',
-            'tenlop',
-            'diemlt',
-            'diemtt',
-            'tenmon',
-            'sinhviens.id AS sv_id',
-            'diems.id AS diem_id',
-            'monhocs.id AS monhoc_id'
-        ])->get();
-        return view('admin.mark.markLT',['student'=>$student]);
+            ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+            ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+            ->select([
+                DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                'masv',
+                'hoten',
+                'tenlop',
+                'diemlt',
+                'diemtt',
+                'tenmon',
+                'sinhviens.id AS sv_id',
+                'diems.id AS diem_id',
+                'monhocs.id AS monhoc_id'
+            ])->get();
+        return view('admin.mark.markLT', ['student' => $student, 'name' => $name]);
     }
 
-    public function savediem(Request $request){
+    public function savediem(Request $request)
+    {
         $diemso = $_POST['diem'];
         $sv_id = $_POST['sv_id'];
         $monhoc_id = $_POST['monhoc_id'];
         $diem_id = $_POST['diem_id'];
         $column = $_POST['column'];
-        if ($diemso == ""){
+        if ($diemso == "") {
             $diemso = null;
         }
         if ($column == 'diemlt') {
             $diem = Diem::find($diem_id);
-            $diem->diemlt=$diemso;
-            $diem->sinhvien_id=$sv_id;
-            $diem->monhoc_id=$monhoc_id;
+            $diem->diemlt = $diemso;
+            $diem->sinhvien_id = $sv_id;
+            $diem->monhoc_id = $monhoc_id;
             $diem->save();
             return Response::json([
                 'error' => 1,
                 'message' => 'Lưu thành công'
             ]);
-        }
+            /* return response()->json(); */
+        } 
         if ($column == 'diemtt') {
             $diem = Diem::find($diem_id);
-            $diem->diemtt=$diemso;
-            $diem->sinhvien_id=$sv_id;
-            $diem->monhoc_id=$monhoc_id;
+            $diem->diemtt = $diemso;
+            $diem->sinhvien_id = $sv_id;
+            $diem->monhoc_id = $monhoc_id;
             $diem->save();
             return Response::json([
                 'error' => 1,
                 'message' => 'Lưu thành công'
             ]);
+            /* return response()->json(); */
         }
     }
+    /* DB::raw("UPDATE diems SET ". $_POST["column"] . "= '".$_POST["diem"]."' WHERE id=".$_POST["id"]); */
+    /* $sql = "UPDATE diems SET ". $_POST["column"] . "= '".$_POST["diem"]."' WHERE id=".$_POST["id"];
+        executeUpdate($sql); */
     public function statusUpdate($id): \Illuminate\Http\RedirectResponse
     {
         $data = DB::table('giangviens')
-        ->select('status')
-        ->where('id','=',$id)
-        ->first();
-        if($data->status == '1'){
+            ->select('status')
+            ->where('id', '=', $id)
+            ->first();
+        if ($data->status == '1') {
             $status = '0';
-        }else{
+        } else {
             $status = '1';
         }
         $value = array('status' => $status);
-        DB::table('giangviens')->where('id',$id)->update($value);
+        DB::table('giangviens')->where('id', $id)->update($value);
         return redirect()->route('teacher');
     }
-    public function addClass(Request $request){
+    public function addClass(Request $request)
+    {
         $data = new Lop();
         $data->tenlop = $request->tenlop;
         $data->nganh_id = $request->tennganh;
@@ -325,7 +360,8 @@ class AdminController extends Controller
 
         ]);
     }
-    public function addTeacher(Request $request){
+    public function addTeacher(Request $request)
+    {
         $data = new Giangvien();
 
         $data->hotengv = $request->hotengv;
@@ -340,35 +376,37 @@ class AdminController extends Controller
         return response()->json($data);
     }
 
-    public function addStudent(Request $request){
-      $request->validate([
-          'masv' => 'required|unique:sinhviens',
-          'hoten' => 'required',
-          'gioitinh' => 'required',
-          'ngaysinh' => 'required',
-          'phone' => 'required|unique:sinhviens',
-          'address' => 'required',
-          'email' => 'required|unique:sinhviens',
-          'password' => 'required',
-          'nganh_id' => 'required',
-          'lop_id' => 'required',
-      ]);
-      $data = Sinhvien::create([
-          'masv' => $request->input('masv'),
-          'hoten' => $request->input('hoten'),
-          'gioitinh' => $request->input('gioitinh'),
-          'ngaysinh' => $request->input('ngaysinh'),
-          'phone' => $request->input('phone'),
-          'address' => $request->input('address'),
-          'email' => $request->input('email'),
-          'password' => $request->input('password'),
-          'nganh_id' => $request->input('nganh_id'),
-          'lop_id' => $request->input('lop_id'),
+    public function addStudent(Request $request)
+    {
+        $request->validate([
+            'masv' => 'required|unique:sinhviens',
+            'hoten' => 'required',
+            'gioitinh' => 'required',
+            'ngaysinh' => 'required',
+            'phone' => 'required|unique:sinhviens',
+            'address' => 'required',
+            'email' => 'required|unique:sinhviens',
+            'password' => 'required',
+            'nganh_id' => 'required',
+            'lop_id' => 'required',
+        ]);
+        $data = Sinhvien::create([
+            'masv' => $request->input('masv'),
+            'hoten' => $request->input('hoten'),
+            'gioitinh' => $request->input('gioitinh'),
+            'ngaysinh' => $request->input('ngaysinh'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'nganh_id' => $request->input('nganh_id'),
+            'lop_id' => $request->input('lop_id'),
 
-      ]);
-      return redirect()->route('student')->with('success','Thêm sinh viên thành công');
+        ]);
+        return redirect()->route('student')->with('success', 'Thêm sinh viên thành công');
     }
-    public function addObject(Request $request){
+    public function addObject(Request $request)
+    {
         $data = new Monhoc();
         $data->tenmon = $request->tenmon;
         $data->sogio = $request->sogio;
@@ -387,24 +425,28 @@ class AdminController extends Controller
 
         ]);
     }
-    public function getTeacherById($id){
+    public function getTeacherById($id)
+    {
         $data = Giangvien::find($id);
         return response()->json($data);
     }
-    public function ShowDataStudent($id){
+    public function ShowDataStudent($id)
+    {
         $data2 = Nganh::all();
         $data3 = Lop::all();
         $data = Sinhvien::find($id);
-        return view('admin.student.editstudent',[
-            'data2' => $data2,
-            'data3' => $data3,
-            'data'=>$data,
+        return view(
+            'admin.student.editstudent',
+            [
+                'data2' => $data2,
+                'data3' => $data3,
+                'data' => $data,
             ]
         );
-
     }
 
-    public function updateTeacher(Request $request){
+    public function updateTeacher(Request $request)
+    {
         $data = Giangvien::find($request->id);
 
         $data->hotengv = $request->hotengv;
@@ -417,9 +459,9 @@ class AdminController extends Controller
 
         $data->save();
         return response()->json($data);
-
     }
-    public function updateStudent(Request $request){
+    public function updateStudent(Request $request)
+    {
         $request->validate([
             'masv' => 'required',
             'hoten' => 'required',
@@ -434,34 +476,32 @@ class AdminController extends Controller
         ]);
         $id = $request->input('id');
         $data = Sinhvien::find($id);
-        $data->masv=$request->input('masv');
-        $data->hoten=$request->input('hoten');
-        $data->gioitinh=$request->input('gioitinh');
-        $data->ngaysinh=$request->input('ngaysinh');
-        $data->phone=$request->input('phone');
-        $data->address=$request->input('address');
-        $data->email=$request->input('email');
-        $data->password=$request->input('password');
-        $data->nganh_id=$request->input('nganh_id');
-        $data->lop_id=$request->input('lop_id');
+        $data->masv = $request->input('masv');
+        $data->hoten = $request->input('hoten');
+        $data->gioitinh = $request->input('gioitinh');
+        $data->ngaysinh = $request->input('ngaysinh');
+        $data->phone = $request->input('phone');
+        $data->address = $request->input('address');
+        $data->email = $request->input('email');
+        $data->password = $request->input('password');
+        $data->nganh_id = $request->input('nganh_id');
+        $data->lop_id = $request->input('lop_id');
         $data->save();
-        return redirect()->route('student')->with('success','Sua sinh viên thành công');
-
-
-
+        return redirect()->route('student')->with('success', 'Sua sinh viên thành công');
     }
 
-    public function exportSinhvien(){
-        return Excel::download(new SinhvienExport,'sinhvien.xlsx');
+    public function exportSinhvien()
+    {
+        return Excel::download(new SinhvienExport, 'sinhvien.xlsx');
     }
-    public function sampleSinhvien(){
-        return Excel::download(new SinhvienExport(true),'sinhviensample.xlsx');
+    public function sampleSinhvien()
+    {
+        return Excel::download(new SinhvienExport(true), 'sinhviensample.xlsx');
     }
     public function importSinhvien(Request $request)
     {
 
-            Excel::import(new SinhvienImport, $request->file('sample'));
+        Excel::import(new SinhvienImport, $request->file('sample'));
         return redirect()->route('student.dev');
     }
-
 }
