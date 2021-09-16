@@ -78,6 +78,7 @@ Route::get('/admin/student/view/{id}', [AdminController::class, 'viewTeacherById
 
 Route::get('/exportSinhvien',[AdminController::class,'exportSinhvien']);
 Route::get('/sampleSinhvien',[AdminController::class,'sampleSinhvien']);
+Route::post('/importStudent',[AdminController::class,'importSinhvien'])->name('importSinhvien');
 Route::get('/admin/student/add-student-Form-Excel', [AdminController::class, 'showFormExcelStudent'])->name('student.showFormExcel');
 // end student
 //UPDATE STATUS

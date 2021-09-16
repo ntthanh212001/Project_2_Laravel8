@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Imports\SinhvienImport;
 use App\Models\Admin;
 use App\Models\Giangvien;
 use App\Models\Hocki;
@@ -392,6 +393,12 @@ class AdminController extends Controller
     }
     public function sampleSinhvien(){
         return Excel::download(new SinhvienExport(true),'sinhviensample.xlsx');
+    }
+    public function importSinhvien(Request $request)
+    {
+
+            Excel::import(new SinhvienImport, $request->file('sample'));
+        return redirect()->route('student.dev');
     }
 
 }

@@ -26,7 +26,7 @@ class SinhvienExport implements FromCollection,WithHeadings
     }
     public function headings() :array{
         if ($this->empty){
-            return ['Mã Sinh Viên','Họ tên','Giới tính','Ngày sinh','Số điện thoại','Địa chỉ','Email','Mật khẩu','Ngành Id','Lớp ID'];
+            return ['Masv','Hoten','Gioitinh','Ngaysinh','Phone','Address','Email','Password','Nganh_id','Lop_id'];
         }
         return ['Id','Mã Sinh Viên','Họ tên','Giới tính','Ngày sinh','Số điện thoại','Địa chỉ','Email','Mật khẩu','Ngành Id','Lớp ID'];
     }
