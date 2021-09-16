@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title', 'Sửa Sinh viên')
 @section('content')
-    <form action="{{ url('/import') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('/importStudent') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="file" name="sample" accept=".xlsx"/>
         <button type="submit">Import</button>
