@@ -44,6 +44,7 @@ class GiangvienController extends Controller
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 'diems.*',
                 'giangviens.hoten AS hotengv',
+                'sinhviens.masv AS masv',
                 'sinhviens.hoten AS tensv',
                 'monhocs.tenmon AS tenmon')
             ->get();

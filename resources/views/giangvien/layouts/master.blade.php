@@ -70,7 +70,7 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tuỳ chọn</h6>
-                    <a class="collapse-item" href="">
+                    <a class="collapse-item" href="{{route('teacher.markdev')}}">
                         <i class="fas fa-exchange-alt"></i>&nbsp; Tất cả điểm
                     </a>
 {{--                    <a class="collapse-item" href="{{route('teacher.markdev')}}">--}}
