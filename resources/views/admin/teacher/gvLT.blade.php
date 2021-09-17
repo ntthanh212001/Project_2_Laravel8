@@ -36,7 +36,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
         @foreach ($data as $item)
         <tr id="tid{{$item->id}}">
             <td>{{ $item->id }}</td>
-            <td>{{ $item->hotengv }}</td>
+            <td>{{ $item->hoten }}</td>
 
             <td>{{ $item->phone }}</td>
 
