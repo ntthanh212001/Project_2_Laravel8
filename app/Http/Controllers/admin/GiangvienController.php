@@ -35,11 +35,12 @@ class GiangvienController extends Controller
             return view('giangvien.myclass.myclass',['data'=>$data]);
     }
     public function TeacherMarkDev(){
+        $id_gv = Auth::guard('giangvien')->user()->id;
         $data = DB::table('diems')
             ->join('giangviens','diems.giangvien_id','=','giangviens.id')
             ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
             ->join('monhocs','diems.monhoc_id','=','monhocs.id')
-
+            ->where('phancongs.giangvien_id',$id_gv)
             ->select(
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 'diems.*',
