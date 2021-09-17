@@ -15,4 +15,7 @@ class GiangvienController extends Controller
     {
         return view('giangvien.index');
     }
+    public function ClassTeacher(){
+            return view('giangvien.myclass.myclass');
+    }
 }

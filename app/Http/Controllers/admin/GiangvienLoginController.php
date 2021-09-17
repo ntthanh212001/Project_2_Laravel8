@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GiangvienLoginController extends Controller
 {
@@ -15,11 +16,16 @@ class GiangvienLoginController extends Controller
     function login(Request $request)
     {
         if (Auth::guard('giangvien')->attempt([
-            'magv' => $request->input('user'),
+            'email' => $request->input('user'),
             'password' => $request->input('password'),
             'status' => 1
         ])) {
             //chuyen huong ve home
+            $sql = DB::table('giangviens')
+                ->where('email','=', $request->user)
+                ->where('password','=', $request->password)
+                ->get();
+
             return redirect()->route('giangvien.home');
         } else {
             return redirect()->back()->with('error', 'Thông tin đăng nhập không đúng hoặc bạn không có quyền truy cập');

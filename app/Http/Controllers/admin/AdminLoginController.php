@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminLoginController extends Controller
 {
@@ -20,6 +21,7 @@ class AdminLoginController extends Controller
             'password' => $request->input('password')
         ])) {
             //chuyen huong ve home
+
             return redirect()->route('admin.home');
         } else {
             return redirect()->back()->with('error', 'Bạn không có quyền');

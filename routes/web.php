@@ -95,3 +95,8 @@ Route::post('/admin/mark/save',[AdminController::class, 'savediem'])->name('mark
 /* Route::get('/admin/mark/view/{id}', [AdminController::class, 'viewMarkById'])->name('mark.view'); */
 //end-point
 
+
+
+//Giảng viên
+Route::get('/giangvien/myclass/', [GiangvienController::class, 'ClassTeacher'])->name('teacher.class');
+

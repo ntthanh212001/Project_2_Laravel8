@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
 
     <title>@yield('title')</title>
 
@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.2/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css"/>
 
 @section('css')
-    
+
 @show
 </head>
 
@@ -264,12 +264,23 @@
                         {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
 
                         <!-- Nav Item - User Information -->
+
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <span class="mr-2 d-none d-lg-inline text-gray-600 small"><h4 style="color: skyblue">@foreach ($name as $item)
-                                   {{$item->name}}
-                               @endforeach</h4></span>
+                                <div>
+
+
+                               <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @if(Auth::guard('admin')->user() != null)
+                                       <span><h4>{{Auth::guard('admin')->user()->name}}</h4></span>
+
+                                   @endif
+
+                                   </span>
+
+                                </div>
+
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -285,6 +296,7 @@
                                 </a>
                             </div>
                         </li>
+
 
                     </ul>
 
@@ -368,7 +380,7 @@
 
     </script>
     @section('js')
-        
+
     @show
     <!-- Core plugin JavaScript-->
 

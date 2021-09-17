@@ -1,11 +1,12 @@
 @extends('admin.layouts.master')
 @section('title', 'Sinh viên')
+
 @section('content')
     @if(Session::has('success'))
         <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
     <div>
-<a href="{{ route('student.showForm') }}" class="btn btn-success">Thêm Sinh Viên</a> 
+<a href="{{ route('student.showForm') }}" class="btn btn-success">Thêm Sinh Viên</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

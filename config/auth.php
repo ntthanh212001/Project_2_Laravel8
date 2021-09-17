@@ -46,7 +46,7 @@ return [
         ],
         'giangvien' => [
             'driver' => 'session',
-            'provider' => 'giangvien',
+            'provider' => 'giangviens',
         ],
     ],
 
@@ -76,7 +76,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-        'giangvien' => [
+        'giangviens' => [
             'driver' => 'eloquent',
             'model' => App\Models\Giangvien::class,
         ],
