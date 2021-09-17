@@ -73,12 +73,15 @@
                     <a class="collapse-item" href="{{route('teacher.markdev')}}">
                         <i class="fas fa-exchange-alt"></i>&nbsp; Tất cả điểm
                     </a>
-{{--                    <a class="collapse-item" href="{{route('teacher.markdev')}}">--}}
-{{--                        <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình--}}
-{{--                    </a>--}}
-{{--                    <a class="collapse-item" href="">--}}
-{{--                        <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa--}}
-{{--                    </a>--}}
+                    <a class="collapse-item" href="{{route('teacher.markdev')}}">
+                        <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình
+                    </a>
+                    <a class="collapse-item" href="{{route('teacher.markdev')}}">
+                        <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
+                    </a>
+                    <a class="collapse-item" href="">
+                        <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa
+                    </a>
 
 
                     </a>

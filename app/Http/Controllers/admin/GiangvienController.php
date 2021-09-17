@@ -40,7 +40,7 @@ class GiangvienController extends Controller
             ->join('giangviens','diems.giangvien_id','=','giangviens.id')
             ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
             ->join('monhocs','diems.monhoc_id','=','monhocs.id')
-            ->where('phancongs.giangvien_id',$id_gv)
+            ->where('diems.giangvien_id',$id_gv)
             ->select(
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 'diems.*',
