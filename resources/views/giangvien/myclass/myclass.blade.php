@@ -6,7 +6,7 @@
         <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
     <div>
-        {{--        <a href="{{ route('student.showForm') }}" class="btn btn-success">Thêm Sinh Viên</a>--}}
+{{--        <a href="{{ route('student.showForm') }}" class="btn btn-success">Thêm Sinh Viên</a>--}}
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -17,16 +17,16 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {{--        <a href="{{route('student.showFormExcel')}}" class="btn btn-info">Import Excel</a>--}}
-        {{--        <a href="#" class="btn btn-danger">Export Excel</a>--}}
+{{--        <a href="{{route('student.showFormExcel')}}" class="btn btn-info">Import Excel</a>--}}
+{{--        <a href="#" class="btn btn-danger">Export Excel</a>--}}
         <br><br>
 
         <table id="dataTable" class="table table-bordered" >
             <thead>
             <tr class="text center-container">
                 <th>STT</th>
+                <th>Môn học</th>
                 <th>Lớp</th>
-                <th>Tên môn</th>
 
             </tr>
             </thead>
@@ -34,11 +34,12 @@
             @foreach($data as $item)
                 <tr>
                     <td>{{$item->rownum}}</td>
-                    <td>{{$item->lop}}</td>
                     <td>{{$item->tenmon}}</td>
+                    <td>{{$item->lop}}</td>
                 </tr>
             @endforeach
             </tbody>
+
             <tbody>
 
             </tbody>
