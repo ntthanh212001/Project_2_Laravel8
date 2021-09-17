@@ -56,24 +56,29 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            <a class="nav-link" href="{{route('teacher.class')}}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>DS lớp được phân công</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-users"></i>
-                <span>Thông tin cá nhân</span>
+                <span>DS điểm </span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tuỳ chọn</h6>
-                    <a class="collapse-item" href="{{ route('student.qtht') }}">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
+                    <a class="collapse-item" href="">
+                        <i class="fas fa-exchange-alt"></i>&nbsp; Tất cả điểm
                     </a>
-                    <a class="collapse-item" href="{{ route('student.dev') }}">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình
-                    </a>
-                    <a class="collapse-item" href="{{ route('student.tkdh') }}">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa
-                    </a>
+{{--                    <a class="collapse-item" href="{{route('teacher.markdev')}}">--}}
+{{--                        <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình--}}
+{{--                    </a>--}}
+{{--                    <a class="collapse-item" href="">--}}
+{{--                        <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa--}}
+{{--                    </a>--}}
 
 
                     </a>
@@ -98,12 +103,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{route('teacher.class')}}">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Lớp đang dạy</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Điềm sinh viên</span></a>
+                <span>Thông tin cá nhân</span></a>
         </li>
 
 

@@ -29,6 +29,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //
 //admin
+
+
 Route::get('admin/', [AdminController::class, 'index'])->name('admin.home');
 Route::get('admin/login', [AdminLoginController::class, 'AdminFormLogin'])->name('admin.login');
 Route::post('admin/login', [AdminLoginController::class, 'login']);
@@ -98,5 +100,6 @@ Route::post('/admin/mark/save',[AdminController::class, 'savediem'])->name('mark
 
 
 //Giảng viên
-Route::get('/giangvien/myclass/', [GiangvienController::class, 'ClassTeacher'])->name('teacher.class');
+Route::get('/giangvien/myclass/', [GiangvienController::class, 'ClassTeacherDev'])->name('teacher.class');
+Route::get('/giangvien/mark/dev', [GiangvienController::class, 'TeacherMarkDev'])->name('teacher.markdev');
 
