@@ -487,7 +487,7 @@ class AdminController extends Controller
         $data->nganh_id = $request->input('nganh_id');
         $data->lop_id = $request->input('lop_id');
         $data->save();
-        return redirect()->route('student')->with('success', 'Sua sinh viên thành công');
+        return redirect()->route('student')->with('success', 'Thành công');
     }
 
     public function exportSinhvien()
