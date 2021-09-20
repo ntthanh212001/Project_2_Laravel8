@@ -39,7 +39,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" >
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.home')}}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('giangvien.home')}}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -71,17 +71,20 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tuỳ chọn</h6>
                     <a class="collapse-item" href="{{route('teacher.markdev')}}">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; Tất cả điểm
+                        <i class="fas fa-exchange-alt"></i>&nbsp; DS theo lớp
                     </a>
-                    <a class="collapse-item" href="{{route('teacher.markdev')}}">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình
+                    <a class="collapse-item" href="{{route('teacher.markfloject')}}">
+                        <i class="fas fa-exchange-alt"></i>&nbsp; DS theo môn
                     </a>
-                    <a class="collapse-item" href="{{route('teacher.markdev')}}">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
-                    </a>
-                    <a class="collapse-item" href="">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa
-                    </a>
+{{--                    <a class="collapse-item" href="{{route('teacher.markdev')}}">--}}
+{{--                        <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình--}}
+{{--                    </a>--}}
+{{--                    <a class="collapse-item" href="{{route('teacher.markdev')}}">--}}
+{{--                        <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống--}}
+{{--                    </a>--}}
+{{--                    <a class="collapse-item" href="">--}}
+{{--                        <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa--}}
+{{--                    </a>--}}
 
 
                     </a>
@@ -107,6 +110,11 @@
             <a class="nav-link" href="{{route('teacher.class')}}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Thông tin cá nhân</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('giangvien.logout')}}">
+                <i class="fa fa-share" aria-hidden="true"></i>
+                <span>Đăng xuất</span></a>
         </li>
 
 

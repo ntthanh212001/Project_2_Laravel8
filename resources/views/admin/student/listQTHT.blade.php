@@ -1,15 +1,28 @@
 @extends('admin.layouts.master')
-@section('title', 'Sinh viên')
+@section('title', 'Sinh viên lớp Quản Trị Hệ Thống')
 @section('content')
     @if(Session::has('success'))
         <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
     <a href="{{ route('student.showForm') }}">Thêm Sinh Viên</a>
+    <form action="{{url('/admin/student/qtht')}}" method="get" >
 
+        <select name="k" @class('form-select')>Lớp
+            <option value="" >Tất cả lớp</option>
+            @foreach($data3 as $item)
+                <option value="{{$item->tenlop}}"
+                @if($item->tenlop == $key_class)
+                    {{'selected'}}
+                    @endif
+                >{{$item->tenlop}}</option>
+            @endforeach
+        </select>
+        <button  type="submit" @class('btn btn-info')>Chọn</button>
+    </form>
     <table id="dataTable" class="table table-bordered" >
         <thead>
         <tr class="text center-container">
-            <th>ID</th>
+            <th>STT</th>
             <th>Mã Sinh Viên</th>
             <th>Họ tên</th>
             <th>Ngành học</th>
@@ -25,7 +38,7 @@
         <tbody>
         @foreach ($data as $item)
             <tr id="tid{{ $item->id }}">
-                <td>{{ $item->id }}</td>
+                <td>{{ $item->rownum }}</td>
                 <td>{{ $item->masv }}</td>
                 <td>{{ $item->hoten }}</td>
                 <td>{{ $item->tennganh }}</td>

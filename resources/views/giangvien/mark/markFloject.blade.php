@@ -1,5 +1,5 @@
 @extends('giangvien.layouts.master')
-@section('title', 'Điểm Lớp')
+@section('title', 'Điểm Môn')
 
 @section('content')
     @if(Session::has('success'))
@@ -7,16 +7,16 @@
     @endif
 
 
-    <form action="{{url('/giangvien/mark/dev')}}" method="get" >
+    <form action="{{url('/giangvien/markFloject')}}" method="get" >
 
         <select name="k" @class('form-select')>Lớp
-            <option value="" >Tất cả lớp</option>
+            <option value="" >Xem tất cả</option>
             @foreach($data2 as $item)
-            <option value="{{$item->tenlop}}"
-                @if($item->tenlop == $key_class)
+                <option value="{{$item->tenmon}}"
+                @if($item->tenmon == $key_class)
                     {{'selected'}}
                     @endif
-            >{{$item->tenlop}}</option>
+                >{{$item->tenmon}}</option>
             @endforeach
         </select>
         <button  type="submit" @class('btn btn-info')>Chọn</button>
@@ -45,7 +45,7 @@
                     <td style="width: 10%;">{{$item->tenmon}}</td>
                     <td style="width: 7%;">{{$item->diemlt}}</td>
                     <td style="width: 7%;">{{$item->diemtt}}</td>
-                    <td>
+                    <td style="width: 10%;">
                         @if($item->diemlt <5 || $item->diemtt < 5)
                             <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>&nbsp;&nbsp;{{'Không đạt'}}
                         @elseif ($item->diemlt >=5 || $item->diemtt >= 5)
@@ -56,10 +56,10 @@
                         @if($item->diemlt <5 )
                             <span style="font-style: italic;font-weight: bold;">Điểm lý thuyết dưới 5</span>
                         @endif
-                            <br>
-                            @if($item->diemtt <5 )
-                                <span style="font-style: italic;font-weight: bold;">Điểm thực hành dưới 5</span>
-                            @endif
+                        <br>
+                        @if($item->diemtt <5 )
+                            <span style="font-style: italic;font-weight: bold;">Điểm thực hành dưới 5</span>
+                        @endif
                     </td>
 
 

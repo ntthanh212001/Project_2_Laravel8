@@ -102,4 +102,5 @@ Route::post('/admin/mark/save',[AdminController::class, 'savediem'])->name('mark
 //Giảng viên
 Route::get('/giangvien/myclass/', [GiangvienController::class, 'ClassTeacherDev'])->name('teacher.class');
 Route::get('/giangvien/mark/dev', [GiangvienController::class, 'TeacherMarkDev'])->name('teacher.markdev');
+Route::get('/giangvien/markFloject', [GiangvienController::class, 'TeachermarkFloject'])->name('teacher.markfloject');
 

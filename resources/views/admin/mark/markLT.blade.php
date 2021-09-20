@@ -54,6 +54,7 @@
             <th>Môn học</th>
             <th>Điểm lý thuyết</th>
             <th>Điểm thực hành</th>
+
             {{-- <th>Điểm tổng</th> --}}
 
             {{-- <th>Thời gian tạo</th>
@@ -112,14 +113,14 @@
             url: "{{route('mark.savediem')}}",
             type: "POST",
             data: {
-                diem: diem.innerHTML, 
-                column: column, 
-                diem_id: diem_id, 
-                sv_id: sv_id, 
+                diem: diem.innerHTML,
+                column: column,
+                diem_id: diem_id,
+                sv_id: sv_id,
                 monhoc_id: monhoc_id,
                 _token: '{{csrf_token()}}'
             },
-            
+
             success: function(data){
                     $(diem).css("background","#FDFDFD");
                 },

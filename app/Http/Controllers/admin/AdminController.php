@@ -149,60 +149,118 @@ class AdminController extends Controller
             ]
         );
     }
-    public function studenDev()
+    public function studenDev(Request $request)
     {
-        $data3 = Lop::all();
-        $data2 = Nganh::all();
-        $data = DB::table('sinhviens')
-            ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
-            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-            ->where('sinhviens.nganh_id', 1)
-            ->select('sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+        DB::statement(DB::raw('set @rownum = 0'));
+        $k = $request->k;
+        $data3 = DB::table('lops')
+            ->where('nganh_id','=',1)
             ->get();
+        $data2 = Nganh::all();
+        if ($k == ''){
+            $data = DB::table('sinhviens')
+                ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id', 1)
+                ->select(
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                ->get();
+        }else{
+            $data = DB::table('sinhviens')
+                ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id', 2)
+                ->where('lops.tenlop','LIKE','%'.$k.'%')
+                ->select(
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                ->get();
+        }
         return view(
-            'admin.student.ListLT',
+            'admin.student.listLT',
             [
                 'data' => $data,
                 'data2' => $data2,
-                'data3' => $data3
+                'data3' => $data3,
+                'key_class' => $k
             ]
         );
     }
-    public function studenQtht()
+    public function studenQtht(Request $request)
     {
-        $data3 = Lop::all();
-        $data2 = Nganh::all();
-        $data = DB::table('sinhviens')
-            ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
-            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-            ->where('sinhviens.nganh_id', 2)
-            ->select('sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+        DB::statement(DB::raw('set @rownum = 0'));
+        $k = $request->k;
+        $data3 = DB::table('lops')
+        ->where('nganh_id','=',2)
             ->get();
+        $data2 = Nganh::all();
+        if ($k == ''){
+            $data = DB::table('sinhviens')
+                ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id', 2)
+                ->select(
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                ->get();
+        }else{
+            $data = DB::table('sinhviens')
+                ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id', 2)
+                ->where('lops.tenlop','LIKE','%'.$k.'%')
+                ->select(
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                ->get();
+        }
         return view(
             'admin.student.ListQTHT',
             [
+
                 'data' => $data,
                 'data2' => $data2,
-                'data3' => $data3
+                'data3' => $data3,
+                'key_class' => $k
             ]
         );
     }
-    public function studenTkdh()
+    public function studenTkdh(Request $request)
     {
-        $data3 = Lop::all();
-        $data2 = Nganh::all();
-        $data = DB::table('sinhviens')
-            ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
-            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-            ->where('sinhviens.nganh_id', 3)
-            ->select('sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+        DB::statement(DB::raw('set @rownum = 0'));
+        $k = $request->k;
+        $data3 = DB::table('lops')
+            ->where('nganh_id','=',3)
             ->get();
+        $data2 = Nganh::all();
+        if ($k == ''){
+            $data = DB::table('sinhviens')
+                ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id', 3)
+                ->select(
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                ->get();
+        }else{
+            $data = DB::table('sinhviens')
+                ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id', 3)
+                ->where('lops.tenlop','LIKE','%'.$k.'%')
+                ->select(
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                ->get();
+        }
         return view(
-            'admin.student.ListQTHT',
+            'admin.student.listTKĐH',
             [
                 'data' => $data,
                 'data2' => $data2,
-                'data3' => $data3
+                'data3' => $data3,
+                'key_class' => $k
             ]
         );
     }
@@ -314,7 +372,7 @@ class AdminController extends Controller
                 'message' => 'Lưu thành công'
             ]);
             /* return response()->json(); */
-        } 
+        }
         if ($column == 'diemtt') {
             $diem = Diem::find($diem_id);
             $diem->diemtt = $diemso;
