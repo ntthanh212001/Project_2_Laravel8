@@ -1,11 +1,28 @@
 @extends('admin.layouts.master')
 @section('title', 'Sinh viên')
+@section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+@endsection
 @section('content')
     @if(Session::has('success'))
         <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
-<a href="{{ route('student.showForm') }}">Thêm Sinh Viên</a>
-    <a href="{{route('student.showFormExcel')}}">Thêm bằng Excel</a>
+    <div>
+<a href="{{ route('student.showForm') }}" class="btn btn-success">Thêm Sinh Viên</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{{route('student.showFormExcel')}}" class="btn btn-info">Import Excel</a>
+    <a href="#" class="btn btn-danger">Export Excel</a>
+    <br><br>
 
 <table id="dataTable" class="table table-bordered" >
         <thead>
@@ -13,13 +30,13 @@
                 <th>ID</th>
                 <th>Mã Sinh Viên</th>
                 <th>Họ tên</th>
-                <th>Ngành học</th>
+                {{-- <th>Ngành học</th> --}}
                 <th>Lớp</th>
-                <th>Địa chỉ</th>
+                {{-- <th>Địa chỉ</th>
                 <th>Email</th>
-                <th>Ngày sinh</th>
+                <th>Ngày sinh</th> --}}
                 <th>Giới tính</th>
-                <th>Số điện thoại</th>
+                {{-- <th>Số điện thoại</th> --}}
                 <th>Hành Động</th>
             </tr>
         </thead>
@@ -29,13 +46,13 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->masv }}</td>
                     <td>{{ $item->hoten }}</td>
-                    <td>{{ $item->tennganh }}</td>
+                    {{-- <td>{{ $item->tennganh }}</td> --}}
                     <td>{{ $item->tenlop }}</td>
-                    <td>{{ $item->address }}</td>
+                    {{-- <td>{{ $item->address }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>{{ $item->ngaysinh }}</td>
+                    <td>{{ $item->ngaysinh }}</td> --}}
                     <td>{{ $item->gioitinh == 1 ? 'Nam' : 'Nữ' }}</td>
-                    <td>{{ $item->phone }}</td>
+                    {{-- <td>{{ $item->phone }}</td> --}}
 
                     <td>
                         <a href="{{'/admin/student/edit/'.$item->id}}"

@@ -12,4 +12,11 @@ class Diem extends Model
     public $timestamps = true;
     // const updated_at =null;
     protected $hidden =[''];
+    protected $table = 'diems';
+    public function sinhviens(){
+        return $this->belongsTo('App\Models\Sinhvien', 'sinhvien_id','id');
+    }
+    public function monhocs(){
+        return $this->belongsTo('App\Models\Monhoc', 'monhoc_id','id');
+    }
 }

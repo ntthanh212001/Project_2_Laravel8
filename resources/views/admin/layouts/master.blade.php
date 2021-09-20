@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+
     <title>@yield('title')</title>
 
     <!-- Custom fonts for this template-->
@@ -23,7 +24,9 @@
     <link href="{{ asset('admin_tpl/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.2/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css"/>
 
+@section('css')
 
+@show
 </head>
 
 <body id="page-top">
@@ -62,11 +65,11 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('student.qtht') }}">
-                            <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
-                        </a>
                         <a class="collapse-item" href="{{ route('student.dev') }}">
                             <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình
+                        </a>
+                        <a class="collapse-item" href="{{ route('student.qtht') }}">
+                            <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
                         </a>
                         <a class="collapse-item" href="{{ route('student.tkdh') }}">
                             <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa
@@ -89,7 +92,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
 
-                        <a class="collapse-item" href="">
+                        <a class="collapse-item" href="{{route('mark.dev')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
                         </a>
                         <a class="collapse-item" href="b.html">
@@ -115,7 +118,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
 
-                        <a class="collapse-item" href="{{route('teacher')}}">
+                        <a class="collapse-item" href="{{route('teacher.dev')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
                         </a>
                         <a class="collapse-item" href="b.html">
@@ -137,37 +140,12 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoee"
-                   aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="{{ route('object')}}">
                    <i class="fas fa-fw fa-folder"></i>
                     <span>Môn học</span>
                 </a>
-                <div id="collapseTwoee" class="collapse" aria-labelledby="headingTwo"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tuỳ chọn</h6>
-
-                        <a class="collapse-item" href="{{ route('object')}}">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
-                        </a>
-                        <a class="collapse-item" href="b.html">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành QTM</span>
-                        </a>
-                        <a class="collapse-item" href="c.html">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành TKDH</span>
-                        </a>
-                    </div>
-                </div>
             </li>
-{{--
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li> --}}
 
-            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
@@ -184,11 +162,11 @@
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('branch') }}">Ngành</a>
-
+                        <a class="collapse-item" href="{{ route('branch') }}">
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành </span>
                         </a>
-                        <a class="collapse-item" href="{{ route('class') }}">Lớp
-
+                        <a class="collapse-item" href="{{ route('class') }}">
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Lớp </span>
                         </a>
 
 
@@ -269,12 +247,23 @@
                         {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
 
                         <!-- Nav Item - User Information -->
+
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-{{--                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><h4 style="color: skyblue">@foreach ($data as $item)--}}
-{{--                                    {{$item->name}}--}}
-{{--                                @endforeach</h4></span>--}}
+                                <div>
+
+
+                               <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @if(Auth::guard('admin')->user() != null)
+                                       <span><h4>{{Auth::guard('admin')->user()->name}}</h4></span>
+
+                                   @endif
+
+                                   </span>
+
+                                </div>
+
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -290,6 +279,7 @@
                                 </a>
                             </div>
                         </li>
+
 
                     </ul>
 
@@ -313,7 +303,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span class="display-6">ADMIN</span>
                     </div>
                 </div>
             </footer>
@@ -344,7 +334,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{route('admin.login')}}">Logout</a>
                 </div>
             </div>
         </div>
@@ -372,6 +362,9 @@
         });
 
     </script>
+    @section('js')
+
+    @show
     <!-- Core plugin JavaScript-->
 
     <!-- Custom scripts for all pages-->
