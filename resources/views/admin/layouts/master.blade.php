@@ -65,11 +65,11 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('student.qtht') }}">
-                            <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
-                        </a>
                         <a class="collapse-item" href="{{ route('student.dev') }}">
                             <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình
+                        </a>
+                        <a class="collapse-item" href="{{ route('student.qtht') }}">
+                            <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
                         </a>
                         <a class="collapse-item" href="{{ route('student.tkdh') }}">
                             <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa
@@ -140,27 +140,10 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoee"
-                   aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="{{ route('object')}}">
                    <i class="fas fa-fw fa-folder"></i>
                     <span>Môn học</span>
                 </a>
-                <div id="collapseTwoee" class="collapse" aria-labelledby="headingTwo"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tuỳ chọn</h6>
-
-                        <a class="collapse-item" href="{{ route('object')}}">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
-                        </a>
-                        <a class="collapse-item" href="b.html">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành QTM</span>
-                        </a>
-                        <a class="collapse-item" href="c.html">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành TKDH</span>
-                        </a>
-                    </div>
-                </div>
             </li>
 
             <li class="nav-item">

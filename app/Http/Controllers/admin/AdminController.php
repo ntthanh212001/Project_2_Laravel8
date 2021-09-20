@@ -545,7 +545,7 @@ class AdminController extends Controller
         $data->nganh_id = $request->input('nganh_id');
         $data->lop_id = $request->input('lop_id');
         $data->save();
-        return redirect()->route('student')->with('success', 'Sua sinh viên thành công');
+        return redirect()->route('student')->with('success', 'Thành công');
     }
 
     public function exportSinhvien()
@@ -562,4 +562,12 @@ class AdminController extends Controller
         Excel::import(new SinhvienImport, $request->file('sample'));
         return redirect()->route('student.dev');
     }
+<<<<<<< HEAD
+//    public function previewSinhvien(Request $request){
+//        $sinhvien = Excel::toArray(new SinhvienImport, $request->file('sample'));
+//        return view('admin.student.previewSinhvien',['sinhviens'=>$sinhvien[0]]);
+//    }
+
+=======
+>>>>>>> 2ceef7c6049b18cef5c690de473a4177ce59f8a1
 }
