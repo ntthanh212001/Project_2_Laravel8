@@ -400,5 +400,9 @@ class AdminController extends Controller
             Excel::import(new SinhvienImport, $request->file('sample'));
         return redirect()->route('student.dev');
     }
+//    public function previewSinhvien(Request $request){
+//        $sinhvien = Excel::toArray(new SinhvienImport, $request->file('sample'));
+//        return view('admin.student.previewSinhvien',['sinhviens'=>$sinhvien[0]]);
+//    }
 
 }
