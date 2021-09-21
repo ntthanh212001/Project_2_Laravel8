@@ -129,7 +129,7 @@ class AdminController extends Controller
     public function allTeacher()
     {
         $data = Giangvien::all();
-        return view('admin.teacher.gvLT', ['data' => $data]);
+        return view('admin.teacher.index', ['data' => $data]);
     }
     public function allStudent()
     {
@@ -285,7 +285,7 @@ class AdminController extends Controller
             ->join('hockis', 'monhocs.hocki_id', '=', 'hockis.id')
             ->join('nganhs', 'monhocs.nganh_id', '=', 'nganhs.id')
             ->select('monhocs.*', 'nganhs.tennganh', 'hockis.tenhocki')
-            ->orderBy('id', 'DESC')
+            ->orderBy('id', 'ASC')
             ->get();
 
         return view('admin.object.index', [
@@ -490,13 +490,14 @@ class AdminController extends Controller
     }
     public function ShowDataStudent($id)
     {
-        $data2 = Nganh::all();
+        $nganhs = Nganh::get('tennganh');
         $data3 = Lop::all();
         $data = Sinhvien::find($id);
+        view()->share('nganhs', $nganhs);
         return view(
             'admin.student.editstudent',
             [
-                'data2' => $data2,
+                'data2' => $nganhs,
                 'data3' => $data3,
                 'data' => $data,
             ]

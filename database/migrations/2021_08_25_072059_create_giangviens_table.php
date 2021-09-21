@@ -20,7 +20,7 @@ class CreateGiangViensTable extends Migration
             $table->string('password')->default('$2a$12$00S/d806OemZuOuYkbuiz.hMz9aSrzK/9oyQI76jC4tL.EhfZ0zAi')->comment('admin');
             $table->date('ngaysinh');
             $table->boolean('gioitinh');
-            $table->string('phone',10)->unique();
+            $table->string('phone',20)->unique();
             $table->boolean('status')->default(true);
             $table->timestamps();
 

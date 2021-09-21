@@ -48,7 +48,7 @@ Route::post('admin/branch/add-branch', [AdminController::class, 'addBranch'])->n
 //
 
 /* Admin-Teacher */
-Route::get('/admin/teacher/dev', [AdminController::class, 'allTeacher'])->name('teacher.dev');
+Route::get('/admin/teacher/', [AdminController::class, 'allTeacher'])->name('teacher');
 Route::post('/admin/teacher/add-teacher', [AdminController::class, 'addTeacher'])->name('teacher.add');
 Route::get('/admin/teacher/{id}', [AdminController::class, 'getTeacherById']);
 

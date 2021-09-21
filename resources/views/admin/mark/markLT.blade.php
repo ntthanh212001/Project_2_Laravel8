@@ -22,23 +22,27 @@
 @endsection
 @section('content')
 <div class="row">
-    <form method="POST" id="search-form">
+    <form method="GET" id="search-form">
         @csrf
         <div class="col-md-8">
             <div class="btn btn-flat fix-box" style="margin: 0;padding: 0 0 0 12px;">
                 <select name="search_lop" id="search_lop" class="form-control">
-                    @foreach(App\Models\Lop::pluck('tenlop','tenlop')->all() as $key=>$val)
+                    @foreach(App\Models\Lop::where('lops.nganh_id',1)->pluck('tenlop') as $key=>$val)
+                    {{-- @foreach(App\Models\Lop::collection('lops.nganh_id',1)->all() as $key=>$val) --}}
+                    {{-- @foreach(App\Models\Lop::pluck('tenlop')->where('nganh_id',1) as $key=>$val) --}}
+                    {{-- @foreach(App\Models\Lop::filter(lops.nganh_id = 1) as $key=>$val) --}}
                     <option value="{{$key}}">{{$val}}</option>
 
                     @endforeach
                 </select>
+                
                 <select name="search_mh" id="search_mh" class="form-control">
                     <option>-- Chọn môn học --</option>
-                    @foreach(App\Models\Monhoc::pluck('tenmon','tenmon')->all() as $key=>$val)
+                    @foreach(App\Models\Monhoc::where('monhocs.nganh_id',1)->pluck('tenmon','tenmon')->all() as $key=>$val)
                     <option value="{{$key}}">{{$val}}</option>
                     @endforeach
                 </select>
-
+            <button type="submit" class="btn btn-success">Xem</button>
 
             </div>
         </div>

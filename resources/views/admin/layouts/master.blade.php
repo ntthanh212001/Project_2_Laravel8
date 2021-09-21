@@ -110,28 +110,10 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoeee"
-                   aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="{{route('teacher')}}">
                    <i class="fas fa-chalkboard-teacher"></i>
                     <span>Giảng viên</span>
                 </a>
-                <div id="collapseTwoeee" class="collapse" aria-labelledby="headingTwo"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tuỳ chọn</h6>
-
-                        <a class="collapse-item" href="{{route('teacher.dev')}}">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
-                        </a>
-                        <a class="collapse-item" href="b.html">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành QTM</span>
-                        </a>
-                        <a class="collapse-item" href="c.html">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành TKDH</span>
-                        </a>
-
-                    </div>
-                </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->

@@ -76,7 +76,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                     @csrf
                     <div class="form-group">
                         <label for="hotengv">Họ tên</label>
-                        <input type="text" class="form-control" id="hotengv" />
+                        <input type="text" class="form-control" id="hoten" />
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -130,7 +130,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                     <input type="hidden" id="id" name="id" />
                     <div class="form-group">
                         <label for="hotengv">Họ tên</label>
-                        <input type="text" class="form-control" id="hotengv2" />
+                        <input type="text" class="form-control" id="hoten2" />
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -173,7 +173,7 @@ $(document).ready( function () {
     $("#giangvienForm").submit(function(e){
         e.preventDefault();
 
-        let hotengv = $("#hotengv").val();
+        let hoten = $("#hoten").val();
         let email = $("#email").val();
         let password = $("#password").val();
         let ngaysinh = $("#ngaysinh").val();
@@ -186,7 +186,7 @@ $(document).ready( function () {
             url: "{{route('teacher.add')}}",
             type: "POST",
             data: {
-                hotengv:hotengv,
+                hoten:hoten,
                 email:email,
                 password:password,
                 ngaysinh:ngaysinh,
@@ -199,7 +199,7 @@ $(document).ready( function () {
             {
                 if (response)
                 {
-                    $("#giangvienTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.hotengv +'</td><td>'+ response.email +'</td><td>'+ response.ngaysinh +'</td><td>'+ response.gioitinh +'</td><td>'+ response.phone +'</td><td>'+ response.status +'</td></tr>');
+                    $("#giangvienTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.hoten +'</td><td>'+ response.email +'</td><td>'+ response.ngaysinh +'</td><td>'+ response.gioitinh +'</td><td>'+ response.phone +'</td><td>'+ response.status +'</td></tr>');
                     $("#giangvienForm")[0].reset();
                     $("#giangvienModal").modal('hide');
                     location.reload();
@@ -216,7 +216,7 @@ $(document).ready( function () {
        {
            $.get('/admin/teacher/'+id, function(giangvien){
                $("#id").val(giangvien.id);
-               $("#hotengv2").val(giangvien.hotengv);
+               $("#hoten2").val(giangvien.hoten);
                $("#email2").val(giangvien.email);
                $("#password2").val(giangvien.password);
                $("#ngaysinh2").val(giangvien.ngaysinh);
@@ -230,7 +230,7 @@ $(document).ready( function () {
        $("#teacherEditForm").submit(function(e){
            e.preventDefault();
            let id = $("#id").val();
-           let hotengv = $("#hotengv2").val();
+           let hoten = $("#hoten2").val();
            let email = $("#email2").val();
            let password = $("#password2").val();
            let ngaysinh = $("#ngaysinh2").val();
@@ -245,7 +245,7 @@ $(document).ready( function () {
                type:"PUT",
                data:{
                    id:id,
-                   hotengv:hotengv,
+                   hoten:hoten,
                    email:email,
                    password:password,
                    ngaysinh:ngaysinh,
@@ -257,7 +257,7 @@ $(document).ready( function () {
                success:function(response)
                {
                     $('#tid' +response.id +' td:nth-child(1)').text(response.id);
-                   $('#tid' +response.id +' td:nth-child(2)').text(response.hotengv);
+                   $('#tid' +response.id +' td:nth-child(2)').text(response.hoten);
                    $('#tid' +response.id +' td:nth-child(3)').text(response.email);
                    $('#tid' +response.id +' td:nth-child(4)').text(response.ngaysinh);
                    $('#tid' +response.id +' td:nth-child(5)').text(response.gioitinh);

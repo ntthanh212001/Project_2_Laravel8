@@ -2,6 +2,8 @@
 @section('title', 'Sinh viên lớp LT')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     @if(Session::has('success'))
         <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
@@ -40,8 +42,8 @@
                 <th>ID</th>
                 <th>Mã Sinh Viên</th>
                 <th>Họ tên</th>
-                <th>Ngành học</th>
-                <th>Lớp</th>
+                {{-- <th>Ngành học</th> --}}
+                {{-- <th>Lớp</th> --}}
                 {{-- <th>Địa chỉ</th>
                 <th>Email</th>
                 <th>Ngày sinh</th> --}}
@@ -56,8 +58,8 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->masv }}</td>
                     <td>{{ $item->hoten }}</td>
-                    <td>{{ $item->tennganh }}</td>
-                    <td>{{ $item->tenlop }}</td>
+                    {{-- <td>{{ $item->tennganh }}</td>
+                    <td>{{ $item->tenlop }}</td> --}}
                     {{-- <td>{{ $item->address }}</td>
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->ngaysinh }}</td> --}}
