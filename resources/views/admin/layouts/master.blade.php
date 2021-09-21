@@ -74,9 +74,11 @@
                         <a class="collapse-item" href="{{ route('student.tkdh') }}">
                             <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa
                         </a>
-
-
+                        <a class="collapse-item" href="{{route('student.showFormExcel')}}">
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Thêm SV Bằng Excel</span>
                         </a>
+
+
 
                     </div>
                 </div>
@@ -127,6 +129,7 @@
                         <a class="collapse-item" href="c.html">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành TKDH</span>
                         </a>
+
                     </div>
                 </div>
             </li>

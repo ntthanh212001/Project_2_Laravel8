@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Sinh viên')
+@section('title', 'Sinh viên lớp LT')
 
 @section('content')
     @if(Session::has('success'))
@@ -17,10 +17,23 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="{{route('student.showFormExcel')}}" class="btn btn-info">Import Excel</a>
-    <a href="#" class="btn btn-danger">Export Excel</a>
+    <a style="float: right;" href="{{ url('/exportSinhvien') }}" class="btn btn-danger">Export All Student Excel</a>
     <br><br>
+        <form action="{{url('/admin/student/qtht')}}" method="get" >
 
+            <select name="k" @class('form-select')>Lớp
+                <option value="" >Tất cả lớp</option>
+                @foreach($data3 as $item)
+                    <option value="{{$item->tenlop}}"
+                    @if($item->tenlop == $key_class)
+                        {{'selected'}}
+                        @endif
+                    >{{$item->tenlop}}</option>
+                @endforeach
+            </select>
+            <button  type="submit" @class('btn btn-info')>Chọn</button>
+        </form>
+        <hr>
 <table id="dataTable" class="table table-bordered" >
         <thead>
             <tr class="text center-container">

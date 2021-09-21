@@ -562,12 +562,11 @@ class AdminController extends Controller
         Excel::import(new SinhvienImport, $request->file('sample'));
         return redirect()->route('student.dev');
     }
-<<<<<<< HEAD
-//    public function previewSinhvien(Request $request){
-//        $sinhvien = Excel::toArray(new SinhvienImport, $request->file('sample'));
-//        return view('admin.student.previewSinhvien',['sinhviens'=>$sinhvien[0]]);
-//    }
 
-=======
->>>>>>> 2ceef7c6049b18cef5c690de473a4177ce59f8a1
+   public function previewSinhvien(Request $request){
+       $sinhvien = Excel::toArray(new SinhvienImport, $request->file('sample'));
+       return view('admin.student.previewSinhvien',['sinhviens'=>$sinhvien[0]]);
+    }
+
+
 }
