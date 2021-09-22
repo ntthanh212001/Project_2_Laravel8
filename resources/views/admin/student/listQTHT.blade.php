@@ -5,9 +5,11 @@
         <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
     <a href="{{ route('student.showForm') }}">Thêm Sinh Viên</a>
+    <a style="float: right;" href="{{ url('/exportSinhvien') }}" class="btn btn-danger">Export All Student Excel</a>
+    <br><br>
     <form action="{{url('/admin/student/qtht')}}" method="get" >
 
-        <select name="k" @class('form-select')>Lớp
+        <select name="k" @class('form-select') onChange="this.form.submit()">Lớp
             <option value="" >Tất cả lớp</option>
             @foreach($data3 as $item)
                 <option value="{{$item->tenlop}}"
@@ -17,8 +19,9 @@
                 >{{$item->tenlop}}</option>
             @endforeach
         </select>
-        <button  type="submit" @class('btn btn-info')>Chọn</button>
+        <noscript><input value="submit"  type="submit"/></noscript>
     </form>
+    <hr>
     <table id="dataTable" class="table table-bordered" >
         <thead>
         <tr class="text center-container">

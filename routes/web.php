@@ -91,7 +91,7 @@ Route::post('/admin/mark/add-mark', [AdminController::class, 'addMark'])->name('
 /* Route::get('/admin/mark/{id}', [AdminController::class, 'getMarkById']); */
 
 
-Route::get('/admin/mark/dev', [AdminController::class, 'markDev'])->name('mark.dev');
+Route::POST('/admin/mark/dev', [AdminController::class, 'markDev'])->name('mark.dev');
 Route::get('/admin/mark/qtht', [AdminController::class, 'markQtht'])->name('mark.qtht');
 Route::get('/admin/mark/tkdh', [AdminController::class, 'markTkdh'])->name('mark.tkdh');
 Route::post('/admin/mark/save',[AdminController::class, 'savediem'])->name('mark.savediem');

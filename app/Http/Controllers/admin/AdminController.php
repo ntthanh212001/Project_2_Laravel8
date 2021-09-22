@@ -170,7 +170,7 @@ class AdminController extends Controller
             $data = DB::table('sinhviens')
                 ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id', 2)
+                ->where('sinhviens.nganh_id', 1)
                 ->where('lops.tenlop','LIKE','%'.$k.'%')
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
@@ -313,7 +313,11 @@ class AdminController extends Controller
             'data3' => $data3
         ]);
     }
-    public function markDev()
+
+
+
+
+    public function markDev(Request $request)
     {
         /* $data2 = Monhoc::all();
         $data3 = Sinhvien::all();
@@ -329,6 +333,12 @@ class AdminController extends Controller
         return view('admin.mark.index', ['data'=>$data,
         'data2'=>$data2,
         'data3'=>$data3]); */
+        $search_lop = $request->search_lop;
+        $search_mh = $request->search_mh;
+
+        $data1 = DB::table('lops')->where('nganh_id',1)->get();
+        $data2 = DB::table('monhocs')->where('nganh_id',1)->get();;
+
 
         DB::statement(DB::raw('set @rownum = 0'));
         $name = Admin::all();
@@ -336,6 +346,7 @@ class AdminController extends Controller
             ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
             ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
             ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+            ->where('sinhviens.nganh_id',1)
             ->select([
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 'masv',
@@ -348,7 +359,14 @@ class AdminController extends Controller
                 'diems.id AS diem_id',
                 'monhocs.id AS monhoc_id'
             ])->get();
-        return view('admin.mark.markLT', ['student' => $student, 'name' => $name]);
+        return view('admin.mark.markLT', [
+            'student' => $student,
+            'name' => $name,
+            'data1' =>$data1,
+            'data2' =>$data2,
+            'k1' =>$search_lop,
+            'k2' =>$search_mh
+        ]);
     }
 
     public function savediem(Request $request)

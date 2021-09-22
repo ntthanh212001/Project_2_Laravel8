@@ -29,7 +29,6 @@
                 <select name="search_lop" id="search_lop" class="form-control">
                     @foreach(App\Models\Lop::pluck('tenlop','tenlop')->all() as $key=>$val)
                     <option value="{{$key}}">{{$val}}</option>
-
                     @endforeach
                 </select>
                 <select name="search_mh" id="search_mh" class="form-control">
@@ -38,8 +37,6 @@
                     <option value="{{$key}}">{{$val}}</option>
                     @endforeach
                 </select>
-
-
             </div>
         </div>
     </form>

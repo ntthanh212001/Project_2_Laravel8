@@ -19,9 +19,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a style="float: right;" href="{{ url('/exportSinhvien') }}" class="btn btn-danger">Export All Student Excel</a>
     <br><br>
-        <form action="{{url('/admin/student/qtht')}}" method="get" >
+        <form action="{{url('/admin/student/dev')}}" method="get" >
 
-            <select name="k" @class('form-select')>Lớp
+            <select name="k" @class('form-select') onChange="this.form.submit()">Lớp
                 <option value="" >Tất cả lớp</option>
                 @foreach($data3 as $item)
                     <option value="{{$item->tenlop}}"
@@ -31,13 +31,13 @@
                     >{{$item->tenlop}}</option>
                 @endforeach
             </select>
-            <button  type="submit" @class('btn btn-info')>Chọn</button>
+            <noscript><input value="submit"  type="submit"/></noscript>
         </form>
         <hr>
 <table id="dataTable" class="table table-bordered" >
         <thead>
             <tr class="text center-container">
-                <th>ID</th>
+                <th>STT</th>
                 <th>Mã Sinh Viên</th>
                 <th>Họ tên</th>
                 <th>Ngành học</th>
@@ -53,7 +53,7 @@
         <tbody>
             @foreach ($data as $item)
                 <tr id="tid{{ $item->id }}">
-                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->rownum }}</td>
                     <td>{{ $item->masv }}</td>
                     <td>{{ $item->hoten }}</td>
                     <td>{{ $item->tennganh }}</td>
