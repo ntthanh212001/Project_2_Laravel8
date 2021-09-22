@@ -35,8 +35,9 @@ integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2
             <th>Địa chỉ</th>
             <th>Email</th>
             <th>Ngày sinh</th> --}}
+            <th>Lớp</th>
             <th>Giới tính</th>
-            {{-- <th>Số điện thoại</th> --}}
+
             <th>Hành Động</th>
         </tr>
         </thead>
@@ -47,10 +48,12 @@ integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2
                 <td>{{ $item->masv }}</td>
                 <td>{{ $item->hoten }}</td>
                 {{-- <td>{{ $item->tennganh }}</td>
-                <td>{{ $item->tenlop }}</td>
+
                 <td>{{ $item->address }}</td>
                 <td>{{ $item->email }}</td>
+
                 <td>{{ $item->ngaysinh }}</td> --}}
+                <td>{{ $item->tenlop }}</td>
                 <td>{{ $item->gioitinh == 1 ? 'Nam' : 'Nữ' }}</td>
                 {{-- <td>{{ $item->phone }}</td> --}}
 
