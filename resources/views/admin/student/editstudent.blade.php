@@ -100,7 +100,8 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <label class="form-label">Ngành</label>
-                    <select class="form-control form-control-lg" name="nganh_id">
+                    <select class="form-control form-control-lg" name="nganh_id" >
+                        {{-- <option value="">{{$nganhs}}</option> --}}
                         @foreach ($data2 as $item)
                             <option id="nganh_id"  value="{{ $item->id }}" >{{ $item->tennganh }}</option>
                         @endforeach

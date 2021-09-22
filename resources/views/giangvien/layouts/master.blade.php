@@ -111,11 +111,11 @@
                 <i class="fas fa-fw fa-table"></i>
                 <span>Thông tin cá nhân</span></a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{route('giangvien.logout')}}">
                 <i class="fa fa-share" aria-hidden="true"></i>
                 <span>Đăng xuất</span></a>
-        </li>
+        </li> --}}
 
 
 
