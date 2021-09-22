@@ -97,10 +97,10 @@
                         <a class="collapse-item" href="{{route('mark.dev')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành lập trình</span>
                         </a>
-                        <a class="collapse-item" href="b.html">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành QTM</span>
+                        <a class="collapse-item" href="{{route('mark.qtht')}}">
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành QTHT</span>
                         </a>
-                        <a class="collapse-item" href="c.html">
+                        <a class="collapse-item" href="{{route('mark.tkdh')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành TKDH</span>
                         </a>
                     </div>

@@ -22,26 +22,31 @@
 @endsection
 @section('content')
 <div class="row">
-    <form method="POST" id="search-form">
-        @csrf
+    <form method="GET" id="search-form" action="{{url('admin/mark/dev')}}">
         <div class="col-md-8">
             <div class="btn btn-flat fix-box" style="margin: 0;padding: 0 0 0 12px;">
                 <select name="search_lop" id="search_lop" class="form-control">
-                    @foreach(App\Models\Lop::where('lops.nganh_id',1)->pluck('tenlop') as $key=>$val)
-                    {{-- @foreach(App\Models\Lop::collection('lops.nganh_id',1)->all() as $key=>$val) --}}
-                    {{-- @foreach(App\Models\Lop::pluck('tenlop')->where('nganh_id',1) as $key=>$val) --}}
-                    {{-- @foreach(App\Models\Lop::filter(lops.nganh_id = 1) as $key=>$val) --}}
-                    <option value="{{$key}}">{{$val}}</option>
+                    <option value="">--Chọn Lớp--</option>
+                   @foreach($data1 as $item)
+                  <option value="{{$item->tenlop}}"
+                    @if($k1 == $item->tenlop)
+                        {{'selected'}}
+                        @endif
+                  >{{$item->tenlop}}</option>
                     @endforeach
                 </select>
 
-                <select name="search_mh" id="search_mh" class="form-control">
-                    <option>-- Chọn môn học --</option>
-                    @foreach(App\Models\Monhoc::where('monhocs.nganh_id',1)->pluck('tenmon','tenmon')->all() as $key=>$val)
-                    <option value="{{$key}}">{{$val}}</option>
+                <select name="search_mh" id="search_mh" class="form-control" >
+                    <option value="">--Chọn Môn--</option>
+                    @foreach($data2 as $item)
+                        <option value="{{$item->tenmon}}"
+                        @if($k2 == $item->tenmon)
+                            {{'selected'}}
+                            @endif
+                        >{{$item->tenmon}}</option>
                     @endforeach
                 </select>
-            <button type="submit" class="btn btn-success">Xem</button>
+                <button type="submit">Xem</button>
 
 
             </div>
@@ -55,9 +60,11 @@
             <th>STT</th>
             <th>Mã SV</th>
             <th>Tên sinh viên</th>
+            <th>Lớp</th>
             <th>Môn học</th>
             <th>Điểm lý thuyết</th>
             <th>Điểm thực hành</th>
+
 
             {{-- <th>Điểm tổng</th> --}}
 
@@ -67,17 +74,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($student as $item)
+
+        @forelse ($student as $item)
         <tr {{-- id="tid{{ $item->id }}" --}}>
             {{-- <td>{{ $item->id }}</td> --}}
             <td>{{ $item->rownum }}</td>
             <td>{{ $item->masv }}</td>
             <td>{{ $item->hoten }}</td>
+            <td>{{ $item->tenlop }}</td>
             <td>{{ $item->tenmon }}</td>
             {{-- <td>{{ $item->hotengv }}</td> --}}
             <td contenteditable="true"
                 onBlur="saveToDatabase(this,'diemlt','{{$item->diem_id}}','{{$item->sv_id}}','{{$item->monhoc_id}}')">
-                {{ $item->diemlt }}</td>
+                {{ $item->diemlt }}
+            </td>
             <td contenteditable="true"
                 onBlur="saveToDatabase(this,'diemtt','{{$item->diem_id}}','{{$item->sv_id}}','{{$item->monhoc_id}}')">
                 {{ $item->diemtt }}</td>
@@ -86,7 +96,12 @@
             {{-- <td>{{ $item->created_at }}</td>
             <td>{{ $item->updated_at }}</td> --}}
         </tr>
-        @endforeach
+
+        @empty
+            <tr>
+                <td style="text-align: center;" colspan="7">Dữ liệu (Lớp : {{$k1}} && Môn : {{$k2}}) không tồn tại</td>
+            </tr>
+        @endforelse
     </tbody>
 </table>
 

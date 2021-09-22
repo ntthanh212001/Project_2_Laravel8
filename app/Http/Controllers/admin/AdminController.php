@@ -342,24 +342,344 @@ class AdminController extends Controller
 
         DB::statement(DB::raw('set @rownum = 0'));
         $name = Admin::all();
-        $student = DB::table('sinhviens')
-            ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
-            ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
-            ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-            ->where('sinhviens.nganh_id',1)
-            ->select([
-                DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                'masv',
-                'hoten',
-                'tenlop',
-                'diemlt',
-                'diemtt',
-                'tenmon',
-                'sinhviens.id AS sv_id',
-                'diems.id AS diem_id',
-                'monhocs.id AS monhoc_id'
-            ])->get();
+            if($search_mh == '' && $search_lop == ''){
+                $student = DB::table('sinhviens')
+                    ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                    ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                    ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                    ->where('sinhviens.nganh_id',1)
+
+                    ->select([
+                        DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                        'masv',
+                        'hoten',
+                        'tenlop',
+                        'diemlt',
+                        'diemtt',
+                        'tenmon',
+                        'lops.tenlop AS tenlop',
+                        'sinhviens.id AS sv_id',
+                        'diems.id AS diem_id',
+                        'monhocs.id AS monhoc_id'
+                    ])->get();
+            }
+        if($search_mh != '' && $search_lop != ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',1)
+                ->where('monhocs.tenmon',$search_mh)
+                ->where('lops.tenlop',$search_lop)
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if($search_mh != '' && $search_lop == ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',1)
+                ->where('monhocs.tenmon','LIKE','%'.$search_mh.'%')
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if($search_mh == '' && $search_lop != ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',1)
+                ->where('lops.tenlop','LIKE','%'.$search_lop.'%')
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+
+
+
+
+
+
+
         return view('admin.mark.markLT', [
+            'student' => $student,
+            'name' => $name,
+            'data1' =>$data1,
+            'data2' =>$data2,
+            'k1' =>$search_lop,
+            'k2' =>$search_mh
+        ]);
+    }
+    public function markQtht(Request $request)
+    {
+        /* $data2 = Monhoc::all();
+        $data3 = Sinhvien::all();
+        $data = DB::table('diems')
+        ->join('monhocs','diems.monhoc_id','=','monhocs.id')
+        ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
+        ->join('giangviens','diems.giangvien_id','=','giangviens.id')
+        ->select('diems.*','monhocs.tenmon','sinhviens.hoten','giangviens.hotengv')
+        ->where('')
+        ->orderBy('id','DESC')
+        ->get();
+
+        return view('admin.mark.index', ['data'=>$data,
+        'data2'=>$data2,
+        'data3'=>$data3]); */
+        $search_lop = $request->search_lop;
+        $search_mh = $request->search_mh;
+
+        $data1 = DB::table('lops')->where('nganh_id',2)->get();
+        $data2 = DB::table('monhocs')->where('nganh_id',2)->get();;
+
+
+        DB::statement(DB::raw('set @rownum = 0'));
+        $name = Admin::all();
+        if($search_mh == '' && $search_lop == ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',2)
+
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if($search_mh != '' && $search_lop != ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',2)
+                ->where('monhocs.tenmon',$search_mh)
+                ->where('lops.tenlop',$search_lop)
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if($search_mh != '' && $search_lop == ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',2)
+                ->where('monhocs.tenmon','LIKE','%'.$search_mh.'%')
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if($search_mh == '' && $search_lop != ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',2)
+                ->where('lops.tenlop','LIKE','%'.$search_lop.'%')
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+
+
+
+
+
+
+
+        return view('admin.mark.markQTHT', [
+            'student' => $student,
+            'name' => $name,
+            'data1' =>$data1,
+            'data2' =>$data2,
+            'k1' =>$search_lop,
+            'k2' =>$search_mh
+        ]);
+    }
+    public function markTkdh(Request $request)
+    {
+        /* $data2 = Monhoc::all();
+        $data3 = Sinhvien::all();
+        $data = DB::table('diems')
+        ->join('monhocs','diems.monhoc_id','=','monhocs.id')
+        ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
+        ->join('giangviens','diems.giangvien_id','=','giangviens.id')
+        ->select('diems.*','monhocs.tenmon','sinhviens.hoten','giangviens.hotengv')
+        ->where('')
+        ->orderBy('id','DESC')
+        ->get();
+
+        return view('admin.mark.index', ['data'=>$data,
+        'data2'=>$data2,
+        'data3'=>$data3]); */
+        $search_lop = $request->search_lop;
+        $search_mh = $request->search_mh;
+
+        $data1 = DB::table('lops')->where('nganh_id',3)->get();
+        $data2 = DB::table('monhocs')->where('nganh_id',3)->get();;
+
+
+        DB::statement(DB::raw('set @rownum = 0'));
+        $name = Admin::all();
+        if($search_mh == '' && $search_lop == ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',3)
+
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if($search_mh != '' && $search_lop != ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',3)
+                ->where('monhocs.tenmon',$search_mh)
+                ->where('lops.tenlop',$search_lop)
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if($search_mh != '' && $search_lop == ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',3)
+                ->where('monhocs.tenmon','LIKE','%'.$search_mh.'%')
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if($search_mh == '' && $search_lop != ''){
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id',3)
+                ->where('lops.tenlop','LIKE','%'.$search_lop.'%')
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        return view('admin.mark.markTKDH', [
             'student' => $student,
             'name' => $name,
             'data1' =>$data1,
