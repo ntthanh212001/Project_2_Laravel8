@@ -56,34 +56,6 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-users"></i>
-                    <span>Sinh viên</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('student.dev') }}">
-                            <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình
-                        </a>
-                        <a class="collapse-item" href="{{ route('student.qtht') }}">
-                            <i class="fas fa-exchange-alt"></i>&nbsp; Quản trị hệ thống
-                        </a>
-                        <a class="collapse-item" href="{{ route('student.tkdh') }}">
-                            <i class="fas fa-exchange-alt"></i>&nbsp; Thiết kế đồ họa
-                        </a>
-                        <a class="collapse-item" href="{{route('student.showFormExcel')}}">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Thêm SV Bằng Excel</span>
-                        </a>
-
-
-
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoe"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fab fa-hive"></i>
@@ -103,64 +75,10 @@
                         <a class="collapse-item" href="{{route('mark.tkdh')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành TKDH</span>
                         </a>
-                        <a class="collapse-item" href="{{route('mark.showFormExcel')}}">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Import Excel Điểm</span>
-                        </a>
                     </div>
                 </div>
             </li>
 
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('teacher')}}">
-                   <i class="fas fa-chalkboard-teacher"></i>
-                    <span>Giảng viên</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-
-            <!-- Divider -->
-            {{-- <hr class="sidebar-divider"> --}}
-
-
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('object')}}">
-                   <i class="fas fa-fw fa-folder"></i>
-                    <span>Môn học</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('phanCong')}}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Phân công</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwor"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-code-branch"></i>
-                    <span>Ngành & lớp</span>
-                </a>
-                <div id="collapseTwor" class="collapse" aria-labelledby="headingTwo"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tuỳ chọn</h6>
-                        <a class="collapse-item" href="{{ route('branch') }}">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành </span>
-                        </a>
-                        <a class="collapse-item" href="{{ route('class') }}">
-                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Lớp </span>
-                        </a>
-
-
-                    </div>
-                </div>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -204,36 +122,6 @@
  --}}
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        {{-- <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li> --}}
-
-                        <!-- Nav Item - Alerts -->
-
-
-                        {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
-
                         <!-- Nav Item - User Information -->
 
                         <li class="nav-item dropdown no-arrow">
@@ -243,8 +131,8 @@
 
 
                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    @if(Auth::guard('admin')->user() != null)
-                                       <span><h4>{{Auth::guard('admin')->user()->name}}</h4></span>
+                                    @if(Auth::guard('sinhvien')->user() != null)
+                                       <span><h4>{{Auth::guard('sinhvien')->user()->name}}</h4></span>
 
                                    @endif
 
@@ -291,7 +179,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span class="display-6">ADMIN</span>
+                        <span class="display-6">STUDENT</span>
                     </div>
                 </div>
             </footer>
@@ -322,7 +210,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{route('admin.login')}}">Logout</a>
+                    <a class="btn btn-primary" href="{{route('login')}}">Logout</a>
                 </div>
             </div>
         </div>

@@ -16,11 +16,11 @@ class Logincontroller extends Controller
     function login(Request $request){
         if (Auth::guard('sinhvien')->attempt([
             'email' => $request->input('user'),
-            'password' => $request->input('password'),
-            'status' => 1
+            'password' => $request->input('password')
+            /* 'status' => 1 */
         ])) {
             //chuyen huong ve home
-            $sql = DB::table('sinhvien')
+            $sql = DB::table('sinhviens')
                 ->where('email','=', $request->user)
                 ->where('password','=', $request->password)
                 ->get();

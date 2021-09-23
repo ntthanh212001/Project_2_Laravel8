@@ -1,1 +1,6 @@
-day la trang sv
+@extends('user.layouts.master')
+@section('title','Sinh viên')
+@section('content')
+    
+@endsection
+

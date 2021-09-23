@@ -27,7 +27,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
 
             <th>Số điện thoại</th>
             <th>Email</th>
-            <th>Giới tính</th>
+            {{-- <th>Giới tính</th> --}}
             <th>Trạng Thái</th>
             <th>Hành động</th>
         </tr>
@@ -41,7 +41,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             <td>{{ $item->phone }}</td>
 
             <td>{{ $item->email }}</td>
-            <td>{{ $item->gioitinh==1? 'Nam':'Nữ' }}</td>
+            {{-- <td>{{ $item->gioitinh==1? 'Nam':'Nữ' }}</td> --}}
             <td>
                 @if ($item->status == 1)
                     <a href="{{url('status/update',$item->id)}}" class="btn btn-success">Hoạt động</a>

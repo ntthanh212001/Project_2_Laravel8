@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Response;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SinhvienExport;
 use App\Models\Diem;
+use App\Models\Phancong;
 use http\Exception;
 use phpDocumentor\Reflection\Types\False_;
 
@@ -161,27 +162,33 @@ class AdminController extends Controller
         DB::statement(DB::raw('set @rownum = 0'));
         $k = $request->k;
         $data3 = DB::table('lops')
-            ->where('nganh_id','=',1)
+            ->where('nganh_id', '=', 1)
             ->get();
         $data2 = Nganh::all();
-        if ($k == ''){
+        if ($k == '') {
             $data = DB::table('sinhviens')
                 ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
                 ->where('sinhviens.nganh_id', 1)
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                    'sinhviens.*',
+                    'nganhs.tennganh',
+                    'lops.tenlop'
+                )
                 ->get();
-        }else{
+        } else {
             $data = DB::table('sinhviens')
                 ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
                 ->where('sinhviens.nganh_id', 1)
-                ->where('lops.tenlop','LIKE','%'.$k.'%')
+                ->where('lops.tenlop', 'LIKE', '%' . $k . '%')
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                    'sinhviens.*',
+                    'nganhs.tennganh',
+                    'lops.tenlop'
+                )
                 ->get();
         }
         return view(
@@ -199,27 +206,33 @@ class AdminController extends Controller
         DB::statement(DB::raw('set @rownum = 0'));
         $k = $request->k;
         $data3 = DB::table('lops')
-        ->where('nganh_id','=',2)
+            ->where('nganh_id', '=', 2)
             ->get();
         $data2 = Nganh::all();
-        if ($k == ''){
+        if ($k == '') {
             $data = DB::table('sinhviens')
                 ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
                 ->where('sinhviens.nganh_id', 2)
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                    'sinhviens.*',
+                    'nganhs.tennganh',
+                    'lops.tenlop'
+                )
                 ->get();
-        }else{
+        } else {
             $data = DB::table('sinhviens')
                 ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
                 ->where('sinhviens.nganh_id', 2)
-                ->where('lops.tenlop','LIKE','%'.$k.'%')
+                ->where('lops.tenlop', 'LIKE', '%' . $k . '%')
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                    'sinhviens.*',
+                    'nganhs.tennganh',
+                    'lops.tenlop'
+                )
                 ->get();
         }
         return view(
@@ -238,27 +251,33 @@ class AdminController extends Controller
         DB::statement(DB::raw('set @rownum = 0'));
         $k = $request->k;
         $data3 = DB::table('lops')
-            ->where('nganh_id','=',3)
+            ->where('nganh_id', '=', 3)
             ->get();
         $data2 = Nganh::all();
-        if ($k == ''){
+        if ($k == '') {
             $data = DB::table('sinhviens')
                 ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
                 ->where('sinhviens.nganh_id', 3)
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                    'sinhviens.*',
+                    'nganhs.tennganh',
+                    'lops.tenlop'
+                )
                 ->get();
-        }else{
+        } else {
             $data = DB::table('sinhviens')
                 ->join('nganhs', 'sinhviens.nganh_id', '=', 'nganhs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
                 ->where('sinhviens.nganh_id', 3)
-                ->where('lops.tenlop','LIKE','%'.$k.'%')
+                ->where('lops.tenlop', 'LIKE', '%' . $k . '%')
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                    'sinhviens.*', 'nganhs.tennganh', 'lops.tenlop')
+                    'sinhviens.*',
+                    'nganhs.tennganh',
+                    'lops.tenlop'
+                )
                 ->get();
         }
         return view(
@@ -343,41 +362,19 @@ class AdminController extends Controller
         $search_lop = $request->search_lop;
         $search_mh = $request->search_mh;
 
-        $data1 = DB::table('lops')->where('nganh_id',1)->get();
-        $data2 = DB::table('monhocs')->where('nganh_id',1)->get();;
+        $data1 = DB::table('lops')->where('nganh_id', 1)->get();
+        $data2 = DB::table('monhocs')->where('nganh_id', 1)->get();;
 
 
         DB::statement(DB::raw('set @rownum = 0'));
         $name = Admin::all();
-            if($search_mh == '' && $search_lop == ''){
-                $student = DB::table('sinhviens')
-                    ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
-                    ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
-                    ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                    ->where('sinhviens.nganh_id',1)
+        if ($search_mh == '' && $search_lop == '') {
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id', 1)
 
-                    ->select([
-                        DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                        'masv',
-                        'hoten',
-                        'tenlop',
-                        'diemlt',
-                        'diemtt',
-                        'tenmon',
-                        'lops.tenlop AS tenlop',
-                        'sinhviens.id AS sv_id',
-                        'diems.id AS diem_id',
-                        'monhocs.id AS monhoc_id'
-                    ])->get();
-            }
-        if($search_mh != '' && $search_lop != ''){
-            $student = DB::table('sinhviens')
-                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
-                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
-                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',1)
-                ->where('monhocs.tenmon',$search_mh)
-                ->where('lops.tenlop',$search_lop)
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -392,13 +389,14 @@ class AdminController extends Controller
                     'monhocs.id AS monhoc_id'
                 ])->get();
         }
-        if($search_mh != '' && $search_lop == ''){
+        if ($search_mh != '' && $search_lop != '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',1)
-                ->where('monhocs.tenmon','LIKE','%'.$search_mh.'%')
+                ->where('sinhviens.nganh_id', 1)
+                ->where('monhocs.tenmon', $search_mh)
+                ->where('lops.tenlop', $search_lop)
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -413,13 +411,34 @@ class AdminController extends Controller
                     'monhocs.id AS monhoc_id'
                 ])->get();
         }
-        if($search_mh == '' && $search_lop != ''){
+        if ($search_mh != '' && $search_lop == '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',1)
-                ->where('lops.tenlop','LIKE','%'.$search_lop.'%')
+                ->where('sinhviens.nganh_id', 1)
+                ->where('monhocs.tenmon', 'LIKE', '%' . $search_mh . '%')
+                ->select([
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'masv',
+                    'hoten',
+                    'tenlop',
+                    'diemlt',
+                    'diemtt',
+                    'tenmon',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.id AS sv_id',
+                    'diems.id AS diem_id',
+                    'monhocs.id AS monhoc_id'
+                ])->get();
+        }
+        if ($search_mh == '' && $search_lop != '') {
+            $student = DB::table('sinhviens')
+                ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
+                ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
+                ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
+                ->where('sinhviens.nganh_id', 1)
+                ->where('lops.tenlop', 'LIKE', '%' . $search_lop . '%')
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -444,10 +463,10 @@ class AdminController extends Controller
         return view('admin.mark.markLT', [
             'student' => $student,
             'name' => $name,
-            'data1' =>$data1,
-            'data2' =>$data2,
-            'k1' =>$search_lop,
-            'k2' =>$search_mh
+            'data1' => $data1,
+            'data2' => $data2,
+            'k1' => $search_lop,
+            'k2' => $search_mh
         ]);
     }
     public function markQtht(Request $request)
@@ -469,18 +488,18 @@ class AdminController extends Controller
         $search_lop = $request->search_lop;
         $search_mh = $request->search_mh;
 
-        $data1 = DB::table('lops')->where('nganh_id',2)->get();
-        $data2 = DB::table('monhocs')->where('nganh_id',2)->get();;
+        $data1 = DB::table('lops')->where('nganh_id', 2)->get();
+        $data2 = DB::table('monhocs')->where('nganh_id', 2)->get();;
 
 
         DB::statement(DB::raw('set @rownum = 0'));
         $name = Admin::all();
-        if($search_mh == '' && $search_lop == ''){
+        if ($search_mh == '' && $search_lop == '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',2)
+                ->where('sinhviens.nganh_id', 2)
 
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
@@ -496,14 +515,14 @@ class AdminController extends Controller
                     'monhocs.id AS monhoc_id'
                 ])->get();
         }
-        if($search_mh != '' && $search_lop != ''){
+        if ($search_mh != '' && $search_lop != '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',2)
-                ->where('monhocs.tenmon',$search_mh)
-                ->where('lops.tenlop',$search_lop)
+                ->where('sinhviens.nganh_id', 2)
+                ->where('monhocs.tenmon', $search_mh)
+                ->where('lops.tenlop', $search_lop)
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -518,13 +537,13 @@ class AdminController extends Controller
                     'monhocs.id AS monhoc_id'
                 ])->get();
         }
-        if($search_mh != '' && $search_lop == ''){
+        if ($search_mh != '' && $search_lop == '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',2)
-                ->where('monhocs.tenmon','LIKE','%'.$search_mh.'%')
+                ->where('sinhviens.nganh_id', 2)
+                ->where('monhocs.tenmon', 'LIKE', '%' . $search_mh . '%')
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -539,13 +558,13 @@ class AdminController extends Controller
                     'monhocs.id AS monhoc_id'
                 ])->get();
         }
-        if($search_mh == '' && $search_lop != ''){
+        if ($search_mh == '' && $search_lop != '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',2)
-                ->where('lops.tenlop','LIKE','%'.$search_lop.'%')
+                ->where('sinhviens.nganh_id', 2)
+                ->where('lops.tenlop', 'LIKE', '%' . $search_lop . '%')
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -570,10 +589,10 @@ class AdminController extends Controller
         return view('admin.mark.markQTHT', [
             'student' => $student,
             'name' => $name,
-            'data1' =>$data1,
-            'data2' =>$data2,
-            'k1' =>$search_lop,
-            'k2' =>$search_mh
+            'data1' => $data1,
+            'data2' => $data2,
+            'k1' => $search_lop,
+            'k2' => $search_mh
         ]);
     }
     public function markTkdh(Request $request)
@@ -595,18 +614,18 @@ class AdminController extends Controller
         $search_lop = $request->search_lop;
         $search_mh = $request->search_mh;
 
-        $data1 = DB::table('lops')->where('nganh_id',3)->get();
-        $data2 = DB::table('monhocs')->where('nganh_id',3)->get();;
+        $data1 = DB::table('lops')->where('nganh_id', 3)->get();
+        $data2 = DB::table('monhocs')->where('nganh_id', 3)->get();;
 
 
         DB::statement(DB::raw('set @rownum = 0'));
         $name = Admin::all();
-        if($search_mh == '' && $search_lop == ''){
+        if ($search_mh == '' && $search_lop == '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',3)
+                ->where('sinhviens.nganh_id', 3)
 
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
@@ -622,14 +641,14 @@ class AdminController extends Controller
                     'monhocs.id AS monhoc_id'
                 ])->get();
         }
-        if($search_mh != '' && $search_lop != ''){
+        if ($search_mh != '' && $search_lop != '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',3)
-                ->where('monhocs.tenmon',$search_mh)
-                ->where('lops.tenlop',$search_lop)
+                ->where('sinhviens.nganh_id', 3)
+                ->where('monhocs.tenmon', $search_mh)
+                ->where('lops.tenlop', $search_lop)
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -644,13 +663,13 @@ class AdminController extends Controller
                     'monhocs.id AS monhoc_id'
                 ])->get();
         }
-        if($search_mh != '' && $search_lop == ''){
+        if ($search_mh != '' && $search_lop == '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',3)
-                ->where('monhocs.tenmon','LIKE','%'.$search_mh.'%')
+                ->where('sinhviens.nganh_id', 3)
+                ->where('monhocs.tenmon', 'LIKE', '%' . $search_mh . '%')
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -665,13 +684,13 @@ class AdminController extends Controller
                     'monhocs.id AS monhoc_id'
                 ])->get();
         }
-        if($search_mh == '' && $search_lop != ''){
+        if ($search_mh == '' && $search_lop != '') {
             $student = DB::table('sinhviens')
                 ->join('diems', 'sinhviens.id', '=', 'diems.sinhvien_id')
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
-                ->where('sinhviens.nganh_id',3)
-                ->where('lops.tenlop','LIKE','%'.$search_lop.'%')
+                ->where('sinhviens.nganh_id', 3)
+                ->where('lops.tenlop', 'LIKE', '%' . $search_lop . '%')
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
@@ -689,10 +708,10 @@ class AdminController extends Controller
         return view('admin.mark.markTKDH', [
             'student' => $student,
             'name' => $name,
-            'data1' =>$data1,
-            'data2' =>$data2,
-            'k1' =>$search_lop,
-            'k2' =>$search_mh
+            'data1' => $data1,
+            'data2' => $data2,
+            'k1' => $search_lop,
+            'k2' => $search_mh
         ]);
     }
 
@@ -909,9 +928,10 @@ class AdminController extends Controller
         return redirect()->route('student.dev');
     }
 
-   public function previewSinhvien(Request $request){
-       $sinhvien = Excel::toArray(new SinhvienImport, $request->file('sample'));
-       return view('admin.student.previewSinhvien',['sinhviens'=>$sinhvien[0]]);
+    public function previewSinhvien(Request $request)
+    {
+        $sinhvien = Excel::toArray(new SinhvienImport, $request->file('sample'));
+        return view('admin.student.previewSinhvien', ['sinhviens' => $sinhvien[0]]);
     }
     public function exportMark()
     {
@@ -925,6 +945,42 @@ class AdminController extends Controller
     {
 
         Excel::import(new DiemImport, $request->file('sample'));
-        return back()->with('success','Thêm thành công');
+        return back()->with('success', 'Thêm thành công');
+    }
+    public function phanCong()
+    {
+        $data1 = Giangvien::all();
+        $data2 = Monhoc::all();
+        $data3 = Lop::all();
+        DB::statement(DB::raw('set @rownum = 0'));
+        $data = DB::table('phancongs')
+            ->join('giangviens', 'phancongs.giangvien_id', '=', 'giangviens.id')
+            ->join('lops', 'phancongs.lop_id', '=', 'lops.id')
+            ->join('monhocs', 'phancongs.monhoc_id', '=', 'monhocs.id')
+            ->select(
+                DB::raw('@rownum := @rownum + 1 AS rownum'),
+                'giangviens.hoten AS hoten',
+                'lops.tenlop AS tenlop',
+                'monhocs.tenmon AS tenmon'
+            )
+            ->get();
+        return view('admin.assignment.index', [
+            'data' => $data,
+            'data1' => $data1,
+            'data2' => $data2,
+            'data3' => $data3
+        ]);
+    }
+
+    public function addPhanCong(Request $request)
+    {
+        $data = new Phancong();
+
+        $data->hoten = $request->hoten;
+        $data->tenmon = $request->tenmon;
+        $data->tenlop = $request->tenlop;
+
+        $data->save();
+        return response()->json($data);
     }
 }

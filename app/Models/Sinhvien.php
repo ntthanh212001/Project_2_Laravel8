@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Sinhvien extends Model
+class Sinhvien extends Authenticatable
 {
     use HasFactory;
     protected $table = "sinhviens";

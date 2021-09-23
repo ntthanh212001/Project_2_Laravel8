@@ -25,7 +25,7 @@
         <form method="GET" id="search-form" action="{{url('admin/mark/qtht')}}">
             <div class="col-md-8">
                 <div class="btn btn-flat fix-box" style="margin: 0;padding: 0 0 0 12px;">
-                    <select name="search_lop" id="search_lop" class="form-control">
+                    <select name="search_lop" id="search_lop" class="form-control" onChange="this.form.submit()">
                         <option value="">--Chọn Lớp--</option>
                         @foreach($data1 as $item)
                             <option value="{{$item->tenlop}}"
@@ -36,7 +36,7 @@
                         @endforeach
                     </select>
 
-                    <select name="search_mh" id="search_mh" class="form-control" >
+                    <select name="search_mh" id="search_mh" class="form-control" onChange="this.form.submit()">
                         <option value="">--Chọn Môn--</option>
                         @foreach($data2 as $item)
                             <option value="{{$item->tenmon}}"
@@ -46,8 +46,7 @@
                             >{{$item->tenmon}}</option>
                         @endforeach
                     </select>
-                    <button type="submit">Xem</button>
-
+                    <noscript><input value="submit"  type="submit"/></noscript>
 
                 </div>
             </div>
