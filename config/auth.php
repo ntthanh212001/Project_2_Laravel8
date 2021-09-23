@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'giangviens',
         ],
+        'sinhvien' => [
+            'driver' => 'session',
+            'provider' => 'sinhviens',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
         'giangviens' => [
             'driver' => 'eloquent',
             'model' => App\Models\Giangvien::class,
+        ],
+        'sinhviens' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Sinhvien::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
