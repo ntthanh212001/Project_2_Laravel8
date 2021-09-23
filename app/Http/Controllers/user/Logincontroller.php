@@ -31,7 +31,7 @@ class Logincontroller extends Controller
         }
     }
     function logout(){
-        Auth::logout();
-        return redirect()->route('home');
+        Auth::guard('sinhvien')->logout();
+        return redirect()->route('login');
     }
 }

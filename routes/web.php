@@ -27,6 +27,8 @@ Route::get('/login', [Logincontroller::class, 'FormLogin'])->name('login');
 Route::post('/login', [Logincontroller::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
+Route::get('/mymark', [UserController::class, 'myMark'])->name('my.mark');
 //
 //admin
 
