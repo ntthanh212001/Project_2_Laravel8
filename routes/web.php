@@ -97,6 +97,12 @@ Route::get('/admin/mark/qtht', [AdminController::class, 'markQtht'])->name('mark
 Route::get('/admin/mark/tkdh', [AdminController::class, 'markTkdh'])->name('mark.tkdh');
 Route::post('/admin/mark/save',[AdminController::class, 'savediem'])->name('mark.savediem');
 /* Route::get('/admin/mark/view/{id}', [AdminController::class, 'viewMarkById'])->name('mark.view'); */
+
+Route::get('/exportMark',[AdminController::class,'exportMark']);
+Route::get('/sampleMark',[AdminController::class,'sampleMark']);
+Route::post('/importMark',[AdminController::class,'importMark'])->name('importMark');
+Route::get('/admin/mark/FormExcelMark', [AdminController::class, 'showFormExcelMark'])->name('mark.showFormExcel');
+
 //end-point
 
 

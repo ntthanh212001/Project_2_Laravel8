@@ -103,6 +103,9 @@
                         <a class="collapse-item" href="{{route('mark.tkdh')}}">
                             <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Ngành TKDH</span>
                         </a>
+                        <a class="collapse-item" href="{{route('mark.showFormExcel')}}">
+                            <span style="font-size: .80rem;"><i class="fas fa-exchange-alt"></i>&nbsp; Import Excel Điểm</span>
+                        </a>
                     </div>
                 </div>
             </li>

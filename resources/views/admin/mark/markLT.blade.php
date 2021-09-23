@@ -22,8 +22,9 @@
 @endsection
 @section('content')
 <div class="row">
-    <form method="GET" id="search-form" action="{{url('admin/mark/dev')}}">
+
         <div class="col-md-8">
+            <form method="GET" id="search-form" action="{{url('admin/mark/dev')}}">
             <div class="btn btn-flat fix-box" style="margin: 0;padding: 0 0 0 12px;">
                 <select name="search_lop" id="search_lop" class="form-control">
                     <option value="">--Chọn Lớp--</option>
@@ -46,14 +47,15 @@
                         >{{$item->tenmon}}</option>
                     @endforeach
                 </select>
-                <button type="submit">Xem</button>
-
-
+                <button class="btn btn-primary" type="submit">Xem</button>
             </div>
-        </div>
     </form>
+        </div>
 </div>
-<br><br>
+<div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 150px;height: 40px;float: right">
+    <a type="button" class="btn btn-outline-primary">Export Student</a>
+</div>
+<br>
 <table class="table table-bordered">
     <thead>
         <tr class="text center-container">

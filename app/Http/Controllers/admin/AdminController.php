@@ -5,7 +5,9 @@
 namespace App\Http\Controllers\admin;
 
 
+use App\Exports\DiemExport;
 use App\Http\Controllers\Controller;
+use App\Imports\DiemImport;
 use App\Imports\SinhvienImport;
 use App\Models\Admin;
 use App\Models\Giangvien;
@@ -48,6 +50,11 @@ class AdminController extends Controller
     {
 
         return view('admin.student.FormExcelStudent');
+    }
+    function showFormExcelMark()
+    {
+
+        return view('admin.mark.FormExcelMark');
     }
     public function allBranch()
     {
@@ -906,6 +913,18 @@ class AdminController extends Controller
        $sinhvien = Excel::toArray(new SinhvienImport, $request->file('sample'));
        return view('admin.student.previewSinhvien',['sinhviens'=>$sinhvien[0]]);
     }
+    public function exportMark()
+    {
+        return Excel::download(new DiemExport, 'diem.xlsx');
+    }
+    public function sampleMark()
+    {
+        return Excel::download(new DiemExport(true), 'mau_diem.xlsx');
+    }
+    public function importMark(Request $request)
+    {
 
-
+        Excel::import(new DiemImport, $request->file('sample'));
+        return back()->with('success','Thêm thành công');
+    }
 }
