@@ -39,10 +39,11 @@
     </style>
 </head>
 <body >
-<div class="container">
-    <div class="div_nav">
+<div class="container" >
+    <div class="div_nav" >
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <!-- Container wrapper -->
             <div class="container-fluid">
                 <!-- Toggle button -->
@@ -75,7 +76,7 @@
                             <a class="nav-link" href="{{route('my.mark')}}">Bảng điểm của tôi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Danh sách môn thi lại</a>
+                            <a class="nav-link" href="{{route('my.failobject')}}">Danh sách môn thi lại</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">DS điểm dưới 5</a>
@@ -96,10 +97,20 @@
         </nav>
         <!-- Navbar -->
     </div>
-    <div class="content" style="background-color: white;height: 100vh;">
+
+    <div class="content" style="background-color: white;height: 90vh;">
        @section('content')
         @show
+           <footer class="bg-light text-center text-lg-start" style="position: absolute;bottom: 0px;width: 1094px;">
+               <!-- Copyright -->
+               <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                   © 2021 Copyright:
+                   <a class="text-dark" href="https://mdbootstrap.com/">Unknown Name</a>
+               </div>
+               <!-- Copyright -->
+           </footer>
     </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

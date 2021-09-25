@@ -29,6 +29,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::get('/mymark', [UserController::class, 'myMark'])->name('my.mark');
+Route::get('/failobject', [UserController::class, 'failObject'])->name('my.failobject');
 //
 //admin
 
@@ -109,6 +110,8 @@ Route::get('/admin/mark/FormExcelMark', [AdminController::class, 'showFormExcelM
 
 // Admin-assignment
 Route::get('/admin/assignment', [AdminController::class, 'phanCong'])->name('phanCong');
+Route::get('/admin/assignment/dev', [AdminController::class, 'phanCongLT'])->name('phanCong.lt');
+Route::get('/admin/assignment/qtht', [AdminController::class, 'phanCongQTHT'])->name('phanCong.qtht');
 Route::post('/admin/assignment/add-phancong', [AdminController::class, 'addPhanCong'])->name('phancong.add');
 
 

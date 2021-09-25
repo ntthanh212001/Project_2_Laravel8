@@ -25,9 +25,9 @@ class DiemFactory extends Factory
             'diemlt' => rand(1,10),
             'diemtt' => rand(1,10),
             'diemtong' => rand(1,100),
-            'monhoc_id' => '2',
-            'lop_id' =>  rand(4,6),
-            'sinhvien_id' => rand(1,150),
+            'monhoc_id' => '5',
+            'lop_id' =>  '6',
+            'sinhvien_id' => rand(107,122),
             'giangvien_id' => '1'
 
         ];

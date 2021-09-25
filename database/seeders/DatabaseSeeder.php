@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 //        Giangvien::factory(50)->create();
-        Diem::factory(50)->create();
-        //Sinhvien::factory(20)->create();
+        Diem::factory(20)->create();
+//        Sinhvien::factory(20)->create();
     }
 }

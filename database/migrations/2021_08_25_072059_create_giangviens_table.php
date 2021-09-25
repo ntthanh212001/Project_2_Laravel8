@@ -22,6 +22,8 @@ class CreateGiangViensTable extends Migration
             $table->boolean('gioitinh');
             $table->string('phone',20)->unique();
             $table->boolean('status')->default(true);
+            $table->integer('nganh_id')->unsigned();
+            $table->foreign('nganh_id')->references('id')->on('nganhs')->onDelete('cascade');
             $table->timestamps();
 
         });

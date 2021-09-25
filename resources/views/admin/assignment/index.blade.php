@@ -1,4 +1,4 @@
-+@extends('admin.layouts.master')
+@extends('admin.layouts.master')
 @section('title', 'Phân công')
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.css"/>
@@ -15,6 +15,46 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.1/af-2.3.7/b-2.0.0/b-colvis-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.js"></script>
+<style>
+    body {font-family: Arial;}
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
 @endsection
 @section('content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -92,7 +132,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
                                 <option value="{{$val->id}}" id="tenlop">{{$val->tenlop}}</option>
                                 @endforeach
                             </select>
-                            
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -104,6 +144,102 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
         </div>
     </div>
 </div>
+<h2>Thêm phân công</h2>
+<p>Hương HIIH</p>
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'London')">Ngành lập trình</button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">Ngành Quản Trị mạng</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Ngành thiết kế đồ hoạ</button>
+</div>
+
+<div id="London" class="tabcontent">
+    <form action="{{url('admin/assignment/dev')}}" method="GET">
+    <select class="form-select" aria-label="Default select example" name="gv_id">
+        @foreach($dt1 as $item)
+            <option value="{{$item->id}}">{{$item->hoten}}</option>
+        @endforeach
+
+    </select>
+        <select class="form-select" aria-label="Default select example" name="monhoc_id">
+            @foreach($dt2 as $item)
+                <option value="{{$item->id}}">{{$item->tenmon}}</option>
+            @endforeach
+
+        </select>
+        <select class="form-select" aria-label="Default select example" name="lop_id">
+            @foreach($dt3 as $item)
+                <option value="{{$item->id}}">{{$item->tenlop}}</option>
+            @endforeach
+
+        </select>
+        <button type="submit">Thêm</button>
+    </form>
+</div>
+
+<div id="Paris" class="tabcontent">
+    <form action="{{url('admin/assignment/dev')}}" method="GET">
+        <select class="form-select" aria-label="Default select example" name="gv_id">
+            @foreach($dt4 as $item)
+                <option value="{{$item->id}}">{{$item->hoten}}</option>
+            @endforeach
+
+        </select>
+        <select class="form-select" aria-label="Default select example" name="monhoc_id">
+            @foreach($dt5 as $item)
+                <option value="{{$item->id}}">{{$item->tenmon}}</option>
+            @endforeach
+
+        </select>
+        <select class="form-select" aria-label="Default select example" name="lop_id">
+            @foreach($dt6 as $item)
+                <option value="{{$item->id}}">{{$item->tenlop}}</option>
+            @endforeach
+
+        </select>
+        <button type="submit">Thêm</button>
+    </form>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+    <form action="{{url('admin/assignment/dev')}}" method="GET">
+        <select class="form-select" aria-label="Default select example" name="gv_id">
+            @foreach($dt7 as $item)
+                <option value="{{$item->id}}">{{$item->hoten}}</option>
+            @endforeach
+
+        </select>
+        <select class="form-select" aria-label="Default select example" name="monhoc_id">
+            @foreach($dt8 as $item)
+                <option value="{{$item->id}}">{{$item->tenmon}}</option>
+            @endforeach
+
+        </select>
+        <select class="form-select" aria-label="Default select example" name="lop_id">
+            @foreach($dt9 as $item)
+                <option value="{{$item->id}}">{{$item->tenlop}}</option>
+            @endforeach
+
+        </select>
+        <button type="submit">Thêm</button>
+    </form>
+</div>
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
 <script>
     $("#phancongForm").submit(function(e){
         e.preventDefault();

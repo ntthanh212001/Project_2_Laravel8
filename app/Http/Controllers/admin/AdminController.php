@@ -910,7 +910,7 @@ class AdminController extends Controller
         $data->nganh_id = $request->input('nganh_id');
         $data->lop_id = $request->input('lop_id');
         $data->save();
-        return redirect()->route('student')->with('success', 'Thành công');
+        return redirect()->route('student.dev')->with('success', 'Thành công');
     }
 
     public function exportSinhvien()
@@ -949,6 +949,33 @@ class AdminController extends Controller
     }
     public function phanCong()
     {
+        $sql_lt = DB::table('giangviens')
+            ->where('nganh_id',1)
+            ->get();
+        $sql2_lt = DB::table('monhocs')
+            ->where('nganh_id',1)
+            ->get();
+        $sql3_lt = DB::table('lops')
+            ->where('nganh_id',1)
+            ->get();
+        $sql_qtht = DB::table('giangviens')
+            ->where('nganh_id',2)
+            ->get();
+        $sql2_qtht = DB::table('monhocs')
+            ->where('nganh_id',2)
+            ->get();
+        $sql3_qtht = DB::table('lops')
+            ->where('nganh_id',2)
+            ->get();
+        $sql_tkdh = DB::table('giangviens')
+            ->where('nganh_id',3)
+            ->get();
+        $sql2_tkdh = DB::table('monhocs')
+            ->where('nganh_id',3)
+            ->get();
+        $sql3_tkdh = DB::table('lops')
+            ->where('nganh_id',3)
+            ->get();
         $data1 = Giangvien::all();
         $data2 = Monhoc::all();
         $data3 = Lop::all();
@@ -968,7 +995,19 @@ class AdminController extends Controller
             'data' => $data,
             'data1' => $data1,
             'data2' => $data2,
-            'data3' => $data3
+            'data3' => $data3,
+
+            'dt1' =>$sql_lt,
+            'dt2' =>$sql2_lt,
+            'dt3' =>$sql3_lt,
+
+            'dt4' =>$sql_qtht,
+            'dt5' =>$sql2_qtht,
+            'dt6' =>$sql3_qtht,
+
+            'dt7' =>$sql_tkdh,
+            'dt8' =>$sql2_tkdh,
+            'dt9' =>$sql3_tkdh
         ]);
     }
 
@@ -983,4 +1022,17 @@ class AdminController extends Controller
         $data->save();
         return response()->json($data);
     }
+    public function phanCongLT(Request $request){
+        $gv_id =$request->gv_id;
+        $monhoc_id =$request->monhoc_id;
+        $lop_id =$request->lop_id;
+        $data = Phancong::create([
+            'giangvien_id' => $request->input('gv_id'),
+            'monhoc_id' => $request->input('monhoc_id'),
+            'lop_id' => $request->input('lop_id'),
+        ]);
+        return redirect()->route('phanCong')->with('success', 'Phân công thành công');
+    }
+
+
 }

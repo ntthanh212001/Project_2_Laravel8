@@ -1,6 +1,7 @@
 @extends('user.layouts.master')
 @section('title','Sinh viên')
 @section('content')
+    <br><br>
     <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
@@ -27,7 +28,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 <h4>Tổng số điểm dưới 5</h4></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$diem1 + $diem2}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-align-left fa-2x text-gray-300"></i>
@@ -43,11 +44,11 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><h4>Sinh Viên</h4>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><h4>Điểm Lý Thuyết dưới 5</h4>
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$diem1}}</div>
                                 </div>
                                 {{-- <div class="col">
                                     <div class="progress progress-sm mr-2">
@@ -73,8 +74,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                <h4>Điểm lý thuyết dưới 5</h4></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                <h4>Điểm thực hành dưới 5</h4></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$diem2}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
