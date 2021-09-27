@@ -18,7 +18,7 @@ class DiemImport implements ToModel,WithHeadingRow
         return new Diem([
             'diemlt' => $row['diemlt'],
             'diemtt' => $row['diemtt'],
-            'monhoc_id' => $row['lop_id'],
+            'monhoc_id' => $row['monhoc_id'],
             'lop_id' => $row['lop_id'],
             'sinhvien_id' => $row['sinhvien_id'],
             'giangvien_id' => $row['giangvien_id'],

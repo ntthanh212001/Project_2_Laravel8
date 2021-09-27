@@ -118,7 +118,7 @@ Route::post('/admin/assignment/add-phancong', [AdminController::class, 'addPhanC
 
 //Giảng viên
 Route::get('/giangvien/myclass/', [GiangvienController::class, 'ClassTeacherDev'])->name('teacher.class');
-Route::get('/giangvien/mark/dev', [GiangvienController::class, 'TeacherMarkDev'])->name('teacher.markdev');
+Route::get('/giangvien/mark/', [GiangvienController::class, 'TeacherMarkDev'])->name('teacher.markdev');
 Route::get('/giangvien/markFloject', [GiangvienController::class, 'TeachermarkFloject'])->name('teacher.markfloject');
 Route::get('/giangvien/profile/', [GiangvienController::class, 'TeacherProfile'])->name('teacher.profile');
 

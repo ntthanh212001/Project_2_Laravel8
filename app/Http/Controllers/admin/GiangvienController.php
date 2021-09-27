@@ -60,9 +60,11 @@ class GiangvienController extends Controller
             return view('giangvien.myclass.myclass',['data'=>$data]);
     }
     public function TeacherMarkDev(Request $request){
-        $k = $request->k;
+        $search_lop = $request->search_lop;
+        $search_mh = $request->search_mh;
+        DB::statement(DB::raw('set @rownum = 0'));
         $id_gv = Auth::guard('giangvien')->user()->id;
-        if ($k == ''){
+        if ($search_lop == '' && $search_mh == ''){
             $data = DB::table('diems')
                 ->join('giangviens','diems.giangvien_id','=','giangviens.id')
                 ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
@@ -71,26 +73,80 @@ class GiangvienController extends Controller
                 ->where('diems.giangvien_id',$id_gv)
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                    'diems.*',
+                    'diems.id AS diem_id',
+                    'sinhviens.id AS sv_id',
+                    'monhocs.id AS monhoc_id',
                     'lops.*',
+                    'diems.*',
                     'giangviens.hoten AS hotengv',
+                    'lops.tenlop AS tenlop',
                     'sinhviens.masv AS masv',
                     'sinhviens.hoten AS tensv',
                     'monhocs.tenmon AS tenmon')
                 ->get();
-        }else{
+        }if ($search_lop != '' && $search_mh != ''){
             $data = DB::table('diems')
                 ->join('giangviens','diems.giangvien_id','=','giangviens.id')
                 ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
                 ->join('monhocs','diems.monhoc_id','=','monhocs.id')
                 ->join('lops','diems.lop_id','=','lops.id')
                 ->where('diems.giangvien_id',$id_gv)
-                ->where('lops.tenlop','LIKE','%'.$k.'%')
+                ->where('lops.tenlop','LIKE','%'.$search_lop.'%')
+                ->where('monhocs.tenmon','LIKE','%'.$search_mh.'%')
                 ->select(
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                    'diems.*',
+                    'diems.id AS diem_id',
+                    'sinhviens.id AS sv_id',
+                    'monhocs.id AS monhoc_id',
                     'lops.*',
+                    'diems.*',
                     'giangviens.hoten AS hotengv',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.masv AS masv',
+                    'sinhviens.hoten AS tensv',
+                    'monhocs.tenmon AS tenmon')
+                ->get();
+        }
+        if ($search_lop == '' && $search_mh != ''){
+            $data = DB::table('diems')
+                ->join('giangviens','diems.giangvien_id','=','giangviens.id')
+                ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
+                ->join('monhocs','diems.monhoc_id','=','monhocs.id')
+                ->join('lops','diems.lop_id','=','lops.id')
+                ->where('diems.giangvien_id',$id_gv)
+                ->where('monhocs.tenmon','LIKE','%'.$search_mh.'%')
+                ->select(
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'diems.id AS diem_id',
+                    'sinhviens.id AS sv_id',
+                    'monhocs.id AS monhoc_id',
+                    'lops.*',
+                    'diems.*',
+                    'giangviens.hoten AS hotengv',
+                    'lops.tenlop AS tenlop',
+                    'sinhviens.masv AS masv',
+                    'sinhviens.hoten AS tensv',
+                    'monhocs.tenmon AS tenmon')
+                ->get();
+        }
+        if ($search_lop != '' && $search_mh == ''){
+            $data = DB::table('diems')
+                ->join('giangviens','diems.giangvien_id','=','giangviens.id')
+                ->join('sinhviens','diems.sinhvien_id','=','sinhviens.id')
+                ->join('monhocs','diems.monhoc_id','=','monhocs.id')
+                ->join('lops','diems.lop_id','=','lops.id')
+                ->where('diems.giangvien_id',$id_gv)
+                ->where('lops.tenlop','LIKE','%'.$search_lop.'%')
+
+                ->select(
+                    DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                    'diems.id AS diem_id',
+                    'sinhviens.id AS sv_id',
+                    'monhocs.id AS monhoc_id',
+                    'lops.*',
+                    'diems.*',
+                    'giangviens.hoten AS hotengv',
+                    'lops.tenlop AS tenlop',
                     'sinhviens.masv AS masv',
                     'sinhviens.hoten AS tensv',
                     'monhocs.tenmon AS tenmon')
@@ -105,13 +161,21 @@ class GiangvienController extends Controller
         $data2 = DB::table('phancongs')
             ->join('lops','phancongs.lop_id','=','lops.id')
             ->where('giangvien_id',$id_gv)
-            ->select('lop_id','lops.tenlop')
+            ->select('lops.tenlop AS tenlophoc')
+            ->distinct()
+            ->get();
+        $data3 = DB::table('phancongs')
+            ->join('monhocs','phancongs.monhoc_id','=','monhocs.id')
+            ->where('giangvien_id',$id_gv)
+            ->select('monhocs.tenmon AS tenmonhoc')
             ->distinct()
             ->get();
 
-        return view('giangvien.mark.markDev',['data'=>$data,
+        return view('giangvien.mark.myMarkAssignment',['data'=>$data,
         'data2'=>$data2,
-            'key_class'=>$k,
+            'data3'=>$data3,
+            'key_class1'=>$search_lop,
+            'key_class2'=>$search_mh
         ]);
     }
     public function TeachermarkFloject(Request $request){

@@ -71,11 +71,11 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tuỳ chọn</h6>
                     <a class="collapse-item" href="{{route('teacher.markdev')}}">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; DS theo lớp
+                        <i class="fas fa-exchange-alt"></i>&nbsp; Xem và nhập
                     </a>
-                    <a class="collapse-item" href="{{route('teacher.markfloject')}}">
-                        <i class="fas fa-exchange-alt"></i>&nbsp; DS theo môn
-                    </a>
+{{--                    <a class="collapse-item" href="{{route('teacher.markfloject')}}">--}}
+{{--                        <i class="fas fa-exchange-alt"></i>&nbsp; DS theo môn--}}
+{{--                    </a>--}}
 {{--                    <a class="collapse-item" href="{{route('teacher.markdev')}}">--}}
 {{--                        <i class="fas fa-exchange-alt"></i>&nbsp; Lập trình--}}
 {{--                    </a>--}}

@@ -407,8 +407,8 @@ class AdminController extends Controller
                 ->join('monhocs', 'diems.monhoc_id', '=', 'monhocs.id')
                 ->join('lops', 'sinhviens.lop_id', '=', 'lops.id')
                 ->where('sinhviens.nganh_id', 1)
-                ->where('monhocs.tenmon', $search_mh)
-                ->where('lops.tenlop', $search_lop)
+                ->where('monhocs.tenmon', 'LIKE','%'.$search_mh.'%')
+                ->where('lops.tenlop', 'LIKE','%'.$search_lop.'%')
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     'masv',
