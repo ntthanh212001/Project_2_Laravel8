@@ -71,6 +71,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             <th>Giảng viên</th>
             <th>Môn học</th>
             <th>Lớp</th>
+            <th>Ngày tạo</th>
         </tr>
     </thead>
     <tbody>
@@ -82,6 +83,8 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             </td>
             <td>{{$item->tenmon}}</td>
             <td>{{$item->tenlop}}</td>
+
+            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
         </tr>
         @empty
         <th colspan="4" class="text center-container">Danh sách phân công trống</th>
@@ -145,7 +148,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
     </div>
 </div>
 <h2>Thêm phân công</h2>
-<p>Hương HIIH</p>
+
 
 <div class="tab">
     <button class="tablinks" onclick="openCity(event, 'London')">Ngành lập trình</button>
@@ -173,14 +176,14 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             @endforeach
 
         </select>
-        <button type="submit">Thêm</button>
+        <button type="submit" @class('btn btn-primary')>Thêm</button>
     </form>
 </div>
 
 <div id="Paris" class="tabcontent">
     <form action="{{url('admin/assignment/dev')}}" method="GET">
         <select class="form-select" aria-label="Default select example" name="gv_id">
-            @foreach($dt4 as $item)
+            @foreach($dt1 as $item)
                 <option value="{{$item->id}}">{{$item->hoten}}</option>
             @endforeach
 
@@ -197,14 +200,14 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             @endforeach
 
         </select>
-        <button type="submit">Thêm</button>
+        <button type="submit"  @class('btn btn-primary')>Thêm</button>
     </form>
 </div>
 
 <div id="Tokyo" class="tabcontent">
     <form action="{{url('admin/assignment/dev')}}" method="GET">
         <select class="form-select" aria-label="Default select example" name="gv_id">
-            @foreach($dt7 as $item)
+            @foreach($dt1 as $item)
                 <option value="{{$item->id}}">{{$item->hoten}}</option>
             @endforeach
 
@@ -221,7 +224,7 @@ integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026
             @endforeach
 
         </select>
-        <button type="submit">Thêm</button>
+        <button type="submit"  @class('btn btn-primary')>Thêm</button>
     </form>
 </div>
 

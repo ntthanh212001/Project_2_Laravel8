@@ -4,7 +4,7 @@
 
 namespace App\Http\Controllers\admin;
 
-
+use Illuminate\Support\Facades\Session;
 use App\Exports\DiemExport;
 use App\Http\Controllers\Controller;
 use App\Imports\DiemImport;
@@ -81,6 +81,13 @@ class AdminController extends Controller
             'data' => $data,
             'data2' => $data2
         ]);
+
+//        Session::put('tasks_url',\request()->fullUrl());
+//        echo Session::get('tasks_url');
+//        return view('admin.student.addstudent', [
+//            'data' => $data,
+//            'data2' => $data2
+//        ]);
     }
     /* function AllClass()
     {
@@ -191,6 +198,8 @@ class AdminController extends Controller
                 )
                 ->get();
         }
+        Session::put('tasks_url',request()->fullUrl());
+//        echo Session::get('tasks_url');
         return view(
             'admin.student.listLT',
             [
@@ -235,6 +244,8 @@ class AdminController extends Controller
                 )
                 ->get();
         }
+        Session::put('tasks_url',request()->fullUrl());
+//        echo Session::get('tasks_url');
         return view(
             'admin.student.ListQTHT',
             [
@@ -280,6 +291,7 @@ class AdminController extends Controller
                 )
                 ->get();
         }
+        Session::put('tasks_url',\request()->fullUrl());
         return view(
             'admin.student.listTKĐH',
             [
@@ -825,7 +837,10 @@ class AdminController extends Controller
             'lop_id' => $request->input('lop_id'),
 
         ]);
-        return redirect()->route('student')->with('success', 'Thêm sinh viên thành công');
+        if (session('tasks_url')){
+            return redirect(\session('tasks_url'));
+        }
+        return redirect()->route('student.dev')->with('success', 'Thêm sinh viên thành công');
     }
     public function addObject(Request $request)
     {
@@ -950,7 +965,6 @@ class AdminController extends Controller
     public function phanCong()
     {
         $sql_lt = DB::table('giangviens')
-            ->where('nganh_id',1)
             ->get();
         $sql2_lt = DB::table('monhocs')
             ->where('nganh_id',1)
@@ -986,6 +1000,7 @@ class AdminController extends Controller
             ->join('monhocs', 'phancongs.monhoc_id', '=', 'monhocs.id')
             ->select(
                 DB::raw('@rownum := @rownum + 1 AS rownum'),
+                'phancongs.*',
                 'giangviens.hoten AS hoten',
                 'lops.tenlop AS tenlop',
                 'monhocs.tenmon AS tenmon'

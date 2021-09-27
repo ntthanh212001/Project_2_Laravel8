@@ -29,7 +29,6 @@
                 <th>ID</th>
                 <th>Tên môn học</th>
                 <th>Số giờ</th>
-                <th>Học kì</th>
                 <th>Ngành</th>
                 <th>Hành Động</th>
             </tr>
@@ -40,11 +39,11 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->tenmon }}</td>
                     <td>{{ $item->sogio }}</td>
-                    <td>{{ $item->tenhocki }}</td>
+
                     <td>{{ $item->tennganh }}</td>
                     <td>
                         <a href="javascript:void(0)" onclick="editStudent({{ $item->id }})"
-                            class="btn btn-info">Edit</a>
+                            class="btn btn-info">Xoá</a>
                     </td>
                     {{-- <td>
         <a href="javascript:void(0)" onclick="editGiangvien({{$item->id}})" class="btn btn-info">Edit</a>
@@ -173,7 +172,7 @@
     </div>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        
+
 
         $("#monhocForm").submit(function(e) {
             e.preventDefault();
@@ -215,7 +214,7 @@
     <script>
         /* $(document).ready(function() {
             $('#monhocTable').DataTable();
-        }); 
+        });
         /* Edit GV */
 
         /* function editStudent(id) {

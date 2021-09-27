@@ -107,7 +107,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
 
         <li class="nav-item">
-            <a class="nav-link" href="{{route('teacher.class')}}">
+            <a class="nav-link" href="{{route('teacher.profile')}}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Thông tin cá nhân</span></a>
         </li>

@@ -9,5 +9,6 @@ class Phancong extends Model
 {
     use HasFactory;
     protected $table = "phancongs";
+    public $timestamps = true;
     protected $fillable = ['id','giangvien_id','monhoc_id','lop_id','created_at','updated_at'];
 }

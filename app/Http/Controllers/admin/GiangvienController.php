@@ -96,8 +96,14 @@ class GiangvienController extends Controller
                     'monhocs.tenmon AS tenmon')
                 ->get();
         }
-        $data2 = DB::table('diems')
-            ->join('lops','diems.lop_id','=','lops.id')
+//        $data2 = DB::table('diems')
+//            ->join('lops','diems.lop_id','=','lops.id')
+//            ->where('giangvien_id',$id_gv)
+//            ->select('lop_id','lops.tenlop')
+//            ->distinct()
+//            ->get();
+        $data2 = DB::table('phancongs')
+            ->join('lops','phancongs.lop_id','=','lops.id')
             ->where('giangvien_id',$id_gv)
             ->select('lop_id','lops.tenlop')
             ->distinct()
@@ -157,5 +163,15 @@ class GiangvienController extends Controller
             'key_class'=>$k,
         ]);
 
+    }
+    public function TeacherProfile(){
+        $id_gv = Auth::guard('giangvien')->user()->id;
+        $sql = DB::table('giangviens')
+            ->where('id',$id_gv)
+            ->select()
+            ->get();
+        return view('giangvien.profile',
+        ['data'=>$sql]
+        );
     }
 }
