@@ -71,7 +71,7 @@ integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2
                 <a href="{{'/admin/student/edit/'.$item->id}}"
                    class="btn btn-info">Edit</a>
                 <a href="{{'/admin/student/update/'.$item->id}}"
-                           class="btn btn-info">Edit</a>
+                           class="btn btn-info">View</a>
 
                     </td>
                     {{-- <td>
