@@ -108,6 +108,7 @@
                 data: [
                     @foreach($data2 as $item)
                         {{ $item->diemlt . "," }}
+                        {{$item->diemtt . ","}}
                         @endforeach
                 ],
                 fill: false,
@@ -126,4 +127,5 @@
             config
         );
     </script>
+
 @endsection
