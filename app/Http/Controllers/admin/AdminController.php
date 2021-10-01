@@ -46,9 +46,11 @@ class AdminController extends Controller
     {
         $data = Admin::all();
         $data2 = Diem::all();
+        $data3 = Nganh::all();
         return view('admin.index', [
             'data' => $data,
-            'data2' =>$data2
+            'data2' => $data2,
+            'data3' => $data3
         ]);
     }
     function showFormExcelStudent()
@@ -969,6 +971,7 @@ class AdminController extends Controller
     public function phanCong()
     {
         $sql_lt = DB::table('giangviens')
+            ->where('nganh_id',1)
             ->get();
         $sql2_lt = DB::table('monhocs')
             ->where('nganh_id',1)

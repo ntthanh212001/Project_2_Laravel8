@@ -62,13 +62,14 @@
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Navbar brand -->
-                    <a class="navbar-brand mt-2 mt-lg-0" href="{{route('home')}}">
-                        <img
+                    <a class="navbar-brand mt-2 mt-lg-0" href="{{route('home')}}" style="color: red">
+                        STUDENT
+                        {{-- <img
                             src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
                             height="15"
                             alt=""
                             loading="lazy"
-                        />
+                        /> --}}
                     </a>
                     <!-- Left links -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -104,8 +105,8 @@
            <footer class="bg-light text-center text-lg-start" style="position: absolute;bottom: 0px;width: 1094px;">
                <!-- Copyright -->
                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                   © 2021 Copyright:
-                   <a class="text-dark" href="https://mdbootstrap.com/">Unknown Name</a>
+                   Student
+                   <a class="text-dark" href="https://mdbootstrap.com/">BKACAD</a>
                </div>
                <!-- Copyright -->
            </footer>

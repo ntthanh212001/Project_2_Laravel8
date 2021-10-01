@@ -32,7 +32,7 @@
         <tr>
             <td>Ngày sinh</td>
             @foreach($data as $item)
-                <td>{{$item->ngaysinh}}</td>
+                <td>{{\Carbon\Carbon::parse($item->ngaysinh)->format('d-m-Y')}}</td>
             @endforeach
         </tr>
         <tr>
@@ -44,7 +44,7 @@
         <tr>
             <td>Được tạo lúc </td>
             @foreach($data as $item)
-                <td>{{$item->created_at}}</td>
+                <td>{{\Carbon\Carbon::parse($item->created_at)->format('d-m-Y')}}</td>
             @endforeach
         </tr>
     </table>

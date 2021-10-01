@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 150px;height: 40px;float: right">
-        <a type="button" class="btn btn-outline-primary">Export Student</a>
+        <a type="button" class="btn btn-outline-primary">Export</a>
     </div>
     <br>
     <table class="table table-bordered">

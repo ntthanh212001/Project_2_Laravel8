@@ -9,7 +9,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            <h4>Ngành</h4></div>
+                            <h4>Ngành</h4>
+                        </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{$nganhs}}</div>
                     </div>
                     <div class="col-auto">
@@ -27,7 +28,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <h4>Lớp</h4></div>
+                            <h4>Lớp</h4>
+                        </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{$lops}}</div>
                     </div>
                     <div class="col-auto">
@@ -44,7 +46,8 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><h4>Giảng viên</h4>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            <h4>Giảng viên</h4>
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
@@ -74,7 +77,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <h4>Sinh viên</h4></div>
+                            <h4>Sinh viên</h4>
+                        </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{$sinhviens}}</div>
                     </div>
                     <div class="col-auto">
@@ -94,38 +98,52 @@
 
 @endsection
 @section('js')
-    <script>
-
-        // const labels = Utils.months({count: 7});
+<script>
+     //const labels = Utils.months({count: 7});
+    const labels = [
+                /*  */
+            ];
         const data = {
             labels: [
-                @foreach($data2 as $item)
-                {{ $loop->index . "," }}
-                @endforeach
+                @foreach ($data3 as $item)
+                        {{$item->tennganh . ","}}
+                    @endforeach
             ],
             datasets: [{
-                label: 'Dữ liệu ',
+                label: 'Điểm',
                 data: [
                     @foreach($data2 as $item)
                         {{ $item->diemlt . "," }}
-                        {{$item->diemtt . ","}}
-                        @endforeach
+                        {{ $item->diemtt . "," }}
+                    @endforeach
                 ],
-                fill: false,
-                borderColor: 'red',
-                tension: 0.1
+                backgroundColor: [
+                     'rgba(255, 99, 132, 0.2)',
+                     'rgba(255, 159, 64, 0.2)'
+                     ],
+                    borderColor: [
+                         'skyblue','red'
+                    ],
+                    borderWidth: 1
             }]
 
         };
 
         const config = {
-            type: 'line',
+            type: 'bar',
             data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
         };
         var myChart = new Chart(
             document.getElementById('myChart'),
             config
         );
-    </script>
+</script>
 
 @endsection
