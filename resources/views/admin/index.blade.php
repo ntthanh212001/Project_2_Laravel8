@@ -85,4 +85,45 @@
         </div>
     </div>
 </div>
+<div class="card shadow mb-md-auto" style="width: 700px;">
+    <h5 style="text-align: center">Biểu đồ điểm lý thuyết</h5>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+@endsection
+@section('js')
+    <script>
+
+        // const labels = Utils.months({count: 7});
+        const data = {
+            labels: [
+                @foreach($data2 as $item)
+                {{ $loop->index . "," }}
+                @endforeach
+            ],
+            datasets: [{
+                label: 'Dữ liệu ',
+                data: [
+                    @foreach($data2 as $item)
+                        {{ $item->diemlt . "," }}
+                        @endforeach
+                ],
+                fill: false,
+                borderColor: 'red',
+                tension: 0.1
+            }]
+
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+        };
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
 @endsection

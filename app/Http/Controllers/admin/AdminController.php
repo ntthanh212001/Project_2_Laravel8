@@ -45,7 +45,11 @@ class AdminController extends Controller
     function index()
     {
         $data = Admin::all();
-        return view('admin.index', ['data' => $data]);
+        $data2 = Diem::all();
+        return view('admin.index', [
+            'data' => $data,
+            'data2' =>$data2
+        ]);
     }
     function showFormExcelStudent()
     {
