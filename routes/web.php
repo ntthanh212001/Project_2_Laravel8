@@ -70,7 +70,7 @@ Route::post('/admin/student/add-student', [AdminController::class, 'addStudent']
 Route::get('/admin/student/edit/{id}', [AdminController::class, 'ShowDataStudent'])->name('student.showFormUpdate');
 
 Route::post('/admin/student/update/', [AdminController::class, 'updateStudent'])->name('student.update');
-Route::get('/admin/student/view/{id}', [AdminController::class, 'viewTeacherById'])->name('student.view');
+Route::get('/admin/student/view/{id}', [AdminController::class, 'viewStudenById'])->name('student.view');
 
 
 Route::get('/exportSinhvien',[AdminController::class,'exportSinhvien']);

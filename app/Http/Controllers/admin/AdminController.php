@@ -306,6 +306,28 @@ class AdminController extends Controller
             ]
         );
     }
+    public function viewStudenById($id){
+        $data = DB::table('sinhviens')
+            ->join('nganhs','sinhviens.nganh_id','=','nganhs.id')
+            ->join('lops','sinhviens.lop_id','=','lops.id')
+            ->where('sinhviens.id',$id)
+            ->get();
+        $data2 = DB::table('diems')
+            ->join('sinhviens','sinhviens.id','=','diems.sinhvien_id')
+            ->join('monhocs','monhocs.id','=','diems.monhoc_id')
+            ->where('diems.sinhvien_id',$id)
+            ->select(
+                'diems.*',
+                'monhocs.tenmon AS tenmonhoc'
+            )
+            ->get();
+       return view('admin.student.view',
+       [
+           'data' =>$data,
+             'data2' =>$data2
+           ]
+       );
+    }
     public function AllClass()
     {
         $name = Admin::all();
