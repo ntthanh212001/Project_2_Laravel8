@@ -84,7 +84,7 @@ integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2
 
             <td style="width: 80px;">
                 <a href="{{'/admin/student/edit/'.$item->id}}"><i style="color: #17a2b8" class="far fa-edit"></i></a>
-                <a href="{{'/admin/student/update/'.$item->id}}"><i  style="color:#dda20a;" class="far fa-eye"></i></a>
+                <a href="{{'/admin/student/view/'.$item->id}}"><i  style="color:#dda20a;" class="far fa-eye"></i></a>
                 <a href="{{'/admin/student/update/'.$item->id}}"><i style="color:red;" class="fas fa-backspace"></i></a>
                     </td>
                     {{-- <td>
